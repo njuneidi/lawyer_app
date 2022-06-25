@@ -4,11 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class StorageInfoCard extends StatelessWidget {
   const StorageInfoCard({
-    Key key,
-    @required this.title,
-    @required this.svgSrc,
-    @required this.amountOfFiles,
-    @required this.numOfFiles,
+    Key ?key,
+    required this.title,
+    required this.svgSrc,
+    required this.amountOfFiles,
+    required this.numOfFiles,
   }) : super(key: key);
   final String title, svgSrc, amountOfFiles;
   final int numOfFiles;
@@ -48,7 +48,7 @@ class StorageInfoCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .caption
-                        .copyWith(color: Colors.white70),
+                        ?.copyWith(color: Colors.white70),
                   ),
                 ],
               ),

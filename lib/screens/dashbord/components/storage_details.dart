@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class storage_detalis extends StatelessWidget {
   const storage_detalis({
-    Key key,
+    Key ?key,
   }) : super(key: key);
 
   @override

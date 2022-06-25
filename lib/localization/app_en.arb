@@ -1,0 +1,13 @@
+{
+  "@appBar": {
+    "description": "app bar title "
+  },
+  "appBar": "Lawyer App",
+  "dashboardPageTitle": "Dashboard",
+  "sideMenuItemOneDashboard": "Dashboard",
+  "sideMenuItemThreeTransaction": "Transaction",
+  "sideMenuItemFourFinance": "Finance",
+  "sideMenuIteFiveReport": "Reports",
+  "sideMenuItemSixSettings": "Settings",
+  "sideMenuItemTwoDefinition": "Definition"
+}

@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 class RecentFiles extends StatelessWidget {
   const RecentFiles({
-    Key key,
+    Key ?key,
   }) : super(key: key);
 
   @override
@@ -50,19 +50,19 @@ DataRow recentFileDataRow(RecentFile fileInfo) {
           Row(
             children: [
               SvgPicture.asset(
-               fileInfo.icon,
+               fileInfo.icon!,
                 height: 30,
                 width: 30,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                child: Text(fileInfo.title),
+                child: Text(fileInfo.title!),
               )
             ],
           ),
         ),
-        DataCell(Text(fileInfo.date)),
-        DataCell(Text(fileInfo.size)),
+        DataCell(Text(fileInfo.date!)),
+        DataCell(Text(fileInfo.size!)),
       ],
     );
   }

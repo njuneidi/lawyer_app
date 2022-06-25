@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
-    Key key,
+    Key ?key,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class Chart extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline4
-                    .copyWith(
+                    ?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         height: .5),

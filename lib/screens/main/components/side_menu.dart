@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lawyer_app/localization/app_localizations_context.dart';
 
 import '../main_screen.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
-    Key key,
+    Key ?key,
   }) : super(key: key);
 
   @override
@@ -19,32 +20,32 @@ class SideMenu extends StatelessWidget {
               child: Image.asset("assets/images/logo.png"),
             ),
             DrawListTitle(
-              title: "Dashbord",
+              title: context.loc.sideMenuItemOneDashboard,
               svgSrc: "assets/icons/menu_dashbord.svg",
               press: () {},
             ),
             DrawListTitle(
-              title: "Definition",
+              title: context.loc.sideMenuItemTwoDefinition,
               svgSrc: "assets/icons/menu_def.svg",
               press: () {},
             ),
             DrawListTitle(
-              title: "Transaction",
+              title: context.loc.sideMenuItemThreeTransaction,
               svgSrc: "assets/icons/menu_tran.svg",
               press: () {},
             ),
             DrawListTitle(
-              title: "Finance",
+              title: context.loc.sideMenuItemFourFinance,
               svgSrc: "assets/icons/menu_fin_tran.svg",
               press: () {},
             ),
             DrawListTitle(
-              title: "Reports",
+              title: context.loc.sideMenuIteFiveReport,
               svgSrc: "assets/icons/menu_doc.svg",
               press: () {},
             ),
             DrawListTitle(
-              title: "Settings",
+              title: context.loc.sideMenuItemSixSettings,
               svgSrc: "assets/icons/menu_setting.svg",
               press: () {},
             )

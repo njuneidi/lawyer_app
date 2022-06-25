@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 class FieldInfoCard extends StatelessWidget {
   const FieldInfoCard({
-    Key key,
-    @required this.info,
+    Key ?key,
+    required this.info,
   }) : super(key: key);
   final CloudStorageInfo info;
 
@@ -28,11 +28,11 @@ class FieldInfoCard extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: info.color.withOpacity(.1),
+                  color: info.color?.withOpacity(.1),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: SvgPicture.asset(
-                  info.svgSrc,
+                  info.svgSrc!,
                   color: info.color,
                 ),
               ),
@@ -43,13 +43,13 @@ class FieldInfoCard extends StatelessWidget {
             ],
           ),
           Text(
-            info.title,
+            info.title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           ProgressLine(
-            color: info.color,
-            prercentage: info.percentage,
+            color: info.color!,
+            prercentage: info.percentage!,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,14 +59,14 @@ class FieldInfoCard extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .caption
-                    .copyWith(color: Colors.white70),
+                    ?.copyWith(color: Colors.white70),
               ),
               Text(
-                info.totalStorage,
+                info.totalStorage!,
                 style: Theme.of(context)
                     .textTheme
                     .caption
-                    .copyWith(color: Colors.white),
+                    ?.copyWith(color: Colors.white),
               ),
             ],
           )
@@ -78,9 +78,9 @@ class FieldInfoCard extends StatelessWidget {
 
 class ProgressLine extends StatelessWidget {
   const ProgressLine({
-    Key key,
+    Key ?key,
     this.color = primaryColor,
-    @required this.prercentage,
+    required this.prercentage,
   }) : super(key: key);
 
   final Color color;

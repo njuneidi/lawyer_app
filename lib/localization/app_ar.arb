@@ -1,0 +1,13 @@
+{
+  "appBar": "برنامج المحامي",
+  "@appBar": {
+    "description": "عنوان البرنامج"
+  },
+  "dashboardPageTitle": "لوحة التحكم",
+  "sideMenuItemOneDashboard": "لوحة التحكم",
+  "sideMenuItemThreeTransaction": "الحركات",
+  "sideMenuItemFourFinance": "المالية",
+  "sideMenuIteFiveReport": "التقارير",
+  "sideMenuItemSixSettings": "الاعدادات",
+  "sideMenuItemTwoDefinition": "التعريفات"
+}
