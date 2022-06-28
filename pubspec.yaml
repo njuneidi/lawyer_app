@@ -51,6 +51,7 @@ dependencies:
   rxdart: ^0.27.4
   json_annotation: ^4.5.0
   shared_preferences: ^2.0.15
+  country_code: ^1.0.0
 
 cupertino_icons: ^1.0.0
 
