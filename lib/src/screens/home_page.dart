@@ -5,6 +5,9 @@ import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
 import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/finance/finance_screen.dart';
 import 'package:lawyer_app/src/screens/main/components/side_menu.dart';
+import 'package:lawyer_app/src/screens/reports/reports_screen.dart';
+import 'package:lawyer_app/src/screens/settings/setting_screen.dart';
+import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -31,13 +34,18 @@ class HomePage extends StatelessWidget {
 
         //if (tab == 1)
         Expanded(
-          flex: 5,
-          child: tab == 1
-              ? DashboardScreen()
-              : tab == 2
-                  ? DefinitionScreen()
-                  : FinanceScreen(),
-        )
+            flex: 5,
+            child: tab == 1
+                ? DashboardScreen()
+                : tab == 2
+                    ? DefinitionScreen()
+                    : tab == 3
+                        ? TransactionScreen()
+                        : tab == 4
+                            ? FinanceScreen()
+                            : tab == 5
+                                ? ReportScreen()
+                                : SettingScreen())
         // else if(tab == 2)
         // Expanded(
         //   flex: 5,

@@ -176,8 +176,10 @@ class _EmailPasswordSignInContentsState
               PrimaryButton(
                 text: state.primaryButtonText,
                 isLoading: state.isLoading,
+               
                 onPressed: state.isLoading ? null : () => _submit(state),
               ),
+              
               gapH8,
               CustomTextButton(
                 text: state.secondaryButtonText,

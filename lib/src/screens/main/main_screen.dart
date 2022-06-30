@@ -76,7 +76,8 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
                   )
                 ] else
                   const Icon(Icons.login),
-                ActionTextButton(text: 'Sign In'.hardcoded, onPressed: () {}),
+                ActionTextButton(text: 'Sign In'.hardcoded,  onPressed: () =>
+                    context.pushNamed(AppRoute.signIn.name),),
               ],
             ),
             const SizedBox(
@@ -130,7 +131,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         key: sideMenuControlerProvider.scaffoldKey,
         drawer: const SideMenu(),
         body: SafeArea(
-          child: user == null
+          child: user != null
               ? HomePage(
                   user: user,
                   tab: index,

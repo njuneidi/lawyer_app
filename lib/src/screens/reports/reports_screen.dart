@@ -9,7 +9,7 @@ import 'components/my_fiels.dart';
 import 'components/storage_details.dart';
 
 // ignore: use_key_in_widget_constructors
-class TransactionScreen extends StatelessWidget {
+class ReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

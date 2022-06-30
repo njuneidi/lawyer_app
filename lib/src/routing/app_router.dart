@@ -58,6 +58,21 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       }
     },
  */
+  redirect: (state) {
+      final isLoggedIn = authRepository.currentUser != null;
+      debugPrint(isLoggedIn==true?"true":"false");
+      debugPrint(state.location);
+      if (isLoggedIn) {
+        if (state.location == '/signIn')  {
+          return '/dashboard';
+        }
+      } else {
+        if (state.location != '/') {
+          return '/';
+        }
+      }
+      return null;
+    },
     refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
@@ -97,7 +112,65 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
      
         routes: [],
+      ),GoRoute(
+        path: '/transaction',
+        name: AppRoute.transaction.name,
+       // builder: (context, state) =>  MainScreen(tab: 'transaction',),
+         pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(tab: 'transaction',),
+              ),
+     
+        routes: [],
       ),
+      GoRoute(
+        path: '/finance',
+        name: AppRoute.finance.name,
+       // builder: (context, state) =>  MainScreen(tab: 'finance',),
+         pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(tab: 'finance',),
+              ),
+     
+        routes: [],
+      ),
+      GoRoute(
+        path: '/reports',
+        name: AppRoute.reports.name,
+       // builder: (context, state) =>  MainScreen(tab: 'reports',),
+         pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(tab: 'reports',),
+              ),
+     
+        routes: [],
+      ),
+      GoRoute(
+        path: '/setting',
+        name: AppRoute.setting.name,
+       // builder: (context, state) =>  MainScreen(tab: 'setting',),
+         pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(tab: 'setting',),
+              ),
+     
+        routes: [],
+      ),
+      GoRoute(
+            path: '/signIn',
+            name: AppRoute.signIn.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child: const EmailPasswordSignInScreen(
+                formType: EmailPasswordSignInFormType.signIn,
+              ),
+            ),
+          ),
           ],
     errorBuilder: (context, state) => const NotFoundScreen(),
   );
