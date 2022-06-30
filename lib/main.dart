@@ -4,11 +4,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/controllers/MenuController.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
-import 'package:lawyer_app/src/routing/app_router.dart';
-import 'package:lawyer_app/src/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:lawyer_app/src/app.dart';

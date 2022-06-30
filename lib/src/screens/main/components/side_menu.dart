@@ -5,7 +5,7 @@ import 'package:lawyer_app/src/constants.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/routing/app_router.dart';
 import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
-import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
+//import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 
 import '../main_screen.dart';
 
@@ -41,7 +41,7 @@ class SideMenu extends StatelessWidget {
               title: context.loc.sideMenuItemOneDashboard,
               svgSrc: "assets/icons/menu_dashbord.svg",
               press:() => context.goNamed(AppRoute.dashboard.name),
-                             // context.pushNamed(AppRoute.dashboard.name,params: {'tab': 'dashboard'}),
+                         //     context.goNamed(AppRoute.dashboard.name,params: {'tab': 'dashboard'}),
             ),
             DrawListTitle(
               title: context.loc.sideMenuItemTwoDefinition,

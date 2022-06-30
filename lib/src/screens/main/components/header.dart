@@ -24,7 +24,7 @@ class Header extends StatelessWidget {
               icon: Icon(Icons.menu)),
         if (!Responsive.isMobile(context))
           Text(
-            "Dashboard".hardcoded,
+            pageTitle.hardcoded,
             style: Theme.of(context).textTheme.headline6,
           ),
         if (!Responsive.isMobile(context))

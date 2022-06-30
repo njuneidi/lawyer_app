@@ -7,9 +7,11 @@ import 'package:lawyer_app/src/features/authentication/presentation/sign_in/emai
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:lawyer_app/src/routing/not_found_screen.dart';
 import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
-import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
+import 'package:lawyer_app/src/screens/home_page.dart';
+//import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/main/main_screen.dart';
-import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
+import 'package:lawyer_app/src/screens/welcom_page.dart';
+//import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 
 enum AppRoute {
   root,
@@ -30,138 +32,56 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/',
     debugLogDiagnostics: true,
-    // redirect:  (state){
-    //  final tab = state.params['tab']!;
-    //   if(state.location == '/dashboard')
-    //   {
-    //     return '/dashboard';
-    //   }
-    // },
-    /* redirect: (state) {
+    redirect: (state) {
       final isLoggedIn = authRepository.currentUser != null;
+      debugPrint(isLoggedIn == true ? " isLoggedIn true" : "isLoggedIn false");
+      debugPrint(state.location);
       if (isLoggedIn) {
         if (state.location == '/signIn') {
           return '/';
-        } else {
-          if (state.location == '/dashboard' ||
-              state.location == '/definistion' ||
-              state.location == '/transaction' ||
-              state.location == '/finance' ||
-              state.location == '/reports' ||
-               state.location == '/root' ||
-               state.location == '/home' ||
-              state.location == '/setting') {
-            return '/';
-          }
-        }
-        return null;
-      }
-    },
- */
-  redirect: (state) {
-      final isLoggedIn = authRepository.currentUser != null;
-      debugPrint(isLoggedIn==true?"true":"false");
-      debugPrint(state.location);
-      if (isLoggedIn) {
-        if (state.location == '/signIn')  {
-          return '/dashboard';
         }
       } else {
-        if (state.location != '/') {
-          return '/';
+        if (state.location != '/signIn') {
+          return null;
         }
       }
       return null;
     },
     refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
+      
       GoRoute(
         path: '/',
         name: AppRoute.root.name,
-         builder: (context, state) =>  MainScreen(),
-        // builder: (context, state) { 
-        //    final tab = state.params['tab'] ?? 'dashboard';
-        //   return MainScreen(
-        //   tab: tab,
-        // );},
-        routes: [],
-      ),
-      GoRoute(
-        path: '/dashboard',
-        name: AppRoute.dashboard.name,
-      //  builder: (context, state) =>  MainScreen(tab: 'dashboard',),
-        pageBuilder: (context, state) => MaterialPage(
+        //redirect: (_) => '/root/dashboard',
+        builder: (context, state) => MainScreen(tab: 'dashboard'),
+        routes: [
+          GoRoute(
+            path: 'dashboard',
+            name: AppRoute.dashboard.name,
+            //builder: (context, state) => MainScreen(tab: 'dashboard'),
+            pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(tab: 'dashboard',),
+              child:  MainScreen(
+                tab: 'dashboard',
               ),
-            
-
-    
-        routes: [],
-        
-      ),
-      GoRoute(
-        path: '/definition',
-        name: AppRoute.definition.name,
-       // builder: (context, state) =>  MainScreen(tab: 'definition',),
-         pageBuilder: (context, state) => MaterialPage(
+            ),
+          ),
+          GoRoute(
+            path: 'definition',
+            name: AppRoute.definition.name,
+           // builder: (context, state) => MainScreen(tab: 'definition'),
+            pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(tab: 'definition',),
+              child:  MainScreen(
+                tab: 'definition',
               ),
-     
-        routes: [],
-      ),GoRoute(
-        path: '/transaction',
-        name: AppRoute.transaction.name,
-       // builder: (context, state) =>  MainScreen(tab: 'transaction',),
-         pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(tab: 'transaction',),
-              ),
-     
-        routes: [],
-      ),
-      GoRoute(
-        path: '/finance',
-        name: AppRoute.finance.name,
-       // builder: (context, state) =>  MainScreen(tab: 'finance',),
-         pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(tab: 'finance',),
-              ),
-     
-        routes: [],
-      ),
-      GoRoute(
-        path: '/reports',
-        name: AppRoute.reports.name,
-       // builder: (context, state) =>  MainScreen(tab: 'reports',),
-         pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(tab: 'reports',),
-              ),
-     
-        routes: [],
-      ),
-      GoRoute(
-        path: '/setting',
-        name: AppRoute.setting.name,
-       // builder: (context, state) =>  MainScreen(tab: 'setting',),
-         pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(tab: 'setting',),
-              ),
-     
-        routes: [],
-      ),
-      GoRoute(
-            path: '/signIn',
+            ),
+          ),
+           GoRoute(
+            path: 'signIn',
             name: AppRoute.signIn.name,
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
@@ -171,7 +91,83 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
             ),
           ),
-          ],
+         
+         
+        ],
+      ),
+
+      // GoRoute(
+      //   path: '/definition',
+      //   name: AppRoute.definition.name,
+      //   builder: (context, state) =>  MainScreen(tab: 'definition',),
+      //   //  pageBuilder: (context, state) => MaterialPage(
+      //   //       key: state.pageKey,
+      //   //       fullscreenDialog: true,
+      //   //       child:  MainScreen(tab: 'definition',),
+      //   //       ),
+
+      //   routes: [],
+      // ),
+      //GoRoute(
+      //   path: 'transaction',
+      //   name: AppRoute.transaction.name,
+      //  // builder: (context, state) =>  MainScreen(tab: 'transaction',),
+      //    pageBuilder: (context, state) => MaterialPage(
+      //         key: state.pageKey,
+      //         fullscreenDialog: true,
+      //         child:  MainScreen(tab: 'transaction',),
+      //         ),
+
+      //   routes: [],
+      // ),
+      // GoRoute(
+      //   path: 'finance',
+      //   name: AppRoute.finance.name,
+      //  // builder: (context, state) =>  MainScreen(tab: 'finance',),
+      //    pageBuilder: (context, state) => MaterialPage(
+      //         key: state.pageKey,
+      //         fullscreenDialog: true,
+      //         child:  MainScreen(tab: 'finance',),
+      //         ),
+
+      //   routes: [],
+      // ),
+      // GoRoute(
+      //   path: 'reports',
+      //   name: AppRoute.reports.name,
+      //  // builder: (context, state) =>  MainScreen(tab: 'reports',),
+      //    pageBuilder: (context, state) => MaterialPage(
+      //         key: state.pageKey,
+      //         fullscreenDialog: true,
+      //         child:  MainScreen(tab: 'reports',),
+      //         ),
+
+      //   routes: [],
+      // ),
+      // GoRoute(
+      //   path: 'setting',
+      //   name: AppRoute.setting.name,
+      //  // builder: (context, state) =>  MainScreen(tab: 'setting',),
+      //    pageBuilder: (context, state) => MaterialPage(
+      //         key: state.pageKey,
+      //         fullscreenDialog: true,
+      //         child:  MainScreen(tab: 'setting',),
+      //         ),
+
+      //   routes: [],
+      // ),
+      // GoRoute(
+      //       path: 'signIn',
+      //       name: AppRoute.signIn.name,
+      //       pageBuilder: (context, state) => MaterialPage(
+      //         key: state.pageKey,
+      //         fullscreenDialog: true,
+      //         child: const EmailPasswordSignInScreen(
+      //           formType: EmailPasswordSignInFormType.signIn,
+      //         ),
+      //       ),
+      //     ),
+    ],
     errorBuilder: (context, state) => const NotFoundScreen(),
   );
 });

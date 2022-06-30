@@ -3,9 +3,8 @@ import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/screens/definition/components/recent_files.dart';
 import 'package:flutter/material.dart';
 
-import 'package:lawyer_app/src/screens/definition/components/header.dart';
 import 'package:lawyer_app/src/screens/definition/components/my_fiels.dart';
-import 'package:lawyer_app/src/screens/definition/components/storage_details.dart';
+import 'package:lawyer_app/src/screens/main/components/header.dart';
 
 // ignore: use_key_in_widget_constructors
 class DefinitionScreen extends StatelessWidget {
@@ -16,7 +15,7 @@ class DefinitionScreen extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-       // const Header(),
+       // const Header(pageTitle: "Definition",),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
