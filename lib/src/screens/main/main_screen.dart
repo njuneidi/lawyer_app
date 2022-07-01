@@ -7,20 +7,17 @@ import 'package:lawyer_app/src/common_widgets/alert_dialogs.dart';
 import 'package:lawyer_app/src/constants.dart';
 import 'package:lawyer_app/src/controllers/MenuController.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
-import 'package:lawyer_app/src/features/authentication/domain/app_user.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/account/account_screen_controller.dart';
 import 'package:lawyer_app/src/features/locale/data/locale_provider.dart';
-import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/localization/l10n.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/routing/app_router.dart';
-import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lawyer_app/src/screens/home_page.dart';
+import 'package:lawyer_app/src/screens/main/components/side_menu.dart';
 import 'package:lawyer_app/src/screens/welcom_page.dart';
-import 'components/side_menu.dart';
 
 
 
@@ -150,8 +147,10 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
           ],
         ),
         //  key: context.read<MenuController>().scaffoldKey,
-       // key: sideMenuControlerProvider.scaffoldKey,
-        drawer: const SideMenu(),
+        //key: sideMenuControlerProvider.scaffoldKey,
+        //  if (Responsive.isDesktop(context)){
+        drawer: Responsive.isDesktop(context)==false ? const SideMenu():null,
+  
         body: SafeArea(
           child: user != null
               ? HomePage(

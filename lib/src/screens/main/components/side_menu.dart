@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/src/constants.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/routing/app_router.dart';
-import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
 //import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 
 import '../main_screen.dart';

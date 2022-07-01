@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
-import 'package:lawyer_app/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:lawyer_app/src/routing/not_found_screen.dart';
-import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
-import 'package:lawyer_app/src/screens/home_page.dart';
 //import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/main/main_screen.dart';
-import 'package:lawyer_app/src/screens/welcom_page.dart';
 //import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 
 enum AppRoute {
