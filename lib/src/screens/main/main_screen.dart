@@ -151,7 +151,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         ),
         //  key: context.read<MenuController>().scaffoldKey,
        // key: sideMenuControlerProvider.scaffoldKey,
-       // drawer: const SideMenu(),
+        drawer: const SideMenu(),
         body: SafeArea(
           child: user != null
               ? HomePage(
