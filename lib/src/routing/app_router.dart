@@ -76,6 +76,54 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
             ),
           ),
+          GoRoute(
+            path: 'transaction',
+            name: AppRoute.transaction.name,
+            //builder: (context, state) => MainScreen(tab: 'dashboard'),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+                tab: 'transaction',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: 'finance',
+            name: AppRoute.finance.name,
+           // builder: (context, state) => MainScreen(tab: 'definition'),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+                tab: 'finance',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: 'reports',
+            name: AppRoute.reports.name,
+           // builder: (context, state) => MainScreen(tab: 'definition'),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+                tab: 'reports',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: 'settings',
+            name: AppRoute.setting.name,
+           // builder: (context, state) => MainScreen(tab: 'definition'),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+                tab: 'settings',
+              ),
+            ),
+          ),
            GoRoute(
             path: 'signIn',
             name: AppRoute.signIn.name,

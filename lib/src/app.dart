@@ -3,7 +3,6 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/controllers/MenuController.dart';
 import 'package:lawyer_app/src/features/locale/data/locale_provider.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:lawyer_app/src/routing/app_router.dart';

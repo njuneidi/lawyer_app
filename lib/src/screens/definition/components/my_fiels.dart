@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class MyFiels extends StatelessWidget {
   const MyFiels({
-    Key ?key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -26,10 +26,10 @@ class MyFiels extends StatelessWidget {
             ),
             ElevatedButton.icon(
               style: TextButton.styleFrom(
-                  // ignore: prefer_const_constructors
                   padding: EdgeInsets.symmetric(
                 horizontal: defaultPadding * 1.5,
-                vertical: defaultPadding/(Responsive.isMobile(context)?2:1),
+                vertical:
+                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
               )),
               onPressed: () {},
               icon: Icon(Icons.add),
@@ -41,9 +41,12 @@ class MyFiels extends StatelessWidget {
           height: defaultPadding,
         ),
         Responsive(
-          mobile: FileInfoCardGridView(crossAxisCount: _size.width < 650?2:4,childAspectRatio: _size.width <650?1.3:1,),
+          mobile: FileInfoCardGridView(
+            crossAxisCount: _size.width < 650 ? 2 : 4,
+            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+          ),
           tablet: FileInfoCardGridView(),
-         // desktop: FileInfoCardGridView(childAspectRatio:  _size.width <1400?1.1:1.4,),
+          // desktop: FileInfoCardGridView(childAspectRatio:  _size.width <1400?1.1:1.4,),
           desktop: FileInfoCardGridView(),
         ),
       ],
@@ -53,7 +56,7 @@ class MyFiels extends StatelessWidget {
 
 class FileInfoCardGridView extends StatelessWidget {
   const FileInfoCardGridView({
-    Key ?key,
+    Key? key,
     this.crossAxisCount = 7,
     this.childAspectRatio = 1.5,
   }) : super(key: key);
@@ -68,9 +71,9 @@ class FileInfoCardGridView extends StatelessWidget {
       itemCount: demoMyFiels.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding/4,
+        crossAxisSpacing: defaultPadding / 4,
         childAspectRatio: childAspectRatio,
-        mainAxisSpacing: defaultPadding/4,
+        mainAxisSpacing: defaultPadding / 4,
       ),
       itemBuilder: (context, index) => FieldInfoCard(
         info: demoMyFiels[index],

@@ -11,15 +11,15 @@ class storage_detalis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
      // height: 500,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: secondaryColor,
           borderRadius:
-              const BorderRadius.all(Radius.circular(10))),
+              BorderRadius.all(Radius.circular(10))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text(
             "Storage deatial",
             style: TextStyle(

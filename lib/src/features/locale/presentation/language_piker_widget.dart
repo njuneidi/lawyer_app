@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/src/constants/breakpoints.dart';
 import 'package:lawyer_app/src/features/authentication/domain/app_user.dart';
-import 'package:lawyer_app/src/localization/l10n.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 
 enum PopupMenuOption {
@@ -11,8 +10,8 @@ enum PopupMenuOption {
   signOut,
 }
 
-class language_piker_widget extends StatelessWidget {
-  const language_piker_widget({
+class LanguagePikerWidget extends StatelessWidget {
+  const LanguagePikerWidget({
     Key? key,
     this.user,
     this.locale,

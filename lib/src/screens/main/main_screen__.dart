@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/src/common_widgets/action_text_button.dart';
 import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/controllers/MenuController.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:lawyer_app/src/features/locale/data/locale_provider.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
@@ -17,10 +16,10 @@ import 'package:lawyer_app/src/screens/welcom_page.dart';
    final sideMenues = ['dashboard', 'definition', 'transaaction','finance','reports','settings'];
    
 
-class MainScreen_ extends ConsumerStatefulWidget with PreferredSizeWidget{
+class MainScreenOld extends ConsumerStatefulWidget with PreferredSizeWidget{
 
   final int index;
-   MainScreen_({String tab = 'dashboard', Key? key}) : index = sideMenues.indexWhere((element) => element==tab), super(key: key) {
+   MainScreenOld({String tab = 'dashboard', Key? key}) : index = sideMenues.indexWhere((element) => element==tab), super(key: key) {
     assert(index != -1);
   }
 
@@ -32,7 +31,7 @@ class MainScreen_ extends ConsumerStatefulWidget with PreferredSizeWidget{
   Size get preferredSize => throw UnimplementedError();
 }
 
-class _MainScree extends ConsumerState<MainScreen_> with TickerProviderStateMixin {
+class _MainScree extends ConsumerState<MainScreenOld> with TickerProviderStateMixin {
    late final TabController _controller;
 
      @override
@@ -50,7 +49,7 @@ class _MainScree extends ConsumerState<MainScreen_> with TickerProviderStateMixi
     super.dispose();
   }
   @override
-  void didUpdateWidget(MainScreen_ oldWidget) {
+  void didUpdateWidget(MainScreenOld oldWidget) {
     super.didUpdateWidget(oldWidget);
     _controller.index = widget.index;
   }
@@ -62,7 +61,6 @@ class _MainScree extends ConsumerState<MainScreen_> with TickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
 
-          final sideMenuControlerProvider = ref.read(menuControlerProvider);
     final user = ref.watch(authStateChangesProvider).value;
     // final screenWidth = MediaQuery.of(context).size.width;
     final localeProvider = ref.read(mylocalNotifierProvider);

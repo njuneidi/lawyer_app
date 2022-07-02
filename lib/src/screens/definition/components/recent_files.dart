@@ -11,8 +11,8 @@ class RecentFiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(defaultPadding),
+      decoration: const BoxDecoration(
           color: secondaryColor,
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
@@ -27,7 +27,7 @@ class RecentFiles extends StatelessWidget {
             child: DataTable(
               columnSpacing: defaultPadding,
               horizontalMargin: 0,
-                columns: [
+                columns: const [
                   DataColumn(label: Text("File Name")),
                   DataColumn(label: Text("Data")),
                   DataColumn(label: Text("Size")),

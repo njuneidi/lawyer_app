@@ -19,9 +19,9 @@ class SideMenu extends StatelessWidget {
       // it enable scorlling
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(
-              padding: EdgeInsets.all(defaultPadding/8),
+              padding: const EdgeInsets.all(defaultPadding/8),
               height: 111,
               width: 180,
                decoration: BoxDecoration(

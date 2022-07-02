@@ -1,6 +1,5 @@
 import 'package:lawyer_app/src/constants.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
-import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/screens/main/components/header.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ class FinanceScreen extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-         Header(pageTitle: 'Reports'.hardcoded,),
+         Header(pageTitle: 'Finance'.hardcoded,),
 
         ],
       ),

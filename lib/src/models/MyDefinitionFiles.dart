@@ -24,7 +24,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/google_drive.svg",
     totalStorage: "2.9GB",
-    color: Color(0xFFFFA113),
+    color: const Color(0xFFFFA113),
     percentage: 35,
   ),
   DefinitonEntityInfo(
@@ -32,7 +32,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/one_drive.svg",
     totalStorage: "1GB",
-    color: Color(0xFFA4CDFF),
+    color: const Color(0xFFA4CDFF),
     percentage: 10,
   ),
   DefinitonEntityInfo(
@@ -40,7 +40,7 @@ List demoMyFiels = [
     numOfFiels: 5328,
     svgSrc: "assets/icons/drop_box.svg",
     totalStorage: "7.3GB",
-    color: Color(0xFF007EE5),
+    color: const Color(0xFF007EE5),
     percentage: 78,
   ),
    DefinitonEntityInfo(
@@ -56,7 +56,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/google_drive.svg",
     totalStorage: "2.9GB",
-    color: Color(0xFFFFA113),
+    color: const Color(0xFFFFA113),
     percentage: 35,
   ),
   DefinitonEntityInfo(
@@ -64,7 +64,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/one_drive.svg",
     totalStorage: "1GB",
-    color: Color(0xFFA4CDFF),
+    color: const Color(0xFFA4CDFF),
     percentage: 10,
   ),
   DefinitonEntityInfo(
@@ -72,7 +72,7 @@ List demoMyFiels = [
     numOfFiels: 5328,
     svgSrc: "assets/icons/drop_box.svg",
     totalStorage: "7.3GB",
-    color: Color(0xFF007EE5),
+    color: const Color(0xFF007EE5),
     percentage: 78,
   ),
     DefinitonEntityInfo(
@@ -80,7 +80,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/one_drive.svg",
     totalStorage: "1GB",
-    color: Color(0xFFA4CDFF),
+    color: const Color(0xFFA4CDFF),
     percentage: 10,
   ),
   DefinitonEntityInfo(
@@ -88,7 +88,7 @@ List demoMyFiels = [
     numOfFiels: 5328,
     svgSrc: "assets/icons/drop_box.svg",
     totalStorage: "7.3GB",
-    color: Color(0xFF007EE5),
+    color: const Color(0xFF007EE5),
     percentage: 78,
   ),
    DefinitonEntityInfo(
@@ -112,7 +112,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/google_drive.svg",
     totalStorage: "2.9GB",
-    color: Color(0xFFFFA113),
+    color: const Color(0xFFFFA113),
     percentage: 35,
   ),
    DefinitonEntityInfo(
@@ -128,7 +128,7 @@ List demoMyFiels = [
     numOfFiels: 1328,
     svgSrc: "assets/icons/google_drive.svg",
     totalStorage: "2.9GB",
-    color: Color(0xFFFFA113),
+    color: const Color(0xFFFFA113),
     percentage: 35,
   ),
 ];

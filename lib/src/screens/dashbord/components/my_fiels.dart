@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_const_constructors
+// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_const_constructors, duplicate_ignore
 
 import 'package:lawyer_app/src/constants.dart';
 import 'package:lawyer_app/src/models/MyFiles.dart';

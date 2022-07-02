@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lawyer_app/app.dart';
+import 'package:lawyer_app/src/app.dart';
 
 
 void main() {

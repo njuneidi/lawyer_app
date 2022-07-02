@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/src/common_widgets/action_text_button.dart';
 import 'package:lawyer_app/src/common_widgets/alert_dialogs.dart';
 import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/controllers/MenuController.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/account/account_screen_controller.dart';
 import 'package:lawyer_app/src/features/locale/data/locale_provider.dart';
@@ -49,7 +48,6 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sideMenuControlerProvider = ref.read(menuControlerProvider);
     final user = ref.watch(authStateChangesProvider).value;
     // final screenWidth = MediaQuery.of(context).size.width;
     final localeProvider = ref.read(mylocalNotifierProvider);
@@ -166,9 +164,6 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(60.0);
 }
 
-@override
-// TODO: implement preferredSize
-Size get preferredSize => const Size.fromHeight(60.0);
 
 class DrawListTitle extends StatelessWidget {
   const DrawListTitle({
@@ -176,6 +171,7 @@ class DrawListTitle extends StatelessWidget {
     required this.title,
     required this.svgSrc,
     required this.press,
+    
   }) : super(key: key);
 
   final String title, svgSrc;
@@ -193,7 +189,7 @@ class DrawListTitle extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(color: Colors.white54),
+        style: const TextStyle(color: Colors.white54),
       ),
     );
   }

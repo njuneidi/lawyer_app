@@ -3,23 +3,23 @@ import 'package:lawyer_app/src/screens/dashbord/components/chart.dart';
 import 'package:lawyer_app/src/screens/dashbord/components/storage_info_card.dart';
 import 'package:flutter/material.dart';
 
-class storage_detalis extends StatelessWidget {
-  const storage_detalis({
+class StorageDetails extends StatelessWidget {
+  const StorageDetails({
     Key ?key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
      // height: 500,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: secondaryColor,
           borderRadius:
-              const BorderRadius.all(Radius.circular(10))),
+              BorderRadius.all(Radius.circular(10))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text(
             "Storage deatial",
             style: TextStyle(
