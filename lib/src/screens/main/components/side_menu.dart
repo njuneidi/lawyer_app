@@ -33,7 +33,7 @@ class SideMenu extends StatelessWidget {
             ),
             DrawListTitle(
               title: context.loc.sideMenuItemTwoDefinition,
-              svgSrc: "assets/icons/menu_def.svg",
+              svgSrc: "assets/icons/menu_dashbord.svg",
               press:  () => context.goNamed(AppRoute.definition.name),
             ),
             DrawListTitle(
@@ -43,7 +43,7 @@ class SideMenu extends StatelessWidget {
             ),
             DrawListTitle(
               title: context.loc.sideMenuItemFourFinance,
-              svgSrc: "assets/icons/menu_fin_tran.svg",
+              svgSrc: "assets/icons/menu_dashbord.svg",
                press:() => context.goNamed(AppRoute.finance.name),
             ),
             DrawListTitle(

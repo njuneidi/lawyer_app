@@ -62,28 +62,29 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
           centerTitle: true,
           
         
-        automaticallyImplyLeading: true,
+       
         title:  Text(context.loc.welcomeToLawyerApp),
-        leadingWidth: 200,
-          leading: Row(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              const SizedBox(width: 30,),
-              tabTitle == 'dashboard'
-                  ? Text(context.loc.dashboardPageTitle)
-                  : tabTitle == 'definition'
-                      ? Text(context.loc.sideMenuItemTwoDefinition)
-                      : tabTitle == 'transaction'
-                          ? Text(context.loc.sideMenuItemThreeTransaction)
-                          : tabTitle == 'finance'
-                              ? Text(context.loc.sideMenuItemFourFinance)
-                              : tabTitle == 'reports'
-                                  ? Text(context.loc.sideMenuIteFiveReport)
-                                  : Text(context.loc.sideMenuItemSixSettings),
+        //  automaticallyImplyLeading: true,
+        // leadingWidth: 200,
+        //   leading: Row(
+        //     //mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //     children: <Widget>[
+        //       const SizedBox(width: 30,),
+        //       tabTitle == 'dashboard'
+        //           ? Text(context.loc.dashboardPageTitle)
+        //           : tabTitle == 'definition'
+        //               ? Text(context.loc.sideMenuItemTwoDefinition)
+        //               : tabTitle == 'transaction'
+        //                   ? Text(context.loc.sideMenuItemThreeTransaction)
+        //                   : tabTitle == 'finance'
+        //                       ? Text(context.loc.sideMenuItemFourFinance)
+        //                       : tabTitle == 'reports'
+        //                           ? Text(context.loc.sideMenuIteFiveReport)
+        //                           : Text(context.loc.sideMenuItemSixSettings),
                                  
              
-            ],
-          ),
+        //     ],
+        //   ),
           //centerTitle: true,
           actions: [
             Row(
@@ -190,8 +191,8 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         //  key: context.read<MenuController>().scaffoldKey,
         //key: sideMenuControlerProvider.scaffoldKey,
         //  if (Responsive.isDesktop(context)){
-        drawer:
-            Responsive.isDesktop(context) == false ? const SideMenu() : null,
+       // drawer:const SideMenu(),
+        //    Responsive.isDesktop(context) == false ? const SideMenu() : null,
         body: SafeArea(
           child: user != null
               ? HomePage(
