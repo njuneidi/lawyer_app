@@ -22,7 +22,7 @@ import 'package:lawyer_app/src/screens/welcom_page.dart';
 class MainScreen extends ConsumerWidget with PreferredSizeWidget {
   final int index;
   final String tabTitle;
-  MainScreen({String tab = 'dashboard', Key? key})
+  MainScreen({String tab = '', Key? key})
       : index = indexFrom(tab),
         tabTitle = tab,
         super(key: key);
@@ -146,7 +146,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
                             }else{
                               localLang.setEnglish();
                              }
-                             context.pushNamed(AppRoute.root.name);
+                            // context.pushNamed(AppRoute.root.name);
                             debugPrint('${locale.languageCode} after');
                            // debugPring(localeProvider.state.toString());
                             //(localeProvider.notifier).setloca
