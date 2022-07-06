@@ -51,6 +51,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoute.root.name,
         //redirect: (_) => '/root/dashboard',
         builder: (context, state) => MainScreen(tab: 'dashboard'),
+       // builder: (context, state) => MainScreen(tab: 'dashboard'),
         routes: [
           GoRoute(
             path: 'dashboard',
@@ -135,6 +136,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
             ),
           ),
+          
          
          
         ],

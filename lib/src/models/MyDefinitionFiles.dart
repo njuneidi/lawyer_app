@@ -22,7 +22,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Accounts".hardcoded,
     numOfFiels: 1328,
-    svgSrc: "assets/icons/google_drive.svg",
+    svgSrc: "assets/icons/invoice.svg",
     totalStorage: "2.9GB",
     color: const Color(0xFFFFA113),
     percentage: 35,
@@ -30,7 +30,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Clients",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/one_drive.svg",
+    svgSrc: "assets/icons/user.svg",
     totalStorage: "1GB",
     color: const Color(0xFFA4CDFF),
     percentage: 10,
@@ -38,7 +38,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Employees",
     numOfFiels: 5328,
-    svgSrc: "assets/icons/drop_box.svg",
+    svgSrc: "assets/icons/user.svg",
     totalStorage: "7.3GB",
     color: const Color(0xFF007EE5),
     percentage: 78,
@@ -46,7 +46,7 @@ List demoMyFiels = [
    DefinitonEntityInfo(
     title: "Advocates",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/Documents.svg",
+    svgSrc: "assets/icons/advocate.svg",
     totalStorage: "1.9GB",
     color: primaryColor,
     percentage: 35,
@@ -54,7 +54,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Supliers",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/google_drive.svg",
+    svgSrc: "assets/icons/supliers.svg",
     totalStorage: "2.9GB",
     color: const Color(0xFFFFA113),
     percentage: 35,
@@ -70,7 +70,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Courts",
     numOfFiels: 5328,
-    svgSrc: "assets/icons/drop_box.svg",
+    svgSrc: "assets/icons/court.svg",
     totalStorage: "7.3GB",
     color: const Color(0xFF007EE5),
     percentage: 78,
@@ -78,7 +78,7 @@ List demoMyFiels = [
     DefinitonEntityInfo(
     title: "Judges",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/one_drive.svg",
+    svgSrc: "assets/icons/judge.svg",
     totalStorage: "1GB",
     color: const Color(0xFFA4CDFF),
     percentage: 10,
@@ -86,7 +86,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Cases",
     numOfFiels: 5328,
-    svgSrc: "assets/icons/drop_box.svg",
+    svgSrc: "assets/icons/cases.svg",
     totalStorage: "7.3GB",
     color: const Color(0xFF007EE5),
     percentage: 78,
@@ -110,7 +110,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Documents",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/google_drive.svg",
+    svgSrc: "assets/icons/archive.svg",
     totalStorage: "2.9GB",
     color: const Color(0xFFFFA113),
     percentage: 35,
@@ -118,7 +118,7 @@ List demoMyFiels = [
    DefinitonEntityInfo(
     title: "Tasks",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/Documents.svg",
+    svgSrc: "assets/icons/task.svg",
     totalStorage: "1.9GB",
     color: primaryColor,
     percentage: 35,
@@ -126,7 +126,7 @@ List demoMyFiels = [
   DefinitonEntityInfo(
     title: "Alerts",
     numOfFiels: 1328,
-    svgSrc: "assets/icons/google_drive.svg",
+    svgSrc: "assets/icons/task.svg",
     totalStorage: "2.9GB",
     color: const Color(0xFFFFA113),
     percentage: 35,

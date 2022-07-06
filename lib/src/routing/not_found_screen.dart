@@ -1,4 +1,4 @@
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class NotFoundScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: EmptyPlaceholderWidget(
-        message: '404 - Page not found!'.hardcoded,
+        message: context.loc.pageNotFound,
       ),
     );
   }

@@ -1,7 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_const_constructors
 
 import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/models/MyDefinitionFiles.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/screens/definition/components/file_info_card.dart';
@@ -21,7 +21,7 @@ class MyFiels extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "My Definitions".hardcoded,
+              context.loc.myDefinitions,
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton.icon(

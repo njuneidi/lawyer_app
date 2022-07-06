@@ -1,5 +1,5 @@
 import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/src/screens/main/components/header.dart';
 
@@ -13,7 +13,7 @@ class ReportScreen extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-         Header(pageTitle: 'Reports'.hardcoded,),
+         Header(pageTitle: context.loc.sideMenuIteFiveReport,),
           
         ],
       ),

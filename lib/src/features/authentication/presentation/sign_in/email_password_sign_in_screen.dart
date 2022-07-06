@@ -1,11 +1,10 @@
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_controller.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/string_validators.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lawyer_app/src/common_widgets/custom_text_button.dart';
 import 'package:lawyer_app/src/common_widgets/primary_button.dart';
 import 'package:lawyer_app/src/common_widgets/responsive_scrollable_card.dart';
 import 'package:lawyer_app/src/constants/app_sizes.dart';
@@ -26,7 +25,7 @@ class EmailPasswordSignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sign In'.hardcoded)),
+      appBar: AppBar(title: Text(context.loc.signIn)),
       body: EmailPasswordSignInContents(
         formType: formType,
       ),
@@ -136,13 +135,13 @@ class _EmailPasswordSignInContentsState
                 key: EmailPasswordSignInScreen.emailKey,
                 controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Email'.hardcoded,
-                  hintText: 'test@test.com'.hardcoded,
+                  labelText: context.loc.email,
+                  hintText: 'test@test.com',
                   enabled: !state.isLoading,
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
-                    !_submitted ? null : state.emailErrorText(email ?? ''),
+                    !_submitted ? null : state.emailErrorText(email ?? '',context.loc),
                 autocorrect: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
@@ -159,13 +158,13 @@ class _EmailPasswordSignInContentsState
                 key: EmailPasswordSignInScreen.passwordKey,
                 controller: _passwordController,
                 decoration: InputDecoration(
-                  labelText: state.passwordLabelText,
+                  labelText: state.passwordLabelText(context.loc),
                   enabled: !state.isLoading,
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (password) => !_submitted
                     ? null
-                    : state.passwordErrorText(password ?? ''),
+                    : state.passwordErrorText(password ?? '',context.loc),
                 obscureText: true,
                 autocorrect: false,
                 textInputAction: TextInputAction.done,
@@ -174,19 +173,20 @@ class _EmailPasswordSignInContentsState
               ),
               gapH8,
               PrimaryButton(
-                text: state.primaryButtonText,
+                text: state.primaryButtonText(context.loc),
                 isLoading: state.isLoading,
                
                 onPressed: state.isLoading ? null : () => _submit(state),
               ),
               
               gapH8,
-              CustomTextButton(
-                text: state.secondaryButtonText,
-                onPressed: state.isLoading
-                    ? null
-                    : () => _updateFormType(state.secondaryActionFormType),
-              ),
+              // second button need an account 
+              // CustomTextButton(
+              //   text: state.secondaryButtonText,
+              //   onPressed: state.isLoading
+              //       ? null
+              //       : () => _updateFormType(state.secondaryActionFormType),
+              // ),
             ],
           ),
         ),

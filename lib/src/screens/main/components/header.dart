@@ -2,7 +2,6 @@
 
 import 'package:lawyer_app/src/constants.dart';
 import 'package:lawyer_app/src/controllers/MenuController.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,7 +23,7 @@ class Header extends StatelessWidget {
               icon: Icon(Icons.menu)),
         if (!Responsive.isMobile(context))
           Text(
-            pageTitle.hardcoded,
+            pageTitle,
             style: Theme.of(context).textTheme.headline6,
           ),
         if (!Responsive.isMobile(context))

@@ -20,19 +20,9 @@ class SideMenu extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20,),
-            Container(
-              padding: const EdgeInsets.all(defaultPadding/8),
-              height: 111,
-              width: 180,
-               decoration: BoxDecoration(
-                  color: primaryColor.withOpacity(.1),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                ),
+            DrawerHeader(
               
-              child: DrawerHeader(
-                
-                child: Image.asset("assets/images/logo.png",),
-              ),
+              child: Image.asset("assets/images/logo.png",),
             ),
            
             DrawListTitle(

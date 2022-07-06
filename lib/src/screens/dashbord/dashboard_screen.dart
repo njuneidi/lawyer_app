@@ -1,5 +1,5 @@
 import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/screens/dashbord/components/recent_files.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-         Header(pageTitle: "Dashboard".hardcoded),
+         Header(pageTitle: context.loc.dashboardPageTitle),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

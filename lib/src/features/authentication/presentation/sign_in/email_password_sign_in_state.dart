@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/string_validators.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Form type for email & password authentication
 enum EmailPasswordSignInFormType { signIn, register }
@@ -54,29 +55,32 @@ class EmailPasswordSignInState with EmailAndPasswordValidators {
   int get hashCode => formType.hashCode ^ value.hashCode;
 }
 
+
+
 extension EmailPasswordSignInStateX on EmailPasswordSignInState {
-  String get passwordLabelText {
+  String  passwordLabelText (AppLocalizations  loc)  {
+ 
     if (formType == EmailPasswordSignInFormType.register) {
-      return 'Password (8+ characters)'.hardcoded;
+      return loc.passwordCharactersLabel;
     } else {
-      return 'Password'.hardcoded;
+      return loc.passwordLabel;
     }
   }
 
   // Getters
-  String get primaryButtonText {
+  String  primaryButtonText (AppLocalizations loc) {
     if (formType == EmailPasswordSignInFormType.register) {
-      return 'Create an account'.hardcoded;
+      return loc.createAnAccount;
     } else {
-      return 'Sign in'.hardcoded;
+      return loc.signIn;
     }
   }
 
-  String get secondaryButtonText {
+  String  secondaryButtonText (AppLocalizations loc){
     if (formType == EmailPasswordSignInFormType.register) {
-      return 'Have an account? Sign in'.hardcoded;
+      return loc.haveAnAccount;
     } else {
-      return 'Need an account? Register'.hardcoded;
+      return loc.needAnAccount;
     }
   }
 
@@ -88,19 +92,19 @@ extension EmailPasswordSignInStateX on EmailPasswordSignInState {
     }
   }
 
-  String get errorAlertTitle {
+  String  errorAlertTitle (AppLocalizations loc) {
     if (formType == EmailPasswordSignInFormType.register) {
-      return 'Registration failed'.hardcoded;
+      return loc.registrationFailed;
     } else {
-      return 'Sign in failed'.hardcoded;
+      return loc.signInFailed;
     }
   }
 
-  String get title {
+  String  title (AppLocalizations loc){
     if (formType == EmailPasswordSignInFormType.register) {
-      return 'Register'.hardcoded;
+      return loc.register;
     } else {
-      return 'Sign in'.hardcoded;
+      return loc.signIn;
     }
   }
 
@@ -115,19 +119,19 @@ extension EmailPasswordSignInStateX on EmailPasswordSignInState {
     return passwordSignInSubmitValidator.isValid(password);
   }
 
-  String? emailErrorText(String email) {
+  String? emailErrorText(String email,AppLocalizations loc) {
     final bool showErrorText = !canSubmitEmail(email);
     final String errorText = email.isEmpty
-        ? 'Email can\'t be empty'.hardcoded
-        : 'Invalid email'.hardcoded;
+        ? loc.emailCantBeEmpty
+        : loc.invalidEmail;
     return showErrorText ? errorText : null;
   }
 
-  String? passwordErrorText(String password) {
+  String? passwordErrorText(String password,AppLocalizations loc) {
     final bool showErrorText = !canSubmitPassword(password);
     final String errorText = password.isEmpty
-        ? 'Password can\'t be empty'.hardcoded
-        : 'Password is too short'.hardcoded;
+        ? loc.passwordCantBeEmpty
+        : loc.passwordIsTooShort;
     return showErrorText ? errorText : null;
   }
 }

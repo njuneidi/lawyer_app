@@ -7,7 +7,7 @@ import 'package:lawyer_app/src/common_widgets/responsive_center.dart';
 import 'package:lawyer_app/src/constants/app_sizes.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/account/account_screen_controller.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
+import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/utils/async_value_ui.dart';
 
 /// Simple account screen showing some user info and a logout button.
@@ -25,18 +25,18 @@ class AccountScreen extends ConsumerWidget {
       appBar: AppBar(
         title: state.isLoading
             ? const CircularProgressIndicator()
-            : Text('Account'.hardcoded),
+            : Text(context.loc.account),
         actions: [
           ActionTextButton(
-            text: 'Logout'.hardcoded,
+            text: context.loc.logout,
             onPressed: state.isLoading
                 ? null
                 : () async {
                     final logout = await showAlertDialog(
                       context: context,
-                      title: 'Are you sure?'.hardcoded,
-                      cancelActionText: 'Cancel'.hardcoded,
-                      defaultActionText: 'Logout'.hardcoded,
+                      title: context.loc.areYouSure,
+                      cancelActionText: context.loc.cancel,
+                      defaultActionText: context.loc.logout,
                     );
                     if (logout == true) {
                       ref
@@ -68,25 +68,25 @@ class UserDataTable extends ConsumerWidget {
       columns: [
         DataColumn(
           label: Text(
-            'Field'.hardcoded,
+            context.loc.field,
             style: style,
           ),
         ),
         DataColumn(
           label: Text(
-            'Value'.hardcoded,
+            context.loc.value,
             style: style,
           ),
         ),
       ],
       rows: [
         _makeDataRow(
-          'uid'.hardcoded,
+          context.loc.uid,
           user?.uid ?? '',
           style,
         ),
         _makeDataRow(
-          'email'.hardcoded,
+          context.loc.email,
           user?.email ?? '',
           style,
         ),
