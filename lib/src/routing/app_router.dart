@@ -7,6 +7,7 @@ import 'package:lawyer_app/src/features/authentication/presentation/sign_in/emai
 import 'package:lawyer_app/src/routing/not_found_screen.dart';
 //import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/main/main_screen.dart';
+import 'package:lawyer_app/src/screens/side_menu_items.dart';
 //import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 
 enum AppRoute {
@@ -25,6 +26,8 @@ enum AppRoute {
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
+ 
+ 
   return GoRouter(
     initialLocation: '/',
     debugLogDiagnostics: true,

@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lawyer_app/src/screens/home_page.dart';
 import 'package:lawyer_app/src/screens/main/components/side_menu.dart';
+import 'package:lawyer_app/src/screens/side_menu_items.dart';
 import 'package:lawyer_app/src/screens/welcom_page.dart';
 
 class MainScreen extends ConsumerWidget with PreferredSizeWidget {
@@ -48,10 +49,13 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final sideMenu = ref.watch(sideMenuItemProvider);
     final user = ref.watch(authStateChangesProvider).value;
     // final screenWidth = MediaQuery.of(context).size.width;
     final locale = ref.watch(mylocalNotifierProvider);
     final localLang =ref.watch(mylocalNotifierProvider.notifier);
+    final ind = indexFrom(sideMenu); 
+      
     //final locale = localeProvider;
    // debugPrint(locale.countryCode);
     final state = ref.watch(accountScreenControllerProvider);
@@ -197,7 +201,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
           child: user != null
               ? HomePage(
                   user: user,
-                  tab: index,
+                  tab: ind,
                 )
               : const WelcomPage(),
         ),persistentFooterButtons:  [

@@ -8,6 +8,7 @@ import 'package:lawyer_app/src/screens/finance/finance_screen.dart';
 import 'package:lawyer_app/src/screens/main/components/side_menu.dart';
 import 'package:lawyer_app/src/screens/reports/reports_screen.dart';
 import 'package:lawyer_app/src/screens/settings/setting_screen.dart';
+import 'package:lawyer_app/src/screens/side_menu_items.dart';
 import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 //import 'package:lawyer_app/src/screens/reports/reports_screen.dart';
 //import 'package:lawyer_app/src/screens/settings/setting_screen.dart';
@@ -25,6 +26,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Row(
       crossAxisAlignment:
           user != null ? CrossAxisAlignment.start : CrossAxisAlignment.stretch,

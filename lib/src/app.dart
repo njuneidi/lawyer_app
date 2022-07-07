@@ -9,6 +9,7 @@ import 'package:lawyer_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lawyer_app/src/screens/side_menu_items.dart';
 class MyApp extends ConsumerWidget {
    const MyApp({Key? key}) : super(key: key);
   
@@ -18,6 +19,7 @@ class MyApp extends ConsumerWidget {
     final goRouter = ref.watch(goRouterProvider);
     final localeProvider = ref.watch(mylocalNotifierProvider);
     final locale= localeProvider;
+  
   
     debugPrint(localeProvider.countryCode);
     return MaterialApp.router(
