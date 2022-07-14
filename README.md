@@ -14,3 +14,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+This demo includes login page thank you for Andrea Bizzotto and https://codewithandrea.com/ and the flutter way  'Responsive Admin Panel or Dashboard'
+in the demoe you can see an implemention  for GoRouter and riverpod in the responsive admin panel dashboard. 
