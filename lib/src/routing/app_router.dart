@@ -69,6 +69,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 //tab: 'clients',
               ),
             ),
+            
           ),
            GoRoute(
             

@@ -34,7 +34,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final row = ref.read(clientRowProvider);
-    final employee = ref.read(employeeRowProvider);
+ 
 
     final tabNotifier = ref.watch(sideMenuItemProvider.notifier);
     // debugPrint("dd");
@@ -83,7 +83,7 @@ class HomePage extends ConsumerWidget {
           tab: tab,
           tabItem: tabNotifier,
         );
-      } else if (tab == AppRoute.editAdvocate.name) {
+      } else if (tab == AppRoute.editAdvocates.name) {
         return ClientScreenVMEdit(
           context: context,
           entity: row,
@@ -94,7 +94,7 @@ class HomePage extends ConsumerWidget {
           tab: tab,
           tabItem: tabNotifier,
         );
-      } else if (tab == AppRoute.editsppliers.name) {
+      } else if (tab == AppRoute.editSuppliers.name) {
         return ClientScreenVMEdit(
           context: context,
           entity: row,
@@ -111,9 +111,9 @@ class HomePage extends ConsumerWidget {
           entity: row,
         );
       } else {
-        DashboardScreen();
+        return DefinitionScreen();
       }
-      throw DashboardScreen();
+      
     }
 
     return Row(

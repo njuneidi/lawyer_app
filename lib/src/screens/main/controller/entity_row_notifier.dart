@@ -14,14 +14,3 @@ final clientRowProvider =
   return ClientRowNotifier();
 });
 
-class EmployeeRowNotifier extends StateNotifier<Employee?> {
-  EmployeeRowNotifier() : super(const Employee(name: ''));
-  
-
-  void entityRow(Employee? employee) => state = employee;
-}
-
-final employeeRowProvider =
-    StateNotifierProvider.autoDispose<EmployeeRowNotifier, Employee?>((ref) {
-  return EmployeeRowNotifier();
-});

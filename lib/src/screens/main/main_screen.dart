@@ -209,7 +209,7 @@ class _DrawListTitleState extends State<DrawListTitle> {
         //   color: Colors.white54,
         //   height: 16,
         // ),
-        trailing: widget.entity != 'definition'
+        trailing: widget.entity != 'definition0'
             ? const Icon(
                 Icons.navigate_next,
                 color: Colors.white54,

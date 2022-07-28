@@ -9,6 +9,8 @@ enum AppRoute {
   setting,
   signIn,
   user,
+
+
  
   accounts,
   clients,
@@ -16,9 +18,9 @@ enum AppRoute {
   employees,
   editEmployees,
   advocates,
-  editAdvocate,
+  editAdvocates,
   suppliers,
-  editsppliers,
+  editSuppliers,
   services,
   courts,
   editCourts,

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lawyer_app/src/clients/domain/client.dart';
+import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/employees/domain/employee.dart';
 import 'package:lawyer_app/src/models/my_files.dart';
@@ -13,52 +14,54 @@ class FieldInfoCard extends ConsumerWidget {
     Key? key,
     required this.info,
   }) : super(key: key);
-  final EntityInfo info;
+final EntityInfo info;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myFiels = ref.watch(sideMenuItemProvider.notifier);
+
+    final preLink = ref.watch(previousItemProvider.notifier);
+
     debugPrint(
         ' ---- edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');
     return GestureDetector(
       onTap: () => myFiels.linkedPage(info.name!),
       child: Container(
-        padding: const EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding/2),
         decoration: const BoxDecoration(
             color: secondaryColor,
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(defaultPadding * .3),
+                  padding: const EdgeInsets.all( .2),
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
                     color: info.color?.withOpacity(.1),
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: SvgPicture.asset(
-                    info.svgSrc!,
-                    color: info.color,
-                  ),
+                  // child: svgIconColorSize(
+                  //   src:info.svgSrc!,
+                  //   color: info.color,
+                  // ),
+                  child: Transform.scale(scale: 1.1, child: imgIcons(src: info.imgSrc!)),
                 ),
+                  //imgIcon( src:info.imgSrc!),
                 IconButton(
-                  icon: const Icon(Icons.add_circle_outline),
+                  icon: imgIcons(src: 'add.png',color: lightBlue),
                   onPressed: () {
                     // clientRow.entityRow(const Client(name: ''));
                     final clientRow = ref.watch(clientRowProvider.notifier);
-                    
-                    final employeeRow = ref.watch(employeeRowProvider.notifier);
-                  
+                    preLink.previousPage(AppRoute.definition.name);
+                    clientRow.entityRow(const Client(name: ''));
                     myFiels.linkedPage(
                         'edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');
-                        clientRow.entityRow(const Client(name: ''));
-                          employeeRow.entityRow(const Employee(name: ''));
                   },
                 )
               ],

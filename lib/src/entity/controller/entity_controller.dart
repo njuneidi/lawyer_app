@@ -18,67 +18,92 @@ final clientsProvider = StreamProvider(
 final employeesProvider = StreamProvider(
   (ref) => ref.watch(sembastDatabasProviderProvider).getAllEmployees(),
 );
+final advocatesProvider = StreamProvider(
+  (ref) => ref.watch(sembastDatabasProviderProvider).getAllAdvocates(),
+);
+final judgesProvider = StreamProvider(
+  (ref) => ref.watch(sembastDatabasProviderProvider).getAllJudges(),
+);
+final suppliersProvider = StreamProvider(
+  (ref) => ref.watch(sembastDatabasProviderProvider).getAllSuppliers(),
+);
 
 class EntityConroller {
   final LocalRepository entityRepository;
   EntityConroller({required this.entityRepository});
 
-  Future<void> addClient(Map<String, dynamic> entity) async {
-    final newEntity = Client(
-      name: entity['name'],
-      address: entity['address'],
-      city: entity['city'],
-      dob: entity['dob'],
-      email: entity['email'],
-      phone: entity['phone'],
-      gender: entity['gender'],
-    );
+  newEntity(entity) => Client(
+        name: entity['name'],
+        address: entity['address'],
+        city: entity['city'],
+        dob: entity['dob'],
+        email: entity['email'],
+        phone: entity['phone'],
+        mobile: entity['mobile'],
+        gender: entity['gender'],
+      );
 
-    await entityRepository.addClient(newEntity);
+  updatedClient(updateEntityData, entity) => entity.copyWith(
+        name: updateEntityData['name'],
+        address: updateEntityData['address'],
+        city: updateEntityData['city'],
+        dob: updateEntityData['dob'],
+        email: updateEntityData['email'],
+        phone: updateEntityData['phone'],
+        mobile: updateEntityData['mobile'],
+        gender: updateEntityData['gender'],
+      );
+
+  Future<void> addClient(Map<String, dynamic> entity) async {
+    // final newEntity(entity) = newEntity(entity)(entity);
+
+    await entityRepository.addClient(newEntity(entity));
   }
 
   Future<void> addEmployee(Map<String, dynamic> entity) async {
-    final newEntity = Client(
-      name: entity['name'],
-      address: entity['address'],
-      city: entity['city'],
-      dob: entity['dob'],
-      email: entity['email'],
-      phone: entity['phone'],
-      gender: entity['gender'],
-    );
+    await entityRepository.addEmployee(newEntity(entity));
+  }
 
-    await entityRepository.addEmployee(newEntity);
+  Future<void> addJudge(Map<String, dynamic> entity) async {
+    await entityRepository.addJudge(newEntity(entity));
+  }
+
+  Future<void> addAdvocate(Map<String, dynamic> entity) async {
+    await entityRepository.addAdvocate(newEntity(entity));
+  }
+
+  Future<void> addSupplier(Map<String, dynamic> entity) async {
+    await entityRepository.addSupplier(newEntity(entity));
   }
 
   Future<void> updateClient(
       Client entity, Map<String, dynamic> updateEntityData) async {
-    debugPrint("dddd");
-    final updatedClient = entity.copyWith(
-      name: updateEntityData['name'],
-      address: updateEntityData['address'],
-      city: updateEntityData['city'],
-      dob: updateEntityData['dob'],
-      email: updateEntityData['email'],
-      phone: updateEntityData['phone'],
-      gender: updateEntityData['gender'],
-    );
-    await entityRepository.updateClient(updatedClient);
+ 
+    await entityRepository.updateClient( updatedClient(updateEntityData, entity));
   }
 
   Future<void> updateEmployee(
       Client entity, Map<String, dynamic> updateEntityData) async {
-    debugPrint("dddd");
-    final updatedEmployee = entity.copyWith(
-      name: updateEntityData['name'],
-      address: updateEntityData['address'],
-      city: updateEntityData['city'],
-      dob: updateEntityData['dob'],
-      email: updateEntityData['email'],
-      phone: updateEntityData['phone'],
-      gender: updateEntityData['gender'],
-    );
-    await entityRepository.updateEmployee(updatedEmployee);
+
+    await entityRepository.updateEmployee( updatedClient(updateEntityData, entity));
+  }
+
+  Future<void> updateSupplier(
+      Client entity, Map<String, dynamic> updateEntityData) async {
+
+    await entityRepository.updateSupplier( updatedClient(updateEntityData, entity));
+  }
+
+  Future<void> updateAdvocate(
+      Client entity, Map<String, dynamic> updateEntityData) async {
+  
+    await entityRepository.updateAdvocate( updatedClient(updateEntityData, entity));
+  }
+
+  Future<void> updateJudge(
+      Client entity, Map<String, dynamic> updateEntityData) async {
+ 
+    await entityRepository.updateJudge( updatedClient(updateEntityData, entity));
   }
 
   Future<void> deleteClient(Client entity) async {
@@ -87,5 +112,17 @@ class EntityConroller {
 
   Future<void> deleteEmployee(Client entity) async {
     await entityRepository.deleteEmployee(entity.id);
+  }
+
+  Future<void> deledeleteAdvocateteEmployee(Client entity) async {
+    await entityRepository.deleteAdvocate(entity.id);
+  }
+
+  Future<void> deleteJudge(Client entity) async {
+    await entityRepository.deleteJudge(entity.id);
+  }
+
+  Future<void> deleteSupplier(Client entity) async {
+    await entityRepository.deleteSupplier(entity.id);
   }
 }

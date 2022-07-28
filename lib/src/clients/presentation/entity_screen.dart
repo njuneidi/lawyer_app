@@ -24,26 +24,53 @@ class EntityScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final row = ref.watch(clientRowProvider.notifier);
+
     final rowItem = ref.watch(clientRowProvider);
     final clients = ref.watch(clientsProvider);
     final employees = ref.watch(employeesProvider);
-    final backLink =
-        AppRoute.definition.name; // tab.substring(4).toLowerCase()'';
+    final advocates = ref.watch(advocatesProvider);
+    final suppliers = ref.watch(suppliersProvider);
+    final judges = ref.watch(judgesProvider);
+    final backLink = AppRoute.definition.name;
+    final onSaveLink= ref.watch(previousItemProvider.notifier);
+   
+   
+    // tab.substring(4).toLowerCase()'';
     entities() {
       if (tab == AppRoute.clients.name) {
+        
         return clients;
-      } else {
+      } else if (tab == AppRoute.employees.name) {
         return employees;
+      } else if (tab == AppRoute.advocates.name) {
+        return advocates;
+      } else if (tab == AppRoute.suppliers.name) {
+        return suppliers;
+      } else if (tab == AppRoute.judges.name) {
+        return judges;
       }
     }
 
+//final prevLink =
     VoidCallback headerButton(tab) {
       return () {
         row.entityRow(const Client(name: ''));
+       onSaveLink.previousPage(tab);
         if (tab == AppRoute.clients.name) {
+           // prevLink.previousPage(AppRoute.clients.name);
           tabItem.linkedPage(AppRoute.editClients.name);
         } else if (tab == AppRoute.employees.name) {
+            //prevLink.previousPage(AppRoute.employees.name);
           tabItem.linkedPage(AppRoute.editEmployees.name);
+        } else if (tab == AppRoute.advocates.name) {
+           // prevLink.previousPage(AppRoute.advocates.name);
+          tabItem.linkedPage(AppRoute.editAdvocates.name);
+        } else if (tab == AppRoute.suppliers.name) {
+           // prevLink.previousPage(AppRoute.suppliers.name);
+          tabItem.linkedPage(AppRoute.editSuppliers.name);
+        } else if (tab == AppRoute.judges.name) {
+            //prevLink.previousPage(AppRoute.judges.name);
+          tabItem.linkedPage(AppRoute.editJudges.name);
         }
       };
     }
@@ -64,7 +91,7 @@ class EntityScreen extends ConsumerWidget {
             ),
             IconButton(
               onPressed: headerButton(tab),
-              icon: const Icon(Icons.add),
+              icon: imgIcons(src: 'add.png', color: lightBlue),
             ),
             const SizedBox(
               width: 100,
@@ -73,7 +100,7 @@ class EntityScreen extends ConsumerWidget {
         ),
         body: Container(
           padding: const EdgeInsets.all(Sizes.p16),
-          child: entities().when(
+          child: entities()?.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (error, trace) => Center(child: Text(error.toString())),
               data: (elements) => Center(
@@ -87,6 +114,7 @@ class EntityScreen extends ConsumerWidget {
                               onTap: () {
                                 // row.entityRow(const Client(name: ''));
                                 tabItem.linkedPage(editLink(tab));
+                                    onSaveLink.previousPage(tab);
                               },
                               child: Center(
                                 child: Container(
@@ -94,12 +122,12 @@ class EntityScreen extends ConsumerWidget {
                                   child: Row(children: <Widget>[
                                     Expanded(
                                       child: IconButton(
-                                        icon: const Icon(
-                                            Icons.more_vert_outlined),
+                                        icon: imgIcons(
+                                            src: 'pencil.png', scale: 1.5),
                                         // onPressed: () => ClientScreenVMEdit(context: context, client: client,),
                                         onPressed: () {
                                           row.entityRow(entity);
-
+   onSaveLink.previousPage(tab);
                                           tabItem.linkedPage(editLink(tab));
                                           // 'edit${tab.substring(0, 1).toUpperCase()}${tab.substring(1)}');
                                           //  row.entityRow(const Client(name: ''));
@@ -222,8 +250,34 @@ class EntityScreen extends ConsumerWidget {
                                       ),
                                     ),
                                     Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            entity.mobile +
+                                                (entity.documents.isNotEmpty
+                                                    ? '  📎'
+                                                    : ''),
+                                            //style: textStyle
+                                          ),
+                                          // Text(
+                                          //   'filterMatch',
+                                          //   maxLines: 3,
+                                          //   overflow: TextOverflow.ellipsis,
+                                          //   style: Theme.of(context)
+                                          //       .textTheme
+                                          //       .subtitle2,
+                                          // ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
                                       child: IconButton(
-                                        icon: const Icon(Icons.delete),
+                                        //icon: const Icon(Icons.delete),
+                                        icon: imgIcons(
+                                            src: 'garbage.png',
+                                            color: Colors.orangeAccent),
                                         onPressed: tab == AppRoute.clients.name
                                             ? () =>
                                                 controller.deleteClient(entity)

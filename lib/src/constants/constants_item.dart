@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lawyer_app/src/clients/domain/client.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/employees/domain/employee.dart';
@@ -45,6 +46,18 @@ String getEntityScreenTitle(String tab, BuildContext context) {
     return context.loc.employees;
   } else if (tab == AppRoute.editEmployees.name) {
     return context.loc.editEmployee;
+  } else if (tab == AppRoute.advocates.name) {
+    return context.loc.advocates;
+  } else if (tab == AppRoute.editAdvocates.name) {
+    return context.loc.editAdvocate;
+  } else if (tab == AppRoute.judges.name) {
+    return context.loc.judges;
+  } else if (tab == AppRoute.editJudges.name) {
+    return context.loc.editJudge;
+  } else if (tab == AppRoute.suppliers.name) {
+    return context.loc.suppliers;
+  } else if (tab == AppRoute.editSuppliers.name) {
+    return context.loc.editSupplier;
   }
   return '';
 }
@@ -53,32 +66,28 @@ VoidCallback getSaveAction(String tab, EntityConroller databaseController,
     bool editEntity, Map<String, dynamic> e, Client? entity) {
   if (!editEntity) {
     if (tab == AppRoute.editClients.name) {
-       databaseController.addClient(e);
+      databaseController.addClient(e);
     } else if (tab == AppRoute.editEmployees.name) {
-       databaseController.addEmployee(e);
-    } else if (tab == AppRoute.editAdvocate.name) {
-       databaseController.addClient(e);
+      databaseController.addEmployee(e);
+    } else if (tab == AppRoute.editAdvocates.name) {
+      databaseController.addAdvocate(e);
     } else if (tab == AppRoute.editJudges.name) {
-       databaseController.addClient(e);
-    } else if (tab == AppRoute.editsppliers.name) {
-       databaseController.addClient(e);
-    } else if (tab == AppRoute.editAdvocate.name) {
-       databaseController.addClient(e);
-    }
+      databaseController.addJudge(e);
+    } else if (tab == AppRoute.editSuppliers.name) {
+      databaseController.addSupplier(e);
+    } 
   } else {
     if (tab == AppRoute.editClients.name) {
-       databaseController.updateClient(entity!,e);
+      databaseController.updateClient(entity!, e);
     } else if (tab == AppRoute.editEmployees.name) {
-       databaseController.updateEmployee(entity!,e);
-    } else if (tab == AppRoute.editAdvocate.name) {
-       databaseController.updateClient(entity!,e);
+      databaseController.updateEmployee(entity!, e);
+    } else if (tab == AppRoute.editAdvocates.name) {
+      databaseController.updateAdvocate(entity!, e);
     } else if (tab == AppRoute.editJudges.name) {
-       databaseController.updateClient(entity!,e);
-    } else if (tab == AppRoute.editsppliers.name) {
-       databaseController.updateClient(entity!,e);
-    } else if (tab == AppRoute.editAdvocate.name) {
-       databaseController.updateClient(entity!,e);
-    }
+      databaseController.updateJudge(entity!, e);
+    } else if (tab == AppRoute.editSuppliers.name) {
+      databaseController.updateSupplier(entity!, e);
+    } 
   }
 
   return () => {};
@@ -91,13 +100,13 @@ String getEditScreenEntityTitle(
       return context.loc.editClient;
     } else if (tab == AppRoute.editEmployees.name) {
       return context.loc.editEmployee;
-    } else if (tab == AppRoute.editAdvocate.name) {
+    } else if (tab == AppRoute.editAdvocates.name) {
       return context.loc.editAdvocate;
     } else if (tab == AppRoute.editJudges.name) {
       return context.loc.editJudge;
-    } else if (tab == AppRoute.editsppliers.name) {
+    } else if (tab == AppRoute.editSuppliers.name) {
       return context.loc.editSupplier;
-    } else if (tab == AppRoute.editAdvocate.name) {
+    } else if (tab == AppRoute.editAdvocates.name) {
       return context.loc.editAdvocate;
     }
   } else {
@@ -105,13 +114,13 @@ String getEditScreenEntityTitle(
       return context.loc.newClient;
     } else if (tab == AppRoute.editEmployees.name) {
       return context.loc.newEmployee;
-    } else if (tab == AppRoute.editAdvocate.name) {
+    } else if (tab == AppRoute.editAdvocates.name) {
       return context.loc.editAdvocate;
     } else if (tab == AppRoute.editJudges.name) {
       return context.loc.editJudge;
-    } else if (tab == AppRoute.editsppliers.name) {
+    } else if (tab == AppRoute.editSuppliers.name) {
       return context.loc.editSupplier;
-    } else if (tab == AppRoute.editAdvocate.name) {
+    } else if (tab == AppRoute.editAdvocates.name) {
       return context.loc.newClient;
     }
   }
@@ -121,3 +130,30 @@ String getEditScreenEntityTitle(
 
 String editLink(tab) =>
     'edit${tab.substring(0, 1).toUpperCase()}${tab.substring(1)}';
+Color lemon = const Color(0xFFFFA113);
+Color lightBlue = const Color(0xFFA4CDFF);
+Color blue = const Color(0xFF007EE5);
+Color orange = const Color(0xFFFFA113);
+Widget svgIconLemon(src) => SvgPicture.asset(
+      src,
+      color: lemon,
+    );
+Widget svgIconBlue(src) => SvgPicture.asset(
+      src,
+      color: blue,
+    );
+Widget svgIconColor(src, color) => SvgPicture.asset(
+      src,
+      color: color,
+    );
+Widget svgIconLightBlue(src) => SvgPicture.asset(src, color: lightBlue);
+Widget svgIconColorSize({src, color, width, hight}) => SvgPicture.asset(
+      'assets/icons/$src',
+      color: color,
+      width: width,
+      height: hight,
+      fit: BoxFit.scaleDown,
+    );
+Widget svgIcon(src) => SvgPicture.asset('assets/icons/$src');
+Widget imgIcon({src})=> ImageIcon(AssetImage('assets/icons/$src'),color: Colors.amber, );
+Widget imgIcons({src,scale,width,hight,color})=>Image.asset('assets/icons/$src',scale: scale,width: width,height: hight,color: color,);

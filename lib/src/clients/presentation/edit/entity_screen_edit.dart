@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_phone_field/form_builder_phone_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lawyer_app/src/clients/domain/client.dart';
@@ -47,7 +48,12 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
     final tab = ref.watch(sideMenuItemProvider);
     final databaseController = ref.watch(entityControllerProvider);
     final scrollController = ScrollController();
-    final backLink = tab.substring(4).toLowerCase();
+
+    final onSaveLink = tab.substring(4).toLowerCase();
+    //final prevLink = ref.watch(previousItemProvider.notifier);
+    //prevLink.previousPage(tab);
+    final backLink = ref.watch(previousItemProvider);
+    debugPrint('backLink $backLink');
 
     final editEntityRow = widget.entity?.name != '' ? true : false;
 
@@ -90,12 +96,13 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                 //     ? databaseController.addClient(textfieldData)
                 //     : databaseController.updateClient(
                 //         widget.entity!, textfieldData);
-                tabItem.linkedPage(backLink);
+                tabItem.linkedPage(onSaveLink);
                 //tab.linkedPage("definition");
                 // myFiels.myFielsPage('editClient');
               }
             },
-            icon: const Icon(Icons.save_alt_sharp),
+            icon: imgIcons(src: 'save2.png', scale: 1.6),
+            tooltip: context.loc.save,
             //  child: Text(context.loc.submit),
           ),
           const SizedBox(
@@ -107,145 +114,210 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
         ResponsiveSliverCenter(
           child: Center(
             child: Container(
-              padding: const EdgeInsets.all(defaultPadding),
-              child: FormBuilder(
-                key: _formKey,
-                autovalidateMode: AutovalidateMode.disabled,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FormBuilderTextField(
-                      name: 'name',
-                      initialValue: editEntityRow ? widget.entity!.name : '',
-
-                      decoration: InputDecoration(
-                        labelText: widget.context.loc.nameFieldLabelText,
-                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+              padding: const EdgeInsets.all(defaultPadding/4),
+            
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                        
+                    children: [
+                      Expanded(
+                        
+                        flex:2,
+                        child: Column(
+                          children: [
+                            FormBuilder(
+                              key: _formKey,
+                              autovalidateMode: AutovalidateMode.disabled,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  FormBuilderTextField(
+                                    name: 'name',
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.name : '',
+                      
+                                    decoration: InputDecoration(
+                                      labelText: widget.context.loc.nameFieldLabelText,
+                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                                    ),
+                                    onChanged: (value) => debugPrint(value),
+                                    valueTransformer: (value) => value.toString().trim(),
+                                    // controller: _nameController,
+                                    // valueTransformer: (text) => num.tryParse(text),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      //FormBuilderValidators.numeric(),
+                                      //FormBuilderValidators.max( 70),
+                                    ]),
+                                    // keyboardType: TextInputType.number,
+                                  ),
+                                  FormBuilderTextField(
+                                    name: 'address',
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.address : '',
+                                    decoration: InputDecoration(
+                                      labelText: widget.context.loc.addressFieldLabel,
+                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                                    ),
+                                    onChanged: (value) => debugPrint(value),
+                                    valueTransformer: (value) => value.toString().trim(),
+                                    // controller: _nameController,
+                                    // valueTransformer: (text) => num.tryParse(text),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                    // keyboardType: TextInputType.number,
+                                  ),
+                                  FormBuilderTextField(
+                                    name: 'city',
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.city : '',
+                                    decoration: InputDecoration(
+                                      labelText: widget.context.loc.cityFieldLabel,
+                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                                    ),
+                                    onChanged: (value) => debugPrint(value),
+                                    valueTransformer: (value) => value.toString().trim(),
+                                    // controller: _nameController,
+                                    // valueTransformer: (text) => num.tryParse(text),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                    // keyboardType: TextInputType.number,
+                                  ),
+                                  FormBuilderDropdown(
+                                    // initialValue:  (BuildContext context) {
+                                    //   return gender(widget.context).map<Widget>((e) {
+                                    //     return SafeArea(
+                                    //         child: Column(
+                                    //       children: [
+                                    //         Text( e['value']!),
+                      
+                                    //       ],
+                                    //     ));
+                                    //   }).toList();
+                                    // },
+                                    icon: const Icon(Icons.people),
+                                    selectedItemBuilder: (BuildContext context) {
+                                      return gender(widget.context).map<Widget>((e) {
+                                        return SafeArea(
+                                            child: Column(
+                                          children: [
+                                            Text(e['value']!),
+                                          ],
+                                        ));
+                                      }).toList();
+                                    },
+                      
+                                    name: 'gender',
+                                    //  initialValue:
+                                    //   widget.client != null ? widget.client!.gender : ' ذكر',
+                                    decoration: const InputDecoration(
+                                      //labelText: widget.context.loc.gender,
+                                      border: OutlineInputBorder(),
+                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                                    ),
+                                    hint: Text(widget.context.loc.selectGender),
+                                    items: gender(widget.context)
+                                        .map((gender) => DropdownMenuItem(
+                                              value: gender['value'],
+                                              child: Text('${gender['value']}'),
+                                            ))
+                                        .toList(),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                    onChanged: (value) => widget.entity!.gender,
+                                  ),
+                                  FormBuilderDateTimePicker(
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.dob : null,
+                                    name: 'bod',
+                      
+                                    // onChanged: _onChanged,
+                                    inputType: InputType.date,
+                                    decoration: InputDecoration(
+                                      labelText: widget.context.loc.birthOfDateFieldLabel,
+                                    ),
+                                    initialDate: DateTime(1980),
+                                    // initialValue: DateTime.now(),
+                                    // enabled: true,
+                                  ),
+                                  FormBuilderTextField(
+                                    name: 'email',
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.email : '',
+                                    decoration: InputDecoration(
+                                      labelText: widget.context.loc.emailFieldLabel,
+                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                                    ),
+                                    onChanged: (value) => debugPrint(value),
+                                    valueTransformer: (value) => value.toString().trim(),
+                                    // controller: _nameController,
+                                    // valueTransformer: (text) => num.tryParse(text),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      FormBuilderValidators.email(),
+                                      //FormBuilderValidators.max( 70),
+                                    ]),
+                                    // keyboardType: TextInputType.number,
+                                  ),
+                                  FormBuilderPhoneField(
+                                    name: 'phone',
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.phone : '',
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(Sizes.p16),
+                                      labelText: widget.context.loc.phoneFieldLabel,
+                                      hintText: '02XXXXXXX',
+                                    ),
+                                    priorityListByIsoCode: const ['PS'],
+                                    defaultSelectedCountryIsoCode: 'PS',
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                  ),
+                                  FormBuilderPhoneField(
+                                    name: 'mobile',
+                                    initialValue:
+                                        editEntityRow ? widget.entity!.mobile : '',
+                                    decoration: InputDecoration(
+                                      labelText: widget.context.loc.mobileFieldLabel,
+                                      hintText: '05XXXXXXXX',
+                                    ),
+                                    priorityListByIsoCode: const ['PS'],
+                                    defaultSelectedCountryIsoCode: 'PS',
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      onChanged: (value) => debugPrint(value),
-                      valueTransformer: (value) => value.toString().trim(),
-                      // controller: _nameController,
-                      // valueTransformer: (text) => num.tryParse(text),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        //FormBuilderValidators.numeric(),
-                        //FormBuilderValidators.max( 70),
-                      ]),
-                      // keyboardType: TextInputType.number,
-                    ),
-                    FormBuilderTextField(
-                      name: 'address',
-                      initialValue: editEntityRow ? widget.entity!.address : '',
-                      decoration: InputDecoration(
-                        labelText: widget.context.loc.addressFieldLabel,
-                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                      ),
-                      onChanged: (value) => debugPrint(value),
-                      valueTransformer: (value) => value.toString().trim(),
-                      // controller: _nameController,
-                      // valueTransformer: (text) => num.tryParse(text),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
-                      // keyboardType: TextInputType.number,
-                    ),
-                    FormBuilderTextField(
-                      name: 'city',
-                      initialValue: editEntityRow ? widget.entity!.city : '',
-                      decoration: InputDecoration(
-                        labelText: widget.context.loc.cityFieldLabel,
-                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                      ),
-                      onChanged: (value) => debugPrint(value),
-                      valueTransformer: (value) => value.toString().trim(),
-                      // controller: _nameController,
-                      // valueTransformer: (text) => num.tryParse(text),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
-                      // keyboardType: TextInputType.number,
-                    ),
-                    FormBuilderDropdown(
-                      name: 'gender',
-                      //  initialValue:
-                      //   widget.client != null ? widget.client!.gender : ' ذكر',
-                      decoration: const InputDecoration(
-                        //labelText: widget.context.loc.gender,
-                        border: OutlineInputBorder(),
-                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                      ),
-                      hint: Text(widget.context.loc.selectGender),
-                      items: gender(widget.context)
-                          .map((gender) => DropdownMenuItem(
-                                value: gender['value'],
-                                child: Text('${gender['value']}'),
-                              ))
-                          .toList(),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
-                      onChanged: (value) => widget.entity!.gender,
-                    ),
-                    FormBuilderDateTimePicker(
-                      initialValue: editEntityRow ? widget.entity!.dob : null,
-                      name: 'bod',
-
-                      // onChanged: _onChanged,
-                      inputType: InputType.date,
-                      decoration: InputDecoration(
-                        labelText: widget.context.loc.birthOfDateFieldLabel,
-                      ),
-                      initialDate: DateTime(1980),
-                      // initialValue: DateTime.now(),
-                      // enabled: true,
-                    ),
-                    FormBuilderTextField(
-                      name: 'email',
-                      initialValue: editEntityRow ? widget.entity!.email : '',
-                      decoration: InputDecoration(
-                        labelText: widget.context.loc.emailFieldLabel,
-                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                      ),
-                      onChanged: (value) => debugPrint(value),
-                      valueTransformer: (value) => value.toString().trim(),
-                      // controller: _nameController,
-                      // valueTransformer: (text) => num.tryParse(text),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.email(),
-                        //FormBuilderValidators.max( 70),
-                      ]),
-                      // keyboardType: TextInputType.number,
-                    ),
-                    FormBuilderPhoneField(
-                      name: 'phone',
-                      initialValue: editEntityRow ? widget.entity!.phone : '',
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.all(Sizes.p16),
-                        labelText: widget.context.loc.phoneFieldLabel,
-                        hintText: '02XXXXXXX',
-                      ),
-                      priorityListByIsoCode: const ['PS'],
-                      defaultSelectedCountryIsoCode: 'PS',
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
-                    ),
-                    FormBuilderPhoneField(
-                      name: 'mobile',
-                      initialValue: editEntityRow ? widget.entity!.mobile : '',
-                      decoration: InputDecoration(
-                        labelText: widget.context.loc.mobileFieldLabel,
-                        hintText: '05XXXXXXXX',
-                      ),
-                      priorityListByIsoCode: const ['PS'],
-                      defaultSelectedCountryIsoCode: 'PS',
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
-                    ),
-                  ],
-                ),
+                        const SizedBox(
+                          width: defaultPadding,
+                         ),
+                      Container(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: Expanded(
+                          flex:1,
+                         // padding: const EdgeInsets.all(defaultPadding),
+                          child: Center(child: imgIcons(src: 'addUser.png',scale: 1.9)),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+                ],
+                
               ),
             ),
           ),

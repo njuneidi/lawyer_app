@@ -27,7 +27,7 @@ class ClientiItems extends StatelessWidget {
   
     return InkWell(
         onTap: () {
-         // row.entityRow(const Client(name: ''));
+          row.entityRow(const Client(name: ''));
           tabItem.linkedPage(editLink(tab));
         },
         child: Center(
@@ -147,10 +147,10 @@ class ClientiItems extends StatelessWidget {
               ),
               Expanded(
                 child: IconButton(
-                  icon: const Icon(Icons.delete),
+                  icon: const Icon(Icons.delete_rounded),
                   onPressed: tab == AppRoute.clients.name
                       ? () => controller.deleteClient(entity)
-                      : () => controller.deleteEmployee(entity),
+                      : () => controller.deleteClient(entity),
                 ),
               ),
             ]),
