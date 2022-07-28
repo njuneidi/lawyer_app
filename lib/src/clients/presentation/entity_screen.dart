@@ -40,54 +40,17 @@ class EntityScreen extends ConsumerWidget {
       Expanded(
           child: IconButton(
               onPressed: () {}, icon: imgIcons(src: 'pencil.png', scale: .2))),
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        //mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(context.loc.tableHeaderName),
-        ],
-      )),
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(context.loc.tableHeaderAddress),
-        ],
-      )),
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(context.loc.tableHeaderCity),
-        ],
-      )),
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(context.loc.tableHeaderEmail),
-        ],
-      )),
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(context.loc.tableHeaderPhone),
-        ],
-      )),
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(context.loc.tableHeaderMobile),
-        ],
-      )),
+      tableHeader(context.loc.tableHeaderName, 1),
+      tableHeader(context.loc.tableHeaderAddress, 1),
+      tableHeader(context.loc.tableHeaderCity, 1),
+      tableHeader(context.loc.tableHeaderEmail, 2),
+      tableHeader(context.loc.tableHeaderPhone, 2),
+      tableHeader(context.loc.tableHeaderMobile,2),
+      // Expanded(child: Text(context.loc.tableHeaderAddress)),
+      // Expanded(child: Text(context.loc.tableHeaderCity)),
+      // Expanded(child: Text(context.loc.tableHeaderEmail)),
+      // Expanded(child: Text(context.loc.tableHeaderPhone)),
+      // Expanded(child: Text(context.loc.tableHeaderMobile)),
       Expanded(
           child: IconButton(
               onPressed: () {},
@@ -157,261 +120,182 @@ class EntityScreen extends ConsumerWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0*1.5),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Container(
-                         padding: const EdgeInsets.all(defaultPadding),
-                        decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 3, 96, 139),
-                            borderRadius: BorderRadius.all(Radius.circular(1))),
-                    
-                  //  padding: const EdgeInsets.all(defaultPadding / 8),
-                    child: Center(
-                      child: Row(
-                        children: viewTableHeader,
+          padding: const EdgeInsets.all(8.0 * 2),
+          child: Container(
+            padding: const EdgeInsets.all(defaultPadding * .250),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      // height: 90,
+                      padding: const EdgeInsets.all(defaultPadding),
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 3, 96, 139),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+
+                      //  padding: const EdgeInsets.all(defaultPadding / 8),
+                      child: Center(
+                        child: Row(
+                          children: viewTableHeader,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const Divider(color: Colors.white70),
-                Expanded(
-                  child: Container(
-                    //color: secondaryColor,
-                   padding: const EdgeInsets.all(Sizes.p4 / 24),
-                    child: entities()?.when(
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
-                        error: (error, trace) =>
-                            Center(child: Text(error.toString())),
-                        data: (elements) => Center(
-                              child: ListView.builder(
-                                itemCount: elements.length,
-                                itemBuilder: (context, index) {
-                                  final entity = elements[index];
-                                  return Column(
-                                    children: [
-                                      InkWell(
-                                        customBorder: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(20),
-                                          
-                                        ),
-                                        onTap: () {
-                                          // row.entityRow(const Client(name: ''));
-                                          tabItem.linkedPage(editLink(tab));
-                                          onSaveLink.previousPage(tab);
-                                        },
-                                        child: Center(
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                                // color: Colors.amber,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(15))),
-                                            padding: const EdgeInsets.all(
-                                                defaultPadding*.250),
-                                            child: Row(children: <Widget>[
-                                              Expanded(
-                                                child: IconButton(
-                                                  icon: imgIcons(
-                                                      src: 'pencil.png',
-                                                      scale: 1.5),
-                                                  // onPressed: () => ClientScreenVMEdit(context: context, client: client,),
-                                                  onPressed: () {
-                                                    row.entityRow(entity);
-                                                    onSaveLink.previousPage(tab);
-                                                    tabItem.linkedPage(
-                                                        editLink(tab));
-                                                    // 'edit${tab.substring(0, 1).toUpperCase()}${tab.substring(1)}');
-                                                    //  row.entityRow(const Client(name: ''));
-                                                  },
+                  const Divider(color: Colors.white70),
+                  Expanded(
+                    child: Container(
+                      //color: secondaryColor,
+                      padding: const EdgeInsets.all(defaultPadding),
+                      child: entities()?.when(
+                          loading: () =>
+                              const Center(child: CircularProgressIndicator()),
+                          error: (error, trace) =>
+                              Center(child: Text(error.toString())),
+                          data: (elements) => Center(
+                                child: ListView.builder(
+                                  itemCount: elements.length,
+                                  itemBuilder: (context, index) {
+                                    final entity = elements[index];
+                                    return Column(
+                                      children: [
+                                        InkWell(
+                                          customBorder: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          onTap: () {
+                                            // row.entityRow(const Client(name: ''));
+                                            tabItem.linkedPage(editLink(tab));
+                                            onSaveLink.previousPage(tab);
+                                          },
+                                          child: Center(
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                  color: secondaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(15))),
+                                              padding: const EdgeInsets.all(
+                                                  defaultPadding * .250),
+                                              child: Row(children: <Widget>[
+                                                Expanded(
+                                                  child: IconButton(
+                                                    icon: imgIcons(
+                                                        src: 'pencil.png',
+                                                        scale: 1.5),
+                                                    // onPressed: () => ClientScreenVMEdit(context: context, client: client,),
+                                                    onPressed: () {
+                                                      row.entityRow(entity);
+                                                      onSaveLink
+                                                          .previousPage(tab);
+                                                      tabItem.linkedPage(
+                                                          editLink(tab));
+                                                      // 'edit${tab.substring(0, 1).toUpperCase()}${tab.substring(1)}');
+                                                      //  row.entityRow(const Client(name: ''));
+                                                    },
+                                                  ),
                                                 ),
-                                              ),
-                                             // const VerticalDivider(color: Colors.red,),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      entity.name +
-                                                          (entity.documents
-                                                                  .isNotEmpty
-                                                              ? '  📎'
-                                                              : ''),
-                                                      //style: textStyle
-                                                    ),
-                                                    // Text(
-                                                    //   'filterMatch',
-                                                    //   maxLines: 3,
-                                                    //   overflow: TextOverflow.ellipsis,
-                                                    //   style: Theme.of(context)
-                                                    //       .textTheme
-                                                    //       .subtitle2,
-                                                    // ),
-                                                  ],
+                                                // const VerticalDivider(color: Colors.red,),
+                                                tableRowCell(entity,entity.name, 1),
+                                                tableRowCell(entity,entity.address, 1),
+                                                tableRowCell(entity,entity.city, 1),
+                                                tableRowCell(entity,entity.email, 2),
+                                                tableRowCell(entity,entity.phone, 2),
+                                                tableRowCell(entity,entity.mobile, 2),
+                                              
+                                                Expanded(
+                                                  child: IconButton(
+                                                    //icon: const Icon(Icons.delete),
+                                                    icon: imgIcons(
+                                                        src: 'garbage.png',
+                                                        color: Colors
+                                                            .orangeAccent),
+                                                    onPressed: tab ==
+                                                            AppRoute
+                                                                .clients.name
+                                                        ? () => controller
+                                                            .deleteClient(
+                                                                entity)
+                                                        : tab ==
+                                                                AppRoute
+                                                                    .employees
+                                                                    .name
+                                                            ? () => controller
+                                                                .deleteEmployee(
+                                                                    entity)
+                                                            : () => controller
+                                                                .deleteEmployee(
+                                                                    entity),
+                                                  ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      entity.address +
-                                                          (entity.documents
-                                                                  .isNotEmpty
-                                                              ? '  📎'
-                                                              : ''),
-                                                      //style: textStyle
-                                                    ),
-                                                    // Text(
-                                                    //   'filterMatch',
-                                                    //   maxLines: 3,
-                                                    //   overflow: TextOverflow.ellipsis,
-                                                    //   style: Theme.of(context)
-                                                    //       .textTheme
-                                                    //       .subtitle2,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      entity.city +
-                                                          (entity.documents
-                                                                  .isNotEmpty
-                                                              ? '  📎'
-                                                              : ''),
-                                                      //style: textStyle
-                                                    ),
-                                                    // Text(
-                                                    //   'filterMatch',
-                                                    //   maxLines: 3,
-                                                    //   overflow: TextOverflow.ellipsis,
-                                                    //   style: Theme.of(context)
-                                                    //       .textTheme
-                                                    //       .subtitle2,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      entity.email +
-                                                          (entity.documents
-                                                                  .isNotEmpty
-                                                              ? '  📎'
-                                                              : ''),
-                                                      //style: textStyle
-                                                    ),
-                                                    // Text(
-                                                    //   'filterMatch',
-                                                    //   maxLines: 3,
-                                                    //   overflow: TextOverflow.ellipsis,
-                                                    //   style: Theme.of(context)
-                                                    //       .textTheme
-                                                    //       .subtitle2,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      entity.phone +
-                                                          (entity.documents
-                                                                  .isNotEmpty
-                                                              ? '  📎'
-                                                              : ''),
-                                                      //style: textStyle
-                                                    ),
-                                                    // Text(
-                                                    //   'filterMatch',
-                                                    //   maxLines: 3,
-                                                    //   overflow: TextOverflow.ellipsis,
-                                                    //   style: Theme.of(context)
-                                                    //       .textTheme
-                                                    //       .subtitle2,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      entity.mobile +
-                                                          (entity.documents
-                                                                  .isNotEmpty
-                                                              ? '  📎'
-                                                              : ''),
-                                                      //style: textStyle
-                                                    ),
-                                                    // Text(
-                                                    //   'filterMatch',
-                                                    //   maxLines: 3,
-                                                    //   overflow: TextOverflow.ellipsis,
-                                                    //   style: Theme.of(context)
-                                                    //       .textTheme
-                                                    //       .subtitle2,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: IconButton(
-                                                  //icon: const Icon(Icons.delete),
-                                                  icon: imgIcons(
-                                                      src: 'garbage.png',
-                                                      color: Colors.orangeAccent),
-                                                  onPressed: tab ==
-                                                          AppRoute.clients.name
-                                                      ? () => controller
-                                                          .deleteClient(entity)
-                                                      : tab ==
-                                                              AppRoute
-                                                                  .employees.name
-                                                          ? () => controller
-                                                              .deleteEmployee(
-                                                                  entity)
-                                                          : () => controller
-                                                              .deleteEmployee(
-                                                                  entity),
-                                                ),
-                                              ),
-                                            ]),
+                                              ]),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const Divider(color: Colors.white70),
-                                    ],
-                                  );
-                                  ;
-                                },
-                              ),
-                            )),
+                                        const Divider(color: Colors.white70),
+                                      ],
+                                    );
+                                    ;
+                                  },
+                                ),
+                              )),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
+        ));
+  }
+
+  Expanded tableRowCell(Client entity,String cell, int flex) {
+    return Expanded(
+      flex: flex,
+      child: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: Container(
+      
+          //color: Colors.blueGrey,
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Center(
+                child: Text(
+                  cell + (entity.documents.isNotEmpty ? '  📎' : ''),
+                  //style: textStyle
+                ),
+              ),
+              // Text(
+              //   'filterMatch',
+              //   maxLines: 3,
+              //   overflow: TextOverflow.ellipsis,
+              //   style: Theme.of(context)
+              //       .textTheme
+              //       .subtitle2,
+              // ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded tableHeader(String tiltle, int flex) {
+    return Expanded(
+        flex: flex,
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Container(
+            
+              padding: const EdgeInsets.all(10),
+              // decoration: const BoxDecoration(
+              //     color: secondaryColor,
+              //     borderRadius: BorderRadius.all(Radius.circular(15))),
+              child: Center(child: Text(tiltle))),
         ));
   }
 }
