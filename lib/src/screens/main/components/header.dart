@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/controllers/MenuController.dart';
+import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -34,7 +32,7 @@ class Header extends StatelessWidget {
             flex: Responsive.isDesktop(context) ? 2 : 1,
           ),
         Expanded(child: SearchField()),
-        ProfileCard(),
+        //ProfileCard(),
       ],
     );
   }

@@ -1,4 +1,4 @@
-import 'package:lawyer_app/src/constants.dart';
+import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/screens/main/components/header.dart';
 import 'package:flutter/material.dart';

@@ -1,10 +1,10 @@
-import 'package:lawyer_app/src/constants.dart';
+import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/screens/dashbord/components/chart.dart';
 import 'package:lawyer_app/src/screens/dashbord/components/storage_info_card.dart';
 import 'package:flutter/material.dart';
 
-class storage_detalis extends StatelessWidget {
-  const storage_detalis({
+class StorageDetails extends StatelessWidget {
+  const StorageDetails({
     Key ?key,
   }) : super(key: key);
 

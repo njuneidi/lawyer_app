@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/string_validators.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Form type for email & password authentication

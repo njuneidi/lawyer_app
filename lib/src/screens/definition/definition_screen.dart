@@ -1,12 +1,8 @@
-import 'package:lawyer_app/src/constants.dart';
-import 'package:lawyer_app/src/localization/app_localizations_context.dart';
-import 'package:lawyer_app/src/localization/app_localizations_context.dart';
+import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/responsive.dart';
-import 'package:lawyer_app/src/screens/definition/components/recent_files.dart';
 import 'package:flutter/material.dart';
 
-import 'package:lawyer_app/src/screens/definition/components/my_fiels.dart';
-import 'package:lawyer_app/src/screens/main/components/header.dart';
+import 'package:lawyer_app/src/screens/main/components/my_fiels.dart';
 
 // ignore: use_key_in_widget_constructors
 class DefinitionScreen extends StatelessWidget {
@@ -17,7 +13,7 @@ class DefinitionScreen extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-         Header(pageTitle:context.loc.sideMenuItemTwoDefinition,),
+        // Header(pageTitle:context.loc.sideMenuItemTwoDefinition,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -25,11 +21,12 @@ class DefinitionScreen extends StatelessWidget {
                 flex: 5,
                 child: Column(
                   children: [
-                    const MyFiels(),
+                    const MyFiels( tab: 'definition',),
                     const SizedBox(
                       height: defaultPadding,
                     ),
-                    const RecentFiles(),
+                   // const RecentFiles(),
+                   // const ClientScreen(),
                     if (Responsive.isMobile(context))
                       const SizedBox(
                         height: defaultPadding,

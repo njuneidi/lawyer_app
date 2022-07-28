@@ -1,5 +1,5 @@
+import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
-import 'package:lawyer_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/src/common_widgets/primary_button.dart';
 import 'package:lawyer_app/src/constants/app_sizes.dart';

@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:lawyer_app/src/routing/not_found_screen.dart';
 //import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/main/main_screen.dart';
-import 'package:lawyer_app/src/screens/side_menu_items.dart';
 //import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 
-enum AppRoute {
-  root,
-  home,
-  dashboard,
-  definition,
-  transaction,
-  finance,
-  reports,
-  setting,
-  signIn,
-  user,
-  account
-}
+
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
@@ -53,66 +41,119 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: '/',
         name: AppRoute.root.name,
         //redirect: (_) => '/root/dashboard',
-        builder: (context, state) => MainScreen(tab: ''),
+        builder: (context, state) => MainScreen(),
        // builder: (context, state) => MainScreen(tab: 'dashboard'),
         routes: [
           GoRoute(
-            path: 'dashboard',
+            
+            path: AppRoute.dashboard.name,
             name: AppRoute.dashboard.name,
             //builder: (context, state) => MainScreen(tab: 'dashboard'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
               child:  MainScreen(
-                tab: 'dashboard',
+          
               ),
             ),
           ),
           GoRoute(
-            path: 'definition',
+            
+            path: AppRoute.clients.name,
+            name: AppRoute.clients.name,
+            //builder: (context, state) => MainScreen(tab: 'dashboard'),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+                //tab: 'clients',
+              ),
+            ),
+          ),
+           GoRoute(
+            
+            path:AppRoute.editClients.name,
+            name: AppRoute.editClients.name,
+         //   builder: (context, state) => MainScreen(),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+               // tab: 'editClient',
+              ),
+            ),
+          ),
+          GoRoute(
+            
+            path: AppRoute.employees.name,
+            name: AppRoute.employees.name,
+            //builder: (context, state) => MainScreen(tab: 'dashboard'),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+                //tab: 'clients',
+              ),
+            ),
+          ),
+           GoRoute(
+            
+            path:AppRoute.editEmployees.name,
+            name: AppRoute.editEmployees.name,
+         //   builder: (context, state) => MainScreen(),
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child:  MainScreen(
+               // tab: 'editClient',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: AppRoute.definition.name,
             name: AppRoute.definition.name,
            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
               child:  MainScreen(
-                tab: 'definition',
+               // tab: 'definition',
               ),
             ),
           ),
           GoRoute(
-            path: 'transaction',
+            path: AppRoute.transaction.name,
             name: AppRoute.transaction.name,
             //builder: (context, state) => MainScreen(tab: 'dashboard'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
               child:  MainScreen(
-                tab: 'transaction',
+             //   tab: 'transaction',
               ),
             ),
           ),
           GoRoute(
-            path: 'finance',
+            path:  AppRoute.finance.name,
             name: AppRoute.finance.name,
            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
               child:  MainScreen(
-                tab: 'finance',
+                //tab: 'finance',
               ),
             ),
           ),
           GoRoute(
-            path: 'reports',
+            path: AppRoute.reports.name,
             name: AppRoute.reports.name,
            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
               child:  MainScreen(
-                tab: 'reports',
+                //tab: 'reports',
               ),
             ),
           ),
