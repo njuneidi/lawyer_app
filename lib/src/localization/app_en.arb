@@ -101,5 +101,11 @@
   "editSupplier": "Edit Supplier Details",
   "editJudge": "Edit Judge Details",
   "relatedActs": "Relaed Acts",
-  "relatedJudgments": "Related Judgments"
+  "relatedJudgments": "Related Judgments",
+  "tableHeaderCity": "City",
+  "tableHeaderAddress": "address",
+  "tableHeaderEmail": "Email",
+  "tableHeaderPhone": "Phone",
+  "tableHeaderMobile": "Mobile",
+  "tableHeaderName": "name"
 }

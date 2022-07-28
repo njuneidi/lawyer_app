@@ -58,7 +58,7 @@ final EntityInfo info;
                   onPressed: () {
                     // clientRow.entityRow(const Client(name: ''));
                     final clientRow = ref.watch(clientRowProvider.notifier);
-                    preLink.previousPage(AppRoute.definition.name);
+                    
                     clientRow.entityRow(const Client(name: ''));
                     myFiels.linkedPage(
                         'edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');

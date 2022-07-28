@@ -157,3 +157,5 @@ Widget svgIconColorSize({src, color, width, hight}) => SvgPicture.asset(
 Widget svgIcon(src) => SvgPicture.asset('assets/icons/$src');
 Widget imgIcon({src})=> ImageIcon(AssetImage('assets/icons/$src'),color: Colors.amber, );
 Widget imgIcons({src,scale,width,hight,color})=>Image.asset('assets/icons/$src',scale: scale,width: width,height: hight,color: color,);
+Widget widthSizeBox(width)=>SizedBox(width: width);
+Widget hightSizeBox(height)=>SizedBox(height: height);

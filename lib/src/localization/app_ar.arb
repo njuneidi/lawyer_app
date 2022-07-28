@@ -101,5 +101,11 @@
   "editSupplier": "تعديل معومات المورد",
   "editJudge": "تعديل بيانات القاضي",
   "relatedActs": "التشريعات ذات العلاقة",
-  "relatedJudgments": "الأحكام ذات العلاقة"
+  "relatedJudgments": "الأحكام ذات العلاقة",
+  "tableHeaderCity": "المدينة",
+  "tableHeaderAddress": "العنوان",
+  "tableHeaderEmail": "الأيميل",
+  "tableHeaderPhone": "التلفون",
+  "tableHeaderMobile": "الموبايل",
+  "tableHeaderName": "الاسم"
 }
