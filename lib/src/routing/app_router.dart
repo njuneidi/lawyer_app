@@ -170,6 +170,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
             ),
           ),
+          GoRoute(
+            path: AppRoute.relatedActs.name,
+            name: AppRoute.relatedActs.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+            child:  MainScreen(
+                tab: 'settings',
+              ),
+            ),
+          ),
+          
            GoRoute(
             path: 'signIn',
             name: AppRoute.signIn.name,
@@ -182,6 +194,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ),
           ),
           
+           
          
          
         ],

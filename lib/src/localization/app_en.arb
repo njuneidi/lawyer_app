@@ -99,5 +99,6 @@
   "editEmployee": "Edit Employee Details",
   "editAdvocate": "Edit Advocate Details",
   "editSupplier": "Edit Supplier Details",
-  "editJudge": "Edit Judge Details"
+  "editJudge": "Edit Judge Details",
+  "relatedActs": "Relaed Acts"
 }

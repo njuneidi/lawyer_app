@@ -33,5 +33,6 @@ enum AppRoute {
   documents,
   tasks,
   alerts,
-  invoice
+  invoice,
+  relatedActs,
 }
