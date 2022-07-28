@@ -178,6 +178,16 @@ List<EntityInfo> definitionDemoMyFiels(BuildContext context) => [
         percentage: 35,
         imgSrc: '${AppRoute.relatedActs.name}.png',
       ),
+      EntityInfo(
+        name: AppRoute.relatedJudgments.name,
+        title: context.loc.relatedJudgments,
+        numOfFiels: 1328,
+        svgSrc: "task.svg",
+        totalStorage: "2.9GB",
+        color: const Color(0xFFFFA113),
+        percentage: 35,
+        imgSrc: '${AppRoute.relatedJudgments.name}.png',
+      ),
     ];
 
 List dashboardDemoMyFiels = [

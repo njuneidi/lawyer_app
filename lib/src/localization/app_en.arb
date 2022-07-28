@@ -100,5 +100,6 @@
   "editAdvocate": "Edit Advocate Details",
   "editSupplier": "Edit Supplier Details",
   "editJudge": "Edit Judge Details",
-  "relatedActs": "Relaed Acts"
+  "relatedActs": "Relaed Acts",
+  "relatedJudgments": "Related Judgments"
 }

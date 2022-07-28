@@ -35,4 +35,5 @@ enum AppRoute {
   alerts,
   invoice,
   relatedActs,
+  relatedJudgments,
 }

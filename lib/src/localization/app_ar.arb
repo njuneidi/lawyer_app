@@ -100,5 +100,6 @@
   "editAdvocate": "تعديل بيانات المحامي",
   "editSupplier": "تعديل معومات المورد",
   "editJudge": "تعديل بيانات القاضي",
-  "relatedActs": "التشريعات ذات العلاقة"
+  "relatedActs": "التشريعات ذات العلاقة",
+  "relatedJudgments": "الأحكام ذات العلاقة"
 }
