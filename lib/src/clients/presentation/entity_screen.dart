@@ -39,7 +39,7 @@ class EntityScreen extends ConsumerWidget {
     final List<Widget> viewTableHeader = <Widget>[
       Expanded(
           child: IconButton(
-              onPressed: () {}, icon: imgIcons(src: 'pencil.png', scale: .2))),
+              onPressed: () {}, icon: imgIcons(src: 'edit.png', scale: .2))),
       tableHeader(context.loc.tableHeaderName, 1),
       tableHeader(context.loc.tableHeaderAddress, 1),
       tableHeader(context.loc.tableHeaderCity, 1),
@@ -55,7 +55,7 @@ class EntityScreen extends ConsumerWidget {
           child: IconButton(
               onPressed: () {},
               icon: imgIcons(
-                  src: 'garbage.png', color: Colors.orange, scale: .2)))
+                  src: 'garbage.png', color: Colors.white54, scale: .2)))
     ];
     // tab.substring(4).toLowerCase()'';
     entities() {
@@ -133,7 +133,7 @@ class EntityScreen extends ConsumerWidget {
                       // height: 90,
                       padding: const EdgeInsets.all(defaultPadding),
                       decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 3, 96, 139),
+                          color: Color.fromARGB(255, 47, 141, 119),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
 
                       //  padding: const EdgeInsets.all(defaultPadding / 8),
@@ -184,7 +184,7 @@ class EntityScreen extends ConsumerWidget {
                                                 Expanded(
                                                   child: IconButton(
                                                     icon: imgIcons(
-                                                        src: 'pencil.png',
+                                                        src: 'edit.png',
                                                         scale: 1.5),
                                                     // onPressed: () => ClientScreenVMEdit(context: context, client: client,),
                                                     onPressed: () {
@@ -212,7 +212,7 @@ class EntityScreen extends ConsumerWidget {
                                                     icon: imgIcons(
                                                         src: 'garbage.png',
                                                         color: Colors
-                                                            .orangeAccent),
+                                                            .white54),
                                                     onPressed: tab ==
                                                             AppRoute
                                                                 .clients.name

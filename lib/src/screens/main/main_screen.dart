@@ -146,7 +146,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         // drawer:const SideMenu(),
         //    Responsive.isDesktop(context) == false ? const SideMenu() : null,
         body: SafeArea(
-          child: user == null
+          child: user != null
               ? HomePage(
                   user: user,
                   tab: tab,
@@ -178,7 +178,6 @@ class DrawListTitle extends StatefulWidget {
   @override
   State<DrawListTitle> createState() => _DrawListTitleState();
 }
-
 class _DrawListTitleState extends State<DrawListTitle> {
   bool isHovered = false;
   IconData getIcon(e) => e == AppRoute.dashboard.name
@@ -265,7 +264,7 @@ class _DrawListTitleState extends State<DrawListTitle> {
               ),
         title: Text(
           widget.title,
-          style: const TextStyle(color: Colors.white54),
+        //  style: const TextStyle(color: Color.fromARGB(137, 21, 21, 21)),
         ),
       ),
     );

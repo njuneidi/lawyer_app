@@ -8,7 +8,13 @@ import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 
 const primaryColor = Color(0xFF2697FF);
 const secondaryColor = Color(0xFF2A2D3E);
+//const secondaryColor = Color.fromARGB(255, 171, 236, 242);
 const bgColor = Color(0xFF212332);
+//const bgColor = Color.fromARGB(79, 49, 251, 217);
+
+// const primaryColor = Color(0xFF2697FF);
+// const secondaryColor = Color.fromARGB(255, 217, 220, 241);
+// const bgColor = Color.fromARGB(246, 67, 161, 117);
 
 const defaultPadding = 16.0;
 
