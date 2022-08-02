@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get_connect.dart';
 import 'package:lawyer_app/src/clients/domain/client.dart';
 import 'package:lawyer_app/src/clients/presentation/entites_search_text_field.dart';
-import 'package:lawyer_app/src/clients/presentation/entity_items_screen.dart';
-import 'package:lawyer_app/src/common_widgets/responsive_center.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
-import 'package:lawyer_app/src/constants/app_sizes.dart';
 import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/entity/controller/entity_controller.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
@@ -70,7 +66,7 @@ class EntityScreen extends ConsumerWidget {
           child: IconButton(
               onPressed: () {},
               icon: imgIcons(
-                  src: 'garbage.png', color: Colors.white54, scale: .2)))
+                  src: 'garbage.png', color: Colors.white, scale: .2)))
     ];
     // tab.substring(4).toLowerCase()'';
     entities() {
@@ -177,7 +173,7 @@ class EntityScreen extends ConsumerWidget {
           ),
           IconButton(
             onPressed: headerButton(tab),
-            icon: imgIcons(src: 'add.png', color: lightBlue),
+            icon: imgIcons(src: 'add.png', color: Colors.white),
           ),
           const SizedBox(
             width: 100,
@@ -257,7 +253,7 @@ class EntityScreen extends ConsumerWidget {
                                           Expanded(
                                             child: IconButton(
                                               icon: imgIcons(
-                                                  src: 'edit.png', scale: 1.5),
+                                                  src: 'edit.png', scale: 1.5,),
                                               // onPressed: () => ClientScreenVMEdit(context: context, client: client,),
                                               onPressed: () {
                                                 row.entityRow(entity);
@@ -284,7 +280,7 @@ class EntityScreen extends ConsumerWidget {
                                                 //icon: const Icon(Icons.delete),
                                                 icon: imgIcons(
                                                     src: 'garbage.png',
-                                                    color: Colors.white54),
+                                                    color: Colors.white),
                                                 onPressed: deleteEntityItem(
                                                     tab, entity)),
                                           ),

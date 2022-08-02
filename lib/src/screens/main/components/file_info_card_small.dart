@@ -64,7 +64,7 @@ final EntityInfo info;
          
                  //   imgIcon( src:info.imgSrc!),
                   IconButton(
-                    icon: imgIcons(src: 'add.png',color: lightBlue),
+                    icon: imgIcons(src: 'add.png',color: Colors.white),
                     onPressed: () {
                       // clientRow.entityRow(const Client(name: ''));
                       final clientRow = ref.watch(clientRowProvider.notifier);

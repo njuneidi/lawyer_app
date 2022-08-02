@@ -2,13 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_phone_field/form_builder_phone_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lawyer_app/src/clients/domain/client.dart';
 
 import 'package:lawyer_app/src/common_widgets/responsive_center.dart';
-import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/constants/app_sizes.dart';
 import 'package:lawyer_app/src/entity/controller/entity_controller.dart';
@@ -101,7 +99,7 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                 // myFiels.myFielsPage('editClient');
               }
             },
-            icon: imgIcons(src: 'save2.png', scale: 1.6),
+            icon: imgIcons(src: 'save.png', scale: 1.6,color: Colors.white),
             tooltip: context.loc.save,
             //  child: Text(context.loc.submit),
           ),
@@ -114,20 +112,17 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
         ResponsiveSliverCenter(
           child: Center(
             child: Container(
-              padding: const EdgeInsets.all(defaultPadding/4),
-            
+              padding: const EdgeInsets.all(defaultPadding / 4),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                        
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                        
-                        flex:2,
+                        flex: 2,
                         child: Column(
                           children: [
                             FormBuilder(
@@ -138,15 +133,18 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                 children: [
                                   FormBuilderTextField(
                                     name: 'name',
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.name : '',
-                      
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.name
+                                        : '',
+
                                     decoration: InputDecoration(
-                                      labelText: widget.context.loc.nameFieldLabelText,
+                                      labelText:
+                                          widget.context.loc.nameFieldLabelText,
                                       // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
                                     ),
                                     onChanged: (value) => debugPrint(value),
-                                    valueTransformer: (value) => value.toString().trim(),
+                                    valueTransformer: (value) =>
+                                        value.toString().trim(),
                                     // controller: _nameController,
                                     // valueTransformer: (text) => num.tryParse(text),
                                     validator: FormBuilderValidators.compose([
@@ -158,14 +156,17 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                   ),
                                   FormBuilderTextField(
                                     name: 'address',
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.address : '',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.address
+                                        : '',
                                     decoration: InputDecoration(
-                                      labelText: widget.context.loc.addressFieldLabel,
+                                      labelText:
+                                          widget.context.loc.addressFieldLabel,
                                       // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
                                     ),
                                     onChanged: (value) => debugPrint(value),
-                                    valueTransformer: (value) => value.toString().trim(),
+                                    valueTransformer: (value) =>
+                                        value.toString().trim(),
                                     // controller: _nameController,
                                     // valueTransformer: (text) => num.tryParse(text),
                                     validator: FormBuilderValidators.compose([
@@ -175,14 +176,17 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                   ),
                                   FormBuilderTextField(
                                     name: 'city',
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.city : '',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.city
+                                        : '',
                                     decoration: InputDecoration(
-                                      labelText: widget.context.loc.cityFieldLabel,
+                                      labelText:
+                                          widget.context.loc.cityFieldLabel,
                                       // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
                                     ),
                                     onChanged: (value) => debugPrint(value),
-                                    valueTransformer: (value) => value.toString().trim(),
+                                    valueTransformer: (value) =>
+                                        value.toString().trim(),
                                     // controller: _nameController,
                                     // valueTransformer: (text) => num.tryParse(text),
                                     validator: FormBuilderValidators.compose([
@@ -197,14 +201,16 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                     //         child: Column(
                                     //       children: [
                                     //         Text( e['value']!),
-                      
+
                                     //       ],
                                     //     ));
                                     //   }).toList();
                                     // },
                                     icon: const Icon(Icons.people),
-                                    selectedItemBuilder: (BuildContext context) {
-                                      return gender(widget.context).map<Widget>((e) {
+                                    selectedItemBuilder:
+                                        (BuildContext context) {
+                                      return gender(widget.context)
+                                          .map<Widget>((e) {
                                         return SafeArea(
                                             child: Column(
                                           children: [
@@ -213,7 +219,7 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                         ));
                                       }).toList();
                                     },
-                      
+
                                     name: 'gender',
                                     //  initialValue:
                                     //   widget.client != null ? widget.client!.gender : ' ذكر',
@@ -235,14 +241,16 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                     onChanged: (value) => widget.entity!.gender,
                                   ),
                                   FormBuilderDateTimePicker(
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.dob : null,
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.dob
+                                        : null,
                                     name: 'bod',
-                      
+
                                     // onChanged: _onChanged,
                                     inputType: InputType.date,
                                     decoration: InputDecoration(
-                                      labelText: widget.context.loc.birthOfDateFieldLabel,
+                                      labelText: widget
+                                          .context.loc.birthOfDateFieldLabel,
                                     ),
                                     initialDate: DateTime(1980),
                                     // initialValue: DateTime.now(),
@@ -250,14 +258,17 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                   ),
                                   FormBuilderTextField(
                                     name: 'email',
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.email : '',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.email
+                                        : '',
                                     decoration: InputDecoration(
-                                      labelText: widget.context.loc.emailFieldLabel,
+                                      labelText:
+                                          widget.context.loc.emailFieldLabel,
                                       // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
                                     ),
                                     onChanged: (value) => debugPrint(value),
-                                    valueTransformer: (value) => value.toString().trim(),
+                                    valueTransformer: (value) =>
+                                        value.toString().trim(),
                                     // controller: _nameController,
                                     // valueTransformer: (text) => num.tryParse(text),
                                     validator: FormBuilderValidators.compose([
@@ -269,11 +280,14 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                   ),
                                   FormBuilderPhoneField(
                                     name: 'phone',
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.phone : '',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.phone
+                                        : '',
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.all(Sizes.p16),
-                                      labelText: widget.context.loc.phoneFieldLabel,
+                                      contentPadding:
+                                          const EdgeInsets.all(Sizes.p16),
+                                      labelText:
+                                          widget.context.loc.phoneFieldLabel,
                                       hintText: '02XXXXXXX',
                                     ),
                                     priorityListByIsoCode: const ['PS'],
@@ -284,10 +298,12 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                                   ),
                                   FormBuilderPhoneField(
                                     name: 'mobile',
-                                    initialValue:
-                                        editEntityRow ? widget.entity!.mobile : '',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.mobile
+                                        : '',
                                     decoration: InputDecoration(
-                                      labelText: widget.context.loc.mobileFieldLabel,
+                                      labelText:
+                                          widget.context.loc.mobileFieldLabel,
                                       hintText: '05XXXXXXXX',
                                     ),
                                     priorityListByIsoCode: const ['PS'],
@@ -302,22 +318,21 @@ class MyCustomFormState extends ConsumerState<ClientScreenVMEdit> {
                           ],
                         ),
                       ),
-                        const SizedBox(
-                          width: defaultPadding,
-                         ),
-                      Container(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: Expanded(
-                          flex:1,
-                         // padding: const EdgeInsets.all(defaultPadding),
-                          child: Center(child: imgIcons(src: 'addUser.png',scale: 1.9)),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          padding: const EdgeInsets.all(defaultPadding),
+                          child: Center(
+                              child: imgIcons(src: 'addUser.png', scale: 1.9)),
                         ),
                       )
                     ],
                   ),
-                  const SizedBox(height: 20,),
+const SizedBox(height: 20,),
                 ],
-                
               ),
             ),
           ),
