@@ -5,6 +5,7 @@ import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/employees/domain/employee.dart';
 import 'package:lawyer_app/src/entity/controller/entity_controller.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
+import 'package:lawyer_app/src/screens/main/controller/side_menu_items.dart';
 
 const primaryColor = Color(0xFF2697FF);
 const secondaryColor = Color(0xFF2A2D3E);
@@ -45,6 +46,7 @@ List<Map<String, String>> country(BuildContext context) => [
 
 String getEntityScreenTitle(String tab, BuildContext context) {
   if (tab == AppRoute.clients.name) {
+  
     return context.loc.clients;
   } else if (tab == AppRoute.editClients.name) {
     return context.loc.editClient;

@@ -11,6 +11,7 @@ abstract class LocalRepository {
   Future deleteClient(int entityID);
 
   Stream<List<Client>> getAllClients();
+  Stream<List<Client>> getAllFilteredClients(String searchText);
 
   Future<int> addEmployee(Client entity);
 
@@ -19,6 +20,7 @@ abstract class LocalRepository {
   Future deleteEmployee(int entityID);
 
   Stream<List<Client>> getAllEmployees();
+  Stream<List<Client>> getAllFilteredEmployees(String searchText);
   Future<int> addAdvocate(Client entity);
 
   Future updateAdvocate(Client entity);
@@ -26,6 +28,7 @@ abstract class LocalRepository {
   Future deleteAdvocate(int entityID);
 
   Stream<List<Client>> getAllAdvocates();
+  Stream<List<Client>> getAllFilteredAdvocates(String searchText);
 
   Future<int> addSupplier(Client entity);
 
@@ -34,6 +37,7 @@ abstract class LocalRepository {
   Future deleteSupplier(int entityID);
 
   Stream<List<Client>> getAllSuppliers();
+  Stream<List<Client>> getAllFilteredSuppliers(String searchText);
 
   Future<int> addJudge(Client entity);
 

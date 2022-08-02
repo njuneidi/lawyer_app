@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:lawyer_app/src/clients/domain/client.dart';
-import 'package:lawyer_app/src/employees/domain/employee.dart';
 import 'package:lawyer_app/src/entity/controller/entity_state.dart';
 import 'package:lawyer_app/src/entity/data/local/local_repository.dart';
 
@@ -15,6 +13,34 @@ final entityControllerProvider = Provider(
 final clientsProvider = StreamProvider(
   (ref) => ref.watch(sembastDatabasProviderProvider).getAllClients(),
 );
+
+final filteredClientsProvider = StreamProvider.autoDispose.family<dynamic,String>(
+  (ref,searchText) => ref
+      .watch(sembastDatabasProviderProvider)
+      .getAllFilteredClients(searchText),
+);
+
+final filteredEmployeesProvider = StreamProvider.autoDispose.family<dynamic,String>(
+  (ref,searchText) => ref
+      .watch(sembastDatabasProviderProvider)
+      .getAllFilteredEmployees(searchText),
+);
+final filteredAdvocatesProvider = StreamProvider.autoDispose.family<dynamic,String>(
+  (ref,searchText) => ref
+      .watch(sembastDatabasProviderProvider)
+      .getAllFilteredAdvocates(searchText),
+);
+final filteredSuppliersProvider = StreamProvider.autoDispose.family<dynamic,String>(
+  (ref,searchText) => ref
+      .watch(sembastDatabasProviderProvider)
+      .getAllFilteredSuppliers(searchText),
+);
+final filteredJudgesProvider = StreamProvider.autoDispose.family(
+  (ref,searchText) => ref
+      .watch(sembastDatabasProviderProvider)
+      .getAllFilteredJudges(searchText),
+);
+
 final employeesProvider = StreamProvider(
   (ref) => ref.watch(sembastDatabasProviderProvider).getAllEmployees(),
 );
@@ -78,32 +104,31 @@ class EntityConroller {
 
   Future<void> updateClient(
       Client entity, Map<String, dynamic> updateEntityData) async {
- 
-    await entityRepository.updateClient( updatedClient(updateEntityData, entity));
+    await entityRepository
+        .updateClient(updatedClient(updateEntityData, entity));
   }
 
   Future<void> updateEmployee(
       Client entity, Map<String, dynamic> updateEntityData) async {
-
-    await entityRepository.updateEmployee( updatedClient(updateEntityData, entity));
+    await entityRepository
+        .updateEmployee(updatedClient(updateEntityData, entity));
   }
 
   Future<void> updateSupplier(
       Client entity, Map<String, dynamic> updateEntityData) async {
-
-    await entityRepository.updateSupplier( updatedClient(updateEntityData, entity));
+    await entityRepository
+        .updateSupplier(updatedClient(updateEntityData, entity));
   }
 
   Future<void> updateAdvocate(
       Client entity, Map<String, dynamic> updateEntityData) async {
-  
-    await entityRepository.updateAdvocate( updatedClient(updateEntityData, entity));
+    await entityRepository
+        .updateAdvocate(updatedClient(updateEntityData, entity));
   }
 
   Future<void> updateJudge(
       Client entity, Map<String, dynamic> updateEntityData) async {
- 
-    await entityRepository.updateJudge( updatedClient(updateEntityData, entity));
+    await entityRepository.updateJudge(updatedClient(updateEntityData, entity));
   }
 
   Future<void> deleteClient(Client entity) async {
@@ -114,7 +139,7 @@ class EntityConroller {
     await entityRepository.deleteEmployee(entity.id);
   }
 
-  Future<void> deledeleteAdvocateteEmployee(Client entity) async {
+  Future<void> deleteAdvocate(Client entity) async {
     await entityRepository.deleteAdvocate(entity.id);
   }
 

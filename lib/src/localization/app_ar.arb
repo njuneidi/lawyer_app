@@ -107,5 +107,6 @@
   "tableHeaderEmail": "الأيميل",
   "tableHeaderPhone": "التلفون",
   "tableHeaderMobile": "الموبايل",
-  "tableHeaderName": "الاسم"
+  "tableHeaderName": "الاسم",
+  "searchEntity": "بحث في القائمة"
 }

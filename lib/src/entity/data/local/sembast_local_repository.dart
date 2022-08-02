@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/foundation.dart';
+
 import 'package:lawyer_app/src/clients/domain/client.dart';
 import 'package:lawyer_app/src/entity/data/local/local_repository.dart';
 import 'package:path_provider/path_provider.dart';
@@ -54,6 +57,52 @@ class SembastRepository implements LocalRepository {
             .toList(growable: false),
       );
   @override
+  Stream<List<Client>> getAllFilteredClients(sarchText) =>
+      store.query().onSnapshots(db).map(
+            (snapshot) => snapshot
+                .map((entity) =>
+                    Client.fromJson(entity.value).copyWith(id: entity.key))
+                .where((element) => element.toString().contains(sarchText))
+                .toList(growable: false),
+          );
+  @override
+  Stream<List<Client>> getAllFilteredEmployees(sarchText) =>
+      storeEmployee.query().onSnapshots(db).map(
+            (snapshot) => snapshot
+                .map((entity) =>
+                    Client.fromJson(entity.value).copyWith(id: entity.key))
+                .where((element) => element.toString().contains(sarchText))
+                .toList(growable: false),
+          );
+
+  @override
+  Stream<List<Client>> getAllFilteredAdvocates(sarchText) =>
+      storeAdvocate.query().onSnapshots(db).map(
+            (snapshot) => snapshot
+                .map((entity) =>
+                    Client.fromJson(entity.value).copyWith(id: entity.key))
+                .where((element) => element.toString().contains(sarchText))
+                .toList(growable: false),
+          );
+  @override
+  Stream<List<Client>> getAllFilteredSuppliers(sarchText) =>
+      storeSupplier.query().onSnapshots(db).map(
+            (snapshot) => snapshot
+                .map((entity) =>
+                    Client.fromJson(entity.value).copyWith(id: entity.key))
+                .where((element) => element.toString().contains(sarchText))
+                .toList(growable: false),
+          );
+  Stream<List<Client>> getAllFilteredJudges(sarchText) =>
+      storeJudge.query().onSnapshots(db).map(
+            (snapshot) => snapshot
+                .map((entity) =>
+                    Client.fromJson(entity.value).copyWith(id: entity.key))
+                .where((element) => element.toString().contains(sarchText))
+                .toList(growable: false),
+          );
+
+  @override
   Stream<List<Client>> getAllEmployees() =>
       storeEmployee.query().onSnapshots(db).map(
             (snapshot) => snapshot
@@ -61,6 +110,7 @@ class SembastRepository implements LocalRepository {
                     Client.fromJson(entity.value).copyWith(id: entity.key))
                 .toList(growable: false),
           );
+          int x(entity)=> entity.length;
   //   throw UnimplementedError();
   // }
 

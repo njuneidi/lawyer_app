@@ -107,5 +107,6 @@
   "tableHeaderEmail": "Email",
   "tableHeaderPhone": "Phone",
   "tableHeaderMobile": "Mobile",
-  "tableHeaderName": "name"
+  "tableHeaderName": "name",
+  "searchEntity": "Search The List"
 }

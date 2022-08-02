@@ -146,7 +146,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         // drawer:const SideMenu(),
         //    Responsive.isDesktop(context) == false ? const SideMenu() : null,
         body: SafeArea(
-          child: user != null
+          child: user == null
               ? HomePage(
                   user: user,
                   tab: tab,

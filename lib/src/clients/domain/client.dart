@@ -46,4 +46,6 @@ class Client  with _$Client {
       }) = _Client;
 
   factory Client.fromJson(Map<String, dynamic> json) => _$ClientFromJson(json);
+
+
 }
