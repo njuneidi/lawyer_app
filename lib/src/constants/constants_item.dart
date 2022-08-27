@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lawyer_app/src/clients/domain/client.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
-import 'package:lawyer_app/src/employees/domain/employee.dart';
-import 'package:lawyer_app/src/entity/controller/entity_controller.dart';
+import 'package:lawyer_app/src/entity_controller/controller/entity_controller.dart';
+import 'package:lawyer_app/src/features/entity/domain/client.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
-import 'package:lawyer_app/src/screens/main/controller/side_menu_items.dart';
 
 const primaryColor = Color(0xFF2697FF);
 const secondaryColor = Color(0xFF2A2D3E);
@@ -22,6 +20,11 @@ const defaultPadding = 16.0;
 const double kMinInteractiveDimension = 48.0;
 
 List<Map<String, String>> gender(BuildContext context) => [
+      {'value': context.loc.male, 'key': context.loc.male},
+      {'value': context.loc.femal, 'key': context.loc.femal},
+    ];
+
+List<Map<String, String>> casesType(BuildContext context) => [
       {'value': context.loc.male, 'key': context.loc.male},
       {'value': context.loc.femal, 'key': context.loc.femal},
     ];
@@ -45,8 +48,8 @@ List<Map<String, String>> country(BuildContext context) => [
 // }
 
 String getEntityScreenTitle(String tab, BuildContext context) {
+  debugPrint('tab ----> $tab');
   if (tab == AppRoute.clients.name) {
-  
     return context.loc.clients;
   } else if (tab == AppRoute.editClients.name) {
     return context.loc.editClient;
@@ -66,36 +69,49 @@ String getEntityScreenTitle(String tab, BuildContext context) {
     return context.loc.suppliers;
   } else if (tab == AppRoute.editSuppliers.name) {
     return context.loc.editSupplier;
+  } else if (tab == AppRoute.courts.name) {
+    return context.loc.courts;
+  } else if (tab == AppRoute.editCourts.name) {
+    return context.loc.editCourt;
+  }else if (tab == AppRoute.cases.name) {
+    return context.loc.courts;
+  } else if (tab == AppRoute.editCases.name) {
+    return context.loc.editCourt;
   }
   return '';
 }
 
 VoidCallback getSaveAction(String tab, EntityConroller databaseController,
-    bool editEntity, Map<String, dynamic> e, Client? entity) {
+    bool editEntity, Map<String, dynamic> entityData, Client? entity) {
   if (!editEntity) {
     if (tab == AppRoute.editClients.name) {
-      databaseController.addClient(e);
+      databaseController.addEntity(entityData, AppRoute.clients.name);
     } else if (tab == AppRoute.editEmployees.name) {
-      databaseController.addEmployee(e);
+      databaseController.addEntity(entityData, AppRoute.editEmployees.name);
     } else if (tab == AppRoute.editAdvocates.name) {
-      databaseController.addAdvocate(e);
+      databaseController.addEntity(entityData, AppRoute.advocates.name);
     } else if (tab == AppRoute.editJudges.name) {
-      databaseController.addJudge(e);
+      databaseController.addEntity(entityData, AppRoute.judges.name);
     } else if (tab == AppRoute.editSuppliers.name) {
-      databaseController.addSupplier(e);
-    } 
+      databaseController.addEntity(entityData, AppRoute.suppliers.name);
+    }
   } else {
     if (tab == AppRoute.editClients.name) {
-      databaseController.updateClient(entity!, e);
+      databaseController.updateEntity(
+          entity!, entityData, AppRoute.clients.name);
     } else if (tab == AppRoute.editEmployees.name) {
-      databaseController.updateEmployee(entity!, e);
+      databaseController.updateEntity(
+          entity!, entityData, AppRoute.employees.name);
     } else if (tab == AppRoute.editAdvocates.name) {
-      databaseController.updateAdvocate(entity!, e);
+      databaseController.updateEntity(
+          entity!, entityData, AppRoute.advocates.name);
     } else if (tab == AppRoute.editJudges.name) {
-      databaseController.updateJudge(entity!, e);
+      databaseController.updateEntity(
+          entity!, entityData, AppRoute.judges.name);
     } else if (tab == AppRoute.editSuppliers.name) {
-      databaseController.updateSupplier(entity!, e);
-    } 
+      databaseController.updateEntity(
+          entity!, entityData, AppRoute.suppliers.name);
+    }
   }
 
   return () => {};
@@ -116,6 +132,11 @@ String getEditScreenEntityTitle(
       return context.loc.editSupplier;
     } else if (tab == AppRoute.editAdvocates.name) {
       return context.loc.editAdvocate;
+    } else if (tab == AppRoute.editCourts.name) {
+      return context.loc.editCourt;
+    
+    } else if (tab == AppRoute.editCases.name) {
+      return context.loc.editCase;
     }
   } else {
     if (tab == AppRoute.editClients.name) {
@@ -130,6 +151,13 @@ String getEditScreenEntityTitle(
       return context.loc.editSupplier;
     } else if (tab == AppRoute.editAdvocates.name) {
       return context.loc.newClient;
+    } else if (tab == AppRoute.editAdvocates.name) {
+      return context.loc.newClient;
+    } else if (tab == AppRoute.editCourts.name) {
+      return context.loc.newCourt;
+    
+    } else if (tab == AppRoute.editCases.name) {
+      return context.loc.newCase;
     }
   }
 
@@ -163,7 +191,16 @@ Widget svgIconColorSize({src, color, width, hight}) => SvgPicture.asset(
       fit: BoxFit.scaleDown,
     );
 Widget svgIcon(src) => SvgPicture.asset('assets/icons/$src');
-Widget imgIcon({src})=> ImageIcon(AssetImage('assets/icons/$src'),color: Colors.amber, );
-Widget imgIcons({src,scale,width,hight,color})=>Image.asset('assets/icons/$src',scale: scale,width: width,height: hight,color: color,);
-Widget widthSizeBox(width)=>SizedBox(width: width);
-Widget hightSizeBox(height)=>SizedBox(height: height);
+Widget imgIcon({src}) => ImageIcon(
+      AssetImage('assets/icons/$src'),
+      color: Colors.amber,
+    );
+Widget imgIcons({src, scale, width, hight, color}) => Image.asset(
+      'assets/icons/$src',
+      scale: scale,
+      width: width,
+      height: hight,
+      color: color,
+    );
+Widget widthSizeBox(width) => SizedBox(width: width);
+Widget hightSizeBox(height) => SizedBox(height: height);

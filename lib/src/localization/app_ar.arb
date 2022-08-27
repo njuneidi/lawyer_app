@@ -108,5 +108,15 @@
   "tableHeaderPhone": "التلفون",
   "tableHeaderMobile": "الموبايل",
   "tableHeaderName": "الاسم",
-  "searchEntity": "بحث في القائمة"
+  "searchEntity": "بحث في القائمة",
+  "newCourt": "محكمة جديدة",
+  "editCourt": "تعديل بيانات المحكمة",
+  "newCase": "قضية جديدة",
+  "editCase": "تعديل بيانات القضية",
+  "courtName": "اسم المحكمة",
+  "courtAdress": "عنوان المحكمة",
+  "courtLocation": "موقع المحكمة",
+  "courtCity": "",
+  "caseTitle": "عنوان القضية",
+  "caseDescription": "وصف القضية"
 }

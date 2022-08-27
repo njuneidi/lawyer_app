@@ -108,5 +108,15 @@
   "tableHeaderPhone": "Phone",
   "tableHeaderMobile": "Mobile",
   "tableHeaderName": "name",
-  "searchEntity": "Search The List"
+  "searchEntity": "Search The List",
+  "newCourt": "New Court",
+  "editCourt": "Edit Court details",
+  "newCase": "New Case",
+  "editCase": "Edit Case Details",
+  "courtName": "Court Name",
+  "courtAdress": "Court Address",
+  "courtLocation": "Court Location",
+  "courtCity": "",
+  "caseTitle": "Cast Title",
+  "caseDescription": "Case Description"
 }

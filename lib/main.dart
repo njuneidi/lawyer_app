@@ -6,8 +6,8 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/src/entity/controller/entity_state.dart';
-import 'package:lawyer_app/src/entity/data/local/sembast_local_repository.dart';
+import 'package:lawyer_app/src/db/database_provider.dart';
+import 'package:lawyer_app/src/entity_controller/data/local/sembast_local_repository.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 

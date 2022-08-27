@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
-import 'package:lawyer_app/src/screens/main/controller/side_menu_items.dart';
+import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
 //import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 
 import '../main_screen.dart';
@@ -14,7 +14,7 @@ class SideMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sideMenu = ref.read(sideMenuItemProvider.notifier);
+    final sideMenu = ref.read(tabItemsNotifierProvider.notifier);
     return Drawer(
       child: SingleChildScrollView(
         // it enable scorlling

@@ -1,19 +1,21 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lawyer_app/src/clients/presentation/entity_screen.dart';
-import 'package:lawyer_app/src/clients/presentation/edit/entity_screen_edit.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
-import 'package:lawyer_app/src/entity/controller/entity_controller.dart';
+import 'package:lawyer_app/src/entity_controller/controller/entity_controller.dart';
 import 'package:lawyer_app/src/features/authentication/domain/app_user.dart';
+import 'package:lawyer_app/src/features/cases/presentation/case_screen.dart';
+import 'package:lawyer_app/src/features/cases/presentation/edit/case_screen_edit.dart';
+import 'package:lawyer_app/src/features/courts/presentation/court_screen.dart';
+import 'package:lawyer_app/src/features/courts/presentation/edit/court_screen_edit.dart';
+import 'package:lawyer_app/src/features/entity/presentation/edit/entity_screen_edit.dart';
+import 'package:lawyer_app/src/features/entity/presentation/entity_screen.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
 import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/finance/finance_screen.dart';
 //import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
 import 'package:lawyer_app/src/screens/main/components/side_menu.dart';
-import 'package:lawyer_app/src/screens/main/controller/entity_row_notifier.dart';
-import 'package:lawyer_app/src/screens/main/controller/side_menu_items.dart';
+import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
 import 'package:lawyer_app/src/screens/reports/reports_screen.dart';
 import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
 //import 'package:lawyer_app/src/screens/reports/reports_screen.dart';
@@ -33,16 +35,17 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final row = ref.read(clientRowProvider);
- 
+    final entityItem = ref.read(entityItemNotifierProvider);
+    final courtItem = ref.read(courtItemNotifierProvider);
+    final caseItem = ref.read(caseItemNotifierProvider);
 
-    final tabNotifier = ref.watch(sideMenuItemProvider.notifier);
+    final tabNotifier = ref.watch(tabItemsNotifierProvider.notifier);
     // debugPrint("dd");
     final controller = ref.watch(entityControllerProvider);
     // debugPrint("ddd");
     // final clients = ref.watch(clientsProvider);
 
-   Widget link() {
+    Widget link() {
       if (tab == AppRoute.dashboard.name) {
         return DashboardScreen();
       } else if (tab == AppRoute.definition.name) {
@@ -55,65 +58,42 @@ class HomePage extends ConsumerWidget {
         return ReportScreen();
       } else if (tab == AppRoute.reports.name) {
         return ReportScreen();
-      } else if (tab == AppRoute.clients.name) {
+      } else if (entityList.contains(tab)) {
         return EntityScreen(
           controller: controller,
           tab: tab,
           tabItem: tabNotifier,
         );
-      } else if (tab == AppRoute.editClients.name) {
-        return ClientScreenVMEdit(
+      } else if (editEntityList.contains(tab)) {
+        return EnitityScreenEdit(
           context: context,
-          entity: row,
+          entity: entityItem,
         );
-      } else if (tab == AppRoute.employees.name) {
-        return EntityScreen(
+      } else if (tab == AppRoute.courts.name) {
+        return CourtScreen(
           controller: controller,
           tab: tab,
           tabItem: tabNotifier,
         );
-      } else if (tab == AppRoute.editEmployees.name) {
-        return ClientScreenVMEdit(
+      } else if (tab == AppRoute.editCourts.name) {
+        return CourtScreenEdit(
           context: context,
-          entity: row,
+          entity: courtItem,
         );
-      } else if (tab == AppRoute.advocates.name) {
-        return EntityScreen(
+      } else if (tab == AppRoute.cases.name) {
+        return CaseScreen(
           controller: controller,
           tab: tab,
           tabItem: tabNotifier,
         );
-      } else if (tab == AppRoute.editAdvocates.name) {
-        return ClientScreenVMEdit(
+      } else if (tab == AppRoute.editCases.name) {
+        return CaseScreenEdit(
           context: context,
-          entity: row,
+          entity: caseItem,
         );
-      } else if (tab == AppRoute.suppliers.name) {
-        return EntityScreen(
-          controller: controller,
-          tab: tab,
-          tabItem: tabNotifier,
-        );
-      } else if (tab == AppRoute.editSuppliers.name) {
-        return ClientScreenVMEdit(
-          context: context,
-          entity: row,
-        );
-      } else if (tab == AppRoute.judges.name) {
-        return EntityScreen(
-          controller: controller,
-          tab: tab,
-          tabItem: tabNotifier,
-        );
-      } else if (tab == AppRoute.editJudges.name) {
-        return ClientScreenVMEdit(
-          context: context,
-          entity: row,
-        );
-      } else {
+      }else {
         return DefinitionScreen();
       }
-      
     }
 
     return Row(

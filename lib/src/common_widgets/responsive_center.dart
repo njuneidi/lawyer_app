@@ -1,5 +1,6 @@
 import 'package:lawyer_app/src/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
+import 'package:lawyer_app/src/features/cases/presentation/case_grid.dart';
 
 /// Reusable widget for showing a child with a maximum content width constraint.
 /// If available width is larger than the maximum width, the child will be
@@ -37,11 +38,13 @@ class ResponsiveCenter extends StatelessWidget {
 
 /// Sliver-equivalent of [ResponsiveCenter].
 class ResponsiveSliverCenter extends StatelessWidget {
-  const ResponsiveSliverCenter({
+  const ResponsiveSliverCenter(
+ {
     Key? key,
     this.maxContentWidth = Breakpoint.desktop,
     this.padding = EdgeInsets.zero,
     required this.child,
+    //  required this.child,
   }) : super(key: key);
   final double maxContentWidth;
   final EdgeInsetsGeometry padding;

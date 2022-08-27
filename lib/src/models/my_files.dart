@@ -23,17 +23,82 @@ class EntityInfo {
 }
 
 late final BuildContext context;
-List<EntityInfo> definitionEntityFiels(BuildContext context) => [
-      // EntityInfo(
-      //   name: AppRoute.accounts.name,
-      //   title: context.loc.accounts, //"Accounts".hardcoded,
-      //   numOfFiels: 1328,
-      //   svgSrc: "lawyer.png",
-      //   totalStorage: "2.9GB",
-      //   color: const Color(0xFFFFA113),
-      //   percentage: 35,
-      //   imgSrc: '${AppRoute.accounts.name}.png',
-      // ),
+List<EntityInfo> caseFiels(BuildContext context) => [
+   EntityInfo(
+        name: AppRoute.services.name,
+        title: context.loc.services,
+        numOfFiels: 1328,
+        svgSrc: "one_drive.svg",
+        totalStorage: "1GB",
+        color: const Color(0xFFA4CDFF),
+        percentage: 10,
+        imgSrc: '${AppRoute.services.name}.png',
+      ),
+      EntityInfo(
+        name: AppRoute.courts.name,
+        title: context.loc.courts,
+        numOfFiels: 5328,
+        svgSrc: "court.svg",
+        totalStorage: "7.3GB",
+        color: const Color(0xFF007EE5),
+        percentage: 78,
+        imgSrc: '${AppRoute.courts.name}.png',
+      ),
+   
+      EntityInfo(
+        name: AppRoute.cases.name,
+        title: context.loc.cases,
+        numOfFiels: 5328,
+        svgSrc: "cases.svg",
+        totalStorage: "7.3GB",
+        color: const Color(0xFF007EE5),
+        percentage: 78,
+        imgSrc: '${AppRoute.cases.name}.png',
+      ),
+      EntityInfo(
+        name: AppRoute.casesType.name,
+        title: context.loc.casesType,
+        numOfFiels: 1328,
+        svgSrc: "Documents.svg",
+        totalStorage: "1.9GB",
+        color: primaryColor,
+        percentage: 35,
+        imgSrc: '${AppRoute.casesType.name}.png',
+      ),
+      EntityInfo(
+        name: AppRoute.powerOfAttorney.name,
+        title: context.loc.powerOfAttorney,
+        numOfFiels: 1328,
+        svgSrc: "Documents.svg",
+        totalStorage: "1.9GB",
+        color: primaryColor,
+        percentage: 35,
+        imgSrc: '${AppRoute.powerOfAttorney.name}.png',
+      ),
+      EntityInfo(
+        name: AppRoute.documents.name,
+        title: context.loc.documents,
+        numOfFiels: 1328,
+        svgSrc: "archive.svg",
+        totalStorage: "2.9GB",
+        color: const Color(0xFFFFA113),
+        percentage: 35,
+        imgSrc: '${AppRoute.documents.name}.png',
+      ),
+      EntityInfo(
+        name: AppRoute.tasks.name,
+        title: context.loc.tasks,
+        numOfFiels: 1328,
+        svgSrc: "task.svg",
+        totalStorage: "1.9GB",
+        color: primaryColor,
+        percentage: 35,
+        imgSrc: '${AppRoute.tasks.name}.png',
+      ),
+];
+
+List<EntityInfo> entityFiels(BuildContext context) => [
+
       EntityInfo(
         name: AppRoute.clients.name,
         title: context.loc.clients,

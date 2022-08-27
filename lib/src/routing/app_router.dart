@@ -6,16 +6,12 @@ import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:lawyer_app/src/routing/not_found_screen.dart';
-//import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
+
 import 'package:lawyer_app/src/screens/main/main_screen.dart';
-//import 'package:lawyer_app/src/screens/transaction/transaction_screen.dart';
-
-
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
- 
- 
+
   return GoRouter(
     initialLocation: '/',
     debugLogDiagnostics: true,
@@ -36,90 +32,75 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     },
     refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
-      
       GoRoute(
         path: '/',
         name: AppRoute.root.name,
         //redirect: (_) => '/root/dashboard',
         builder: (context, state) => MainScreen(),
-       // builder: (context, state) => MainScreen(tab: 'dashboard'),
+        // builder: (context, state) => MainScreen(tab: 'dashboard'),
         routes: [
           GoRoute(
-            
             path: AppRoute.dashboard.name,
             name: AppRoute.dashboard.name,
             //builder: (context, state) => MainScreen(tab: 'dashboard'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(
-          
-              ),
+              child: MainScreen(),
             ),
           ),
-          GoRoute(
-            
-            path: AppRoute.clients.name,
-            name: AppRoute.clients.name,
-            //builder: (context, state) => MainScreen(tab: 'dashboard'),
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(
-                //tab: 'clients',
-              ),
-            ),
-            
-          ),
-           GoRoute(
-            
-            path:AppRoute.editClients.name,
-            name: AppRoute.editClients.name,
-         //   builder: (context, state) => MainScreen(),
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(
-               // tab: 'editClient',
-              ),
-            ),
-          ),
-          GoRoute(
-            
-            path: AppRoute.employees.name,
-            name: AppRoute.employees.name,
-            //builder: (context, state) => MainScreen(tab: 'dashboard'),
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(
-                //tab: 'clients',
-              ),
-            ),
-          ),
-           GoRoute(
-            
-            path:AppRoute.editEmployees.name,
-            name: AppRoute.editEmployees.name,
-         //   builder: (context, state) => MainScreen(),
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child:  MainScreen(
-               // tab: 'editClient',
-              ),
-            ),
-          ),
+          // GoRoute(
+          //   path: AppRoute.clients.name,
+          //   name: AppRoute.clients.name,
+          //   //builder: (context, state) => MainScreen(tab: 'dashboard'),
+          //   pageBuilder: (context, state) => MaterialPage(
+          //     key: state.pageKey,
+          //     fullscreenDialog: true,
+          //     child: MainScreen(
+          //         //tab: 'clients',
+          //         ),
+          //   ),
+          // ),
+          // GoRoute(
+          //   path: AppRoute.editClients.name,
+          //   name: AppRoute.editClients.name,
+          //   //   builder: (context, state) => MainScreen(),
+          //   pageBuilder: (context, state) => MaterialPage(
+          //     key: state.pageKey,
+          //     fullscreenDialog: true,
+          //     child: MainScreen(),
+          //   ),
+          // ),
+          // GoRoute(
+          //   path: AppRoute.employees.name,
+          //   name: AppRoute.employees.name,
+          //   //builder: (context, state) => MainScreen(tab: 'dashboard'),
+          //   pageBuilder: (context, state) => MaterialPage(
+          //     key: state.pageKey,
+          //     fullscreenDialog: true,
+          //     child: MainScreen(),
+          //   ),
+          // ),
+          // GoRoute(
+          //   path: AppRoute.editEmployees.name,
+          //   name: AppRoute.editEmployees.name,
+          //   //   builder: (context, state) => MainScreen(),
+          //   pageBuilder: (context, state) => MaterialPage(
+          //     key: state.pageKey,
+          //     fullscreenDialog: true,
+          //     child: MainScreen(
+          //         // tab: 'editClient',
+          //         ),
+          //   ),
+          // ),
           GoRoute(
             path: AppRoute.definition.name,
             name: AppRoute.definition.name,
-           // builder: (context, state) => MainScreen(tab: 'definition'),
+            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(
-               // tab: 'definition',
-              ),
+              child: MainScreen(),
             ),
           ),
           GoRoute(
@@ -129,43 +110,39 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(
-             //   tab: 'transaction',
-              ),
+              child: MainScreen(),
             ),
           ),
           GoRoute(
-            path:  AppRoute.finance.name,
+            path: AppRoute.finance.name,
             name: AppRoute.finance.name,
-           // builder: (context, state) => MainScreen(tab: 'definition'),
+            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(
-                //tab: 'finance',
-              ),
+              child: MainScreen(),
             ),
           ),
           GoRoute(
             path: AppRoute.reports.name,
             name: AppRoute.reports.name,
-           // builder: (context, state) => MainScreen(tab: 'definition'),
+            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(
-                //tab: 'reports',
-              ),
+              child: MainScreen(
+                  //tab: 'reports',
+                  ),
             ),
           ),
           GoRoute(
             path: 'settings',
             name: AppRoute.setting.name,
-           // builder: (context, state) => MainScreen(tab: 'definition'),
+            // builder: (context, state) => MainScreen(tab: 'definition'),
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-              child:  MainScreen(
+              child: MainScreen(
                 tab: 'settings',
               ),
             ),
@@ -176,13 +153,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               fullscreenDialog: true,
-            child:  MainScreen(
+              child: MainScreen(
                 tab: 'settings',
               ),
             ),
           ),
-          
-           GoRoute(
+          GoRoute(
             path: 'signIn',
             name: AppRoute.signIn.name,
             pageBuilder: (context, state) => MaterialPage(
@@ -193,10 +169,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
             ),
           ),
-          
-           
-         
-         
         ],
       ),
 

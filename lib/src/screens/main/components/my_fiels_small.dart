@@ -32,7 +32,7 @@ class MyFielsSmall extends StatelessWidget {
       case 'settings':
         return 6;
       default:
-        return 0;
+        return size < 650 ? 5 : 5;
     }
   }
 
@@ -98,25 +98,6 @@ class FileInfoCardGridViewSmall extends StatelessWidget {
     required this.tab,
   }) : super(key: key);
 
-  static int getFielsCount(String tab) {
-    switch (tab) {
-      case 'dashboard':
-        return dashboardDemoMyFiels.length;
-      case 'definition':
-        return definitionEntityFiels(context).length;
-      case 'transaction':
-        return 3;
-      case 'finance':
-        return 4;
-      case 'reports':
-        return 5;
-      case 'settings':
-        return 6;
-      default:
-        return 0;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -130,8 +111,11 @@ class FileInfoCardGridViewSmall extends StatelessWidget {
         mainAxisSpacing: defaultPadding / 32,
       ),
       itemBuilder: (context, index) => FieldInfoCardSmall(
-        info: definitionEntityFiels(context)[index],
-      ),
+          info: entityList.contains(tab)
+              ? entityFiels(context)[index]
+              : caseList.contains(tab)
+                  ? caseFiels(context)[index]
+                  : caseFiels(context)[index]),
     );
   }
 }

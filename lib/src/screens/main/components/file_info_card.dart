@@ -1,13 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lawyer_app/src/clients/domain/client.dart';
-import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/constants/constants_item.dart';
-import 'package:lawyer_app/src/employees/domain/employee.dart';
+import 'package:lawyer_app/src/features/entity/domain/client.dart';
 import 'package:lawyer_app/src/models/my_files.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lawyer_app/src/screens/main/controller/entity_row_notifier.dart';
-import 'package:lawyer_app/src/screens/main/controller/side_menu_items.dart';
+import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
 
 class FieldInfoCard extends ConsumerWidget {
   const FieldInfoCard({
@@ -18,9 +14,9 @@ final EntityInfo info;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myFiels = ref.watch(sideMenuItemProvider.notifier);
+    final myFiels = ref.watch(tabItemsNotifierProvider.notifier);
 
-    final preLink = ref.watch(previousItemProvider.notifier);
+    final preLink = ref.watch(previousLinkNotifierProvider.notifier);
 
     debugPrint(
         ' ---- edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');
@@ -57,9 +53,9 @@ final EntityInfo info;
                   icon: imgIcons(src: 'add.png',color: Colors.white),
                   onPressed: () {
                     // clientRow.entityRow(const Client(name: ''));
-                    final clientRow = ref.watch(clientRowProvider.notifier);
+                    final clientRow = ref.watch(entityItemNotifierProvider.notifier);
                     
-                    clientRow.entityRow(const Client(name: ''));
+                    clientRow.item(const Client(name: ''));
                     myFiels.linkedPage(
                         'edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');
                   },

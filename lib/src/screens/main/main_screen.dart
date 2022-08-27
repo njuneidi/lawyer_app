@@ -9,13 +9,12 @@ import 'package:lawyer_app/src/constants/action_menu.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:lawyer_app/src/features/authentication/presentation/account/account_screen_controller.dart';
-import 'package:lawyer_app/src/features/locale/presentation/locale_provider.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/localization/l10n.dart';
 import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/src/screens/main/home_page.dart';
-import 'package:lawyer_app/src/screens/main/controller/side_menu_items.dart';
+import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
 import 'package:lawyer_app/src/screens/main/welcom_page.dart';
 
 class MainScreen extends ConsumerWidget with PreferredSizeWidget {
@@ -23,11 +22,11 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tab = ref.watch(sideMenuItemProvider);
+    final tab = ref.watch(tabItemsNotifierProvider);
     final user = ref.watch(authStateChangesProvider).value;
     // final screenWidth = MediaQuery.of(context).size.width;
-    final locale = ref.watch(mylocalNotifierProvider);
-    final localLang = ref.watch(mylocalNotifierProvider.notifier);
+    final locale = ref.watch(localNotifierProvider);
+    final localLang = ref.watch(localNotifierProvider.notifier);
 
     final state = ref.watch(accountScreenControllerProvider);
 
@@ -146,7 +145,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         // drawer:const SideMenu(),
         //    Responsive.isDesktop(context) == false ? const SideMenu() : null,
         body: SafeArea(
-          child: user == null
+          child: user != null
               ? HomePage(
                   user: user,
                   tab: tab,
