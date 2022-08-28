@@ -9,6 +9,7 @@ class Client  with _$Client {
   const factory Client(
       {@Default(-1) int id,
       required String name,
+      @Default('') String idCardNumber,
       @Default('') String address,
       DateTime? paidToDate,
       DateTime? lastLoginAt,

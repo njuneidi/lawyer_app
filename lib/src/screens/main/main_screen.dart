@@ -34,6 +34,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
 
     return Scaffold(
         appBar: AppBar(
+       //   backgroundColor: secondaryColor,
           // title: Text(context.loc.appBar),
           centerTitle: true,
 
@@ -82,33 +83,36 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
             const SizedBox(
               width: 8,
             ),
+           
             PopupMenuButton(
                 initialValue: locale,
                 icon: const Icon(Icons.language),
                 onSelected: null,
+
+                
                 itemBuilder: (context) => L10n.all.map(
                       (locale) {
                         final flag = L10n.getFlag(locale.languageCode);
                         return PopupMenuItem(
                           value: locale,
                           onTap: () {
-                            debugPrint('${locale.languageCode} befor');
+                            //debugPrint('${locale.languageCode} befor');
                             if (locale.languageCode == 'ar') {
                               localLang.setArabic();
                             } else {
                               localLang.setEnglish();
                             }
                             // context.pushNamed(AppRoute.root.name);
-                            debugPrint('${locale.languageCode} after');
+                            //debugPrint('${locale.languageCode} after');
                             // debugPring(localeProvider.state.toString());
                             //(localeProvider.notifier).setloca
                             //final localeProvider =
                             //  ref.read(mylocalNotifierProvider.notifier);
                             // final locale = localeProvider.state;
-                            // debugPrint(locale?.countryCode.toString());
+                            // //debugPrint(locale?.countryCode.toString());
                             //   localeProvider.setArabic();
-                            // debugPrint('tapped');
-                            // debugPrint(locale?.countryCode);
+                            // //debugPrint('tapped');
+                            // //debugPrint(locale?.countryCode);
                             // // context.goNamed(AppRoute.root.name);
                           },
                           child: Center(
@@ -145,7 +149,7 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
         // drawer:const SideMenu(),
         //    Responsive.isDesktop(context) == false ? const SideMenu() : null,
         body: SafeArea(
-          child: user != null
+          child: user == null
               ? HomePage(
                   user: user,
                   tab: tab,
@@ -153,7 +157,11 @@ class MainScreen extends ConsumerWidget with PreferredSizeWidget {
               : const WelcomPage(),
         ),
         persistentFooterButtons: [
-          Center(child: Text('All Rights Reserved @2022'.hardcoded))
+          Center(child: Column(
+            children: [
+              Text(context.loc.rights.hardcoded,style: formStyletitleLarge(context),),
+            ],
+          ))
         ]);
   }
 
@@ -210,7 +218,7 @@ class _DrawListTitleState extends State<DrawListTitle> {
         trailing: widget.entity != 'definition0'
             ? const Icon(
                 Icons.navigate_next,
-                color: Colors.white54,
+               // color: Colors.white54,
               )
             : PopupMenuButton(
                 offset: const Offset(0, 50),

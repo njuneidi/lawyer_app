@@ -51,6 +51,8 @@ class CourtScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor:secondaryColor,
+       // foregroundColor: Colors.black54,
         //flexibleSpace:   const MyFielsSmall(tab:'definition'),
         title: itemEntity.when(
           data: (data) => Text('$enityTitle (${data.length})'),
@@ -168,7 +170,7 @@ class CourtScreen extends ConsumerWidget {
                                       ),
                                     ),
                                   ),
-                                  const Divider(color: Colors.white70),
+                                  const Divider(color: Colors.white70,height: 1,),
                                 ],
                               );
                             },

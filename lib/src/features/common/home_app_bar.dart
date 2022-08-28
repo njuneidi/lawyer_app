@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/constants/constants_item.dart';
+import 'package:lawyer_app/src/entity_controller/controller/entity_controller.dart';
 import 'package:lawyer_app/src/features/cases/domain/case.dart';
 import 'package:lawyer_app/src/features/entity/domain/client.dart';
 import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
@@ -13,37 +13,57 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
     Key? key,
     required this.tab,
     required this.enityTitle,
-    required this.item,
+    // required this.item,
     required this.tabItem,
+    required this.headerButton,
+    required this.imageIcon,
   }) : super(key: key);
 
   final String tab;
   final String enityTitle;
-  final AsyncValue<List<Case>> item;
+  //final AsyncValue<List<Case>> item;
   final TabItemsNotifier tabItem;
+  final VoidCallback headerButton;
+  final Widget imageIcon;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final row = ref.watch(caseItemNotifierProvider.notifier);
     final backLink = AppRoute.definition.name;
     final onSaveLink = ref.watch(previousLinkNotifierProvider.notifier);
+    final caseItem = ref.watch(casesProvider);
+    final caseTypeItem = ref.watch(caseTypesProvider);
+    final serviceItem = ref.watch(servicesProvider);
+    final taskTypeItem = ref.watch(taskTypeProvider);
+    final taskItem = ref.watch(taskProvider);
 
-    VoidCallback headerButton(tab) {
-      return () {
-        ref.watch(entityItemNotifierProvider.notifier).item(const Client(name: ''));
-      
-        ref.watch(caseItemNotifierProvider.notifier).item(const Case(title: ''));
-        onSaveLink.previousPage(tab);
+    final item = tab == AppRoute.cases.name
+        ? caseItem
+        : tab == AppRoute.casesType.name
+            ? caseTypeItem
+            : tab == AppRoute.tasksType.name
+                ? taskTypeItem
+                :  tab == AppRoute.tasks.name?
+                taskItem: serviceItem;
+    // VoidCallback headerButton(tab) {
+    //   return () {
+    //     ref
+    //         .watch(entityItemNotifierProvider.notifier)
+    //         .item(const Client(name: ''));
 
-        tabItem.linkedPage(editLink(tab));
-      };
-    }
+    //     ref.watch(caseItemNotifierProvider.notifier).item(Case(title: ''));
+    //     onSaveLink.previousPage(tab);
+
+    //     tabItem.linkedPage(editLink(tab));
+    //   };
+    // }
 
     return AppBar(
       centerTitle: true,
-   
+      backgroundColor: secondaryColor,
       title: item.when(
-        data: (data) => Text('$enityTitle (${data.length})'),
+        data: (data) => tab.contains('edit')
+            ? Text(enityTitle)
+            : Text('$enityTitle (${data.length})'),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, trace) => Center(child: Text(error.toString())),
       ),
@@ -57,8 +77,8 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
           width: 20,
         ),
         IconButton(
-          onPressed: headerButton(tab),
-          icon: imgIcons(src: 'add.png', color: Colors.white),
+          onPressed: () => headerButton(),
+          icon: imageIcon,
         ),
         const SizedBox(
           width: 100,
@@ -67,8 +87,6 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
     );
   }
 
-  
-  
   @override
   Size get preferredSize => const Size.fromHeight(60.0);
 }

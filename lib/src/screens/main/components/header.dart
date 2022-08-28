@@ -25,7 +25,7 @@ class Header extends StatelessWidget {
         if (!Responsive.isMobile(context))
           Text(
             pageTitle,
-            style: Theme.of(context).textTheme.headline6,
+            style: formStyleheadline6(context)
           ),
         if (!Responsive.isMobile(context))
           Spacer(

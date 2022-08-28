@@ -50,7 +50,8 @@ const $Court = _$CourtTearOff();
 /// @nodoc
 mixin _$Court {
   int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // @Default('') String idCardNumber,
   String get address => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -201,7 +202,7 @@ class _$_Court implements _Court {
   @override
   final String name;
   @JsonKey()
-  @override
+  @override // @Default('') String idCardNumber,
   final String address;
   @JsonKey()
   @override
@@ -267,7 +268,7 @@ abstract class _Court implements Court {
   int get id;
   @override
   String get name;
-  @override
+  @override // @Default('') String idCardNumber,
   String get address;
   @override
   String get location;

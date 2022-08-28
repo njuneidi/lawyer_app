@@ -26,8 +26,10 @@ class _$CaseTearOff {
       {int id = -1,
       required String title,
       DateTime? date,
+      DateTime? updatedDate,
       String description = '',
       String clientID = '',
+      String clientName = '',
       String attachmentID = '',
       String type = '',
       String others = '',
@@ -36,8 +38,10 @@ class _$CaseTearOff {
       id: id,
       title: title,
       date: date,
+      updatedDate: updatedDate,
       description: description,
       clientID: clientID,
+      clientName: clientName,
       attachmentID: attachmentID,
       type: type,
       others: others,
@@ -58,8 +62,10 @@ mixin _$Case {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get clientID => throw _privateConstructorUsedError;
+  String get clientName => throw _privateConstructorUsedError;
   String get attachmentID =>
       throw _privateConstructorUsedError; //PlatformFile  attachment,
   String get type => throw _privateConstructorUsedError;
@@ -79,8 +85,10 @@ abstract class $CaseCopyWith<$Res> {
       {int id,
       String title,
       DateTime? date,
+      DateTime? updatedDate,
       String description,
       String clientID,
+      String clientName,
       String attachmentID,
       String type,
       String others,
@@ -100,8 +108,10 @@ class _$CaseCopyWithImpl<$Res> implements $CaseCopyWith<$Res> {
     Object? id = freezed,
     Object? title = freezed,
     Object? date = freezed,
+    Object? updatedDate = freezed,
     Object? description = freezed,
     Object? clientID = freezed,
+    Object? clientName = freezed,
     Object? attachmentID = freezed,
     Object? type = freezed,
     Object? others = freezed,
@@ -120,6 +130,10 @@ class _$CaseCopyWithImpl<$Res> implements $CaseCopyWith<$Res> {
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      updatedDate: updatedDate == freezed
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -127,6 +141,10 @@ class _$CaseCopyWithImpl<$Res> implements $CaseCopyWith<$Res> {
       clientID: clientID == freezed
           ? _value.clientID
           : clientID // ignore: cast_nullable_to_non_nullable
+              as String,
+      clientName: clientName == freezed
+          ? _value.clientName
+          : clientName // ignore: cast_nullable_to_non_nullable
               as String,
       attachmentID: attachmentID == freezed
           ? _value.attachmentID
@@ -157,8 +175,10 @@ abstract class _$CaseCopyWith<$Res> implements $CaseCopyWith<$Res> {
       {int id,
       String title,
       DateTime? date,
+      DateTime? updatedDate,
       String description,
       String clientID,
+      String clientName,
       String attachmentID,
       String type,
       String others,
@@ -179,8 +199,10 @@ class __$CaseCopyWithImpl<$Res> extends _$CaseCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? date = freezed,
+    Object? updatedDate = freezed,
     Object? description = freezed,
     Object? clientID = freezed,
+    Object? clientName = freezed,
     Object? attachmentID = freezed,
     Object? type = freezed,
     Object? others = freezed,
@@ -199,6 +221,10 @@ class __$CaseCopyWithImpl<$Res> extends _$CaseCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      updatedDate: updatedDate == freezed
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -206,6 +232,10 @@ class __$CaseCopyWithImpl<$Res> extends _$CaseCopyWithImpl<$Res>
       clientID: clientID == freezed
           ? _value.clientID
           : clientID // ignore: cast_nullable_to_non_nullable
+              as String,
+      clientName: clientName == freezed
+          ? _value.clientName
+          : clientName // ignore: cast_nullable_to_non_nullable
               as String,
       attachmentID: attachmentID == freezed
           ? _value.attachmentID
@@ -230,12 +260,14 @@ class __$CaseCopyWithImpl<$Res> extends _$CaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Case implements _Case {
-  const _$_Case(
+  _$_Case(
       {this.id = -1,
       required this.title,
       this.date,
+      this.updatedDate,
       this.description = '',
       this.clientID = '',
+      this.clientName = '',
       this.attachmentID = '',
       this.type = '',
       this.others = '',
@@ -250,12 +282,17 @@ class _$_Case implements _Case {
   final String title;
   @override
   final DateTime? date;
+  @override
+  final DateTime? updatedDate;
   @JsonKey()
   @override
   final String description;
   @JsonKey()
   @override
   final String clientID;
+  @JsonKey()
+  @override
+  final String clientName;
   @JsonKey()
   @override
   final String attachmentID;
@@ -271,7 +308,7 @@ class _$_Case implements _Case {
 
   @override
   String toString() {
-    return 'Case(id: $id, title: $title, date: $date, description: $description, clientID: $clientID, attachmentID: $attachmentID, type: $type, others: $others, taskID: $taskID)';
+    return 'Case(id: $id, title: $title, date: $date, updatedDate: $updatedDate, description: $description, clientID: $clientID, clientName: $clientName, attachmentID: $attachmentID, type: $type, others: $others, taskID: $taskID)';
   }
 
   @override
@@ -283,8 +320,12 @@ class _$_Case implements _Case {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality()
+                .equals(other.updatedDate, updatedDate) &&
+            const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.clientID, clientID) &&
+            const DeepCollectionEquality()
+                .equals(other.clientName, clientName) &&
             const DeepCollectionEquality()
                 .equals(other.attachmentID, attachmentID) &&
             const DeepCollectionEquality().equals(other.type, type) &&
@@ -298,8 +339,10 @@ class _$_Case implements _Case {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(updatedDate),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(clientID),
+      const DeepCollectionEquality().hash(clientName),
       const DeepCollectionEquality().hash(attachmentID),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(others),
@@ -317,12 +360,14 @@ class _$_Case implements _Case {
 }
 
 abstract class _Case implements Case {
-  const factory _Case(
+  factory _Case(
       {int id,
       required String title,
       DateTime? date,
+      DateTime? updatedDate,
       String description,
       String clientID,
+      String clientName,
       String attachmentID,
       String type,
       String others,
@@ -337,9 +382,13 @@ abstract class _Case implements Case {
   @override
   DateTime? get date;
   @override
+  DateTime? get updatedDate;
+  @override
   String get description;
   @override
   String get clientID;
+  @override
+  String get clientName;
   @override
   String get attachmentID;
   @override //PlatformFile  attachment,

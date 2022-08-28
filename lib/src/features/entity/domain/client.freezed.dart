@@ -25,6 +25,7 @@ class _$ClientTearOff {
   _Client call(
       {int id = -1,
       required String name,
+      String idCardNumber = '',
       String address = '',
       DateTime? paidToDate,
       DateTime? lastLoginAt,
@@ -61,6 +62,7 @@ class _$ClientTearOff {
     return _Client(
       id: id,
       name: name,
+      idCardNumber: idCardNumber,
       address: address,
       paidToDate: paidToDate,
       lastLoginAt: lastLoginAt,
@@ -109,6 +111,7 @@ const $Client = _$ClientTearOff();
 mixin _$Client {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get idCardNumber => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   DateTime? get paidToDate => throw _privateConstructorUsedError;
   DateTime? get lastLoginAt => throw _privateConstructorUsedError;
@@ -155,6 +158,7 @@ abstract class $ClientCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      String idCardNumber,
       String address,
       DateTime? paidToDate,
       DateTime? lastLoginAt,
@@ -202,6 +206,7 @@ class _$ClientCopyWithImpl<$Res> implements $ClientCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? idCardNumber = freezed,
     Object? address = freezed,
     Object? paidToDate = freezed,
     Object? lastLoginAt = freezed,
@@ -244,6 +249,10 @@ class _$ClientCopyWithImpl<$Res> implements $ClientCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      idCardNumber: idCardNumber == freezed
+          ? _value.idCardNumber
+          : idCardNumber // ignore: cast_nullable_to_non_nullable
               as String,
       address: address == freezed
           ? _value.address
@@ -389,6 +398,7 @@ abstract class _$ClientCopyWith<$Res> implements $ClientCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      String idCardNumber,
       String address,
       DateTime? paidToDate,
       DateTime? lastLoginAt,
@@ -437,6 +447,7 @@ class __$ClientCopyWithImpl<$Res> extends _$ClientCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? idCardNumber = freezed,
     Object? address = freezed,
     Object? paidToDate = freezed,
     Object? lastLoginAt = freezed,
@@ -479,6 +490,10 @@ class __$ClientCopyWithImpl<$Res> extends _$ClientCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      idCardNumber: idCardNumber == freezed
+          ? _value.idCardNumber
+          : idCardNumber // ignore: cast_nullable_to_non_nullable
               as String,
       address: address == freezed
           ? _value.address
@@ -605,6 +620,7 @@ class _$_Client implements _Client {
   const _$_Client(
       {this.id = -1,
       required this.name,
+      this.idCardNumber = '',
       this.address = '',
       this.paidToDate,
       this.lastLoginAt,
@@ -647,6 +663,9 @@ class _$_Client implements _Client {
   final int id;
   @override
   final String name;
+  @JsonKey()
+  @override
+  final String idCardNumber;
   @JsonKey()
   @override
   final String address;
@@ -743,7 +762,7 @@ class _$_Client implements _Client {
 
   @override
   String toString() {
-    return 'Client(id: $id, name: $name, address: $address, paidToDate: $paidToDate, lastLoginAt: $lastLoginAt, createdAt: $createdAt, updatedAt: $updatedAt, archivedAt: $archivedAt, dob: $dob, address1: $address1, country: $country, balance: $balance, creditBalance: $creditBalance, vatNumber: $vatNumber, idNumber: $idNumber, isDeleted: $isDeleted, contacts: $contacts, contactName: $contactName, email: $email, mobile: $mobile, state: $state, phone: $phone, taskRate: $taskRate, publicNotes: $publicNotes, privateNotes: $privateNotes, currency: $currency, gender: $gender, custom2: $custom2, custom3: $custom3, custom4: $custom4, assignedToId: $assignedToId, createdById: $createdById, documents: $documents, city: $city, group: $group)';
+    return 'Client(id: $id, name: $name, idCardNumber: $idCardNumber, address: $address, paidToDate: $paidToDate, lastLoginAt: $lastLoginAt, createdAt: $createdAt, updatedAt: $updatedAt, archivedAt: $archivedAt, dob: $dob, address1: $address1, country: $country, balance: $balance, creditBalance: $creditBalance, vatNumber: $vatNumber, idNumber: $idNumber, isDeleted: $isDeleted, contacts: $contacts, contactName: $contactName, email: $email, mobile: $mobile, state: $state, phone: $phone, taskRate: $taskRate, publicNotes: $publicNotes, privateNotes: $privateNotes, currency: $currency, gender: $gender, custom2: $custom2, custom3: $custom3, custom4: $custom4, assignedToId: $assignedToId, createdById: $createdById, documents: $documents, city: $city, group: $group)';
   }
 
   @override
@@ -753,6 +772,8 @@ class _$_Client implements _Client {
             other is _Client &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.idCardNumber, idCardNumber) &&
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality()
                 .equals(other.paidToDate, paidToDate) &&
@@ -802,6 +823,7 @@ class _$_Client implements _Client {
         runtimeType,
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(idCardNumber),
         const DeepCollectionEquality().hash(address),
         const DeepCollectionEquality().hash(paidToDate),
         const DeepCollectionEquality().hash(lastLoginAt),
@@ -852,6 +874,7 @@ abstract class _Client implements Client {
   const factory _Client(
       {int id,
       required String name,
+      String idCardNumber,
       String address,
       DateTime? paidToDate,
       DateTime? lastLoginAt,
@@ -892,6 +915,8 @@ abstract class _Client implements Client {
   int get id;
   @override
   String get name;
+  @override
+  String get idCardNumber;
   @override
   String get address;
   @override

@@ -17,8 +17,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     debugLogDiagnostics: true,
     redirect: (state) {
       final isLoggedIn = authRepository.currentUser != null;
-      debugPrint(isLoggedIn == true ? " isLoggedIn true" : "isLoggedIn false");
-      debugPrint(state.location);
+      //debugPrint(isLoggedIn == true ? " isLoggedIn true" : "isLoggedIn false");
+      //debugPrint(state.location);
       if (isLoggedIn) {
         if (state.location == '/signIn') {
           return '/';

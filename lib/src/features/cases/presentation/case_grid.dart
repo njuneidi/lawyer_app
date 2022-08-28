@@ -8,26 +8,26 @@ import 'package:lawyer_app/src/constants/app_sizes.dart';
 import 'package:lawyer_app/src/entity_controller/controller/entity_controller.dart';
 import 'package:lawyer_app/src/features/cases/domain/case.dart';
 import 'package:lawyer_app/src/features/cases/presentation/case_card.dart';
-import 'package:lawyer_app/src/localization/string_hardcoded.dart';
 import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
 
 class CasesGrid extends ConsumerWidget {
   const CasesGrid({
     super.key,
+    required  this.tabItem,
   });
-
+  final TabItemsNotifier tabItem;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filter = ref.watch(searchFilterNotifierProvider);
     final casesListValue = ref.watch(casesProvider);
-    // debugPrint('-----${casesListValue.value.toString()} $filter');
-    //debugPrint(' $filter-----${casesListValue.value.toString()} $filter');
+    // //debugPrint('-----${casesListValue.value.toString()} $filter');
+    ////debugPrint(' $filter-----${casesListValue.value.toString()} $filter');
     final filteredCaseListValue = filter == null
         ? casesListValue
         : ref.watch(filteredCasesProvider(filter));
-    debugPrint(
-        'filter $filter-----${filteredCaseListValue.value.toString()} $filter');
-    // debugPrint('----->>>>${filteredCaseListValue.value.toString()}');
+    //debugPrint(
+      //  'filter $filter-----${filteredCaseListValue.value.toString()} $filter');
+    // //debugPrint('----->>>>${filteredCaseListValue.value.toString()}');
     return AsyncValueWidget<List<Case>>(
       value: filteredCaseListValue,
       data: (cases) => cases.isEmpty
@@ -38,9 +38,10 @@ class CasesGrid extends ConsumerWidget {
               itemCount: cases.length,
               itemBuilder: (_, index) {
                 final caseItem = cases[index];
-               /* return Text('nempty')*/
+                /* return Text('nempty')*/
                 return CaseCard(
                   caseItem: caseItem,
+                  tabItem: tabItem,
                 );
               },
             ),
@@ -84,7 +85,7 @@ class CasessLayoutGrid extends StatelessWidget {
       final width = constraints.maxWidth;
       // 1 column for width < 500px
       // then add one more column for each 250px
-      final crossAxisCount = max(1, width ~/ 250);
+      final crossAxisCount = max(1, width ~/ 300);
       // once the crossAxisCount is known, calculate the column and row sizes
       // set some flexible track sizes based on the crossAxisCount with 1.fr
       final columnSizes = List.generate(crossAxisCount, (_) => 1.fr);

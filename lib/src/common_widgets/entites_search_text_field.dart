@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lawyer_app/src/constants/constants_item.dart';
 import 'package:lawyer_app/src/localization/app_localizations_context.dart';
 import 'package:lawyer_app/src/notifier/state_notifier_contoller.dart';
 
@@ -27,13 +28,13 @@ class _EntitiesSearchTextFieldState
   }
 
   void _runFilter(String enteredKeyword) {
-    debugPrint('enteredKeyword $enteredKeyword');
-     debugPrint('widget.tab ${widget.tab}');
-     debugPrint('widget.tabIterm ${widget.tabItem}');
+    //debugPrint('enteredKeyword $enteredKeyword');
+    //debugPrint('widget.tab ${widget.tab}');
+    //debugPrint('widget.tabIterm ${widget.tabItem}');
     final searchText = ref.watch(searchFilterNotifierProvider.notifier);
-     searchText.searchFilterText(enteredKeyword);
+    searchText.searchFilterText(enteredKeyword);
     widget.tabItem.linkedPage(widget.tab);
-   
+
     // we use the toLowerCase() method to make it case-insensitive
   }
 
@@ -48,10 +49,32 @@ class _EntitiesSearchTextFieldState
         return TextField(
           controller: _controller,
           autofocus: false,
-          style: Theme.of(context).textTheme.headline6,
+          // cursorColor: Colors.black,
+
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.merge(const TextStyle(color: secondaryColor)),
+
+          // style: TextStyle(color: Colors.black, fontWeight: headline6 ),
+
           decoration: InputDecoration(
+            enabledBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(color: secondaryColor, width: 2.0),
+      ),
+            // flabelStyle: TextStyle(color: Colors.black, decorationColor: Colors.red),
+            hintStyle:
+                TextStyle(color: secondaryColor, decorationColor: Colors.red),
+
+            // fillColor: primaryColor, filled: true,
+            // iconColor: Colors.black,
+            //f
+            //  fillColor: Colors.black,
             hintText: context.loc.searchEntity,
-            icon: const Icon(Icons.search),
+            icon: const Icon(
+              Icons.search,
+              color: secondaryColor,
+            ),
             suffixIcon: value.text.isNotEmpty
                 ? IconButton(
                     onPressed: () {

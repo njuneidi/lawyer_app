@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
@@ -21,7 +22,7 @@ class MyApp extends ConsumerWidget {
     final localeProvider = ref.watch(localNotifierProvider);
     final locale = localeProvider;
 
-    debugPrint(localeProvider.countryCode);
+    //debugPrint(localeProvider.countryCode);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'context.loc.pageTitle',
@@ -36,6 +37,7 @@ class MyApp extends ConsumerWidget {
        // AppLocalizations.localizationsDelegates,
        localizationsDelegates: const [
         AppLocalizations.delegate,
+         CountryLocalizations.delegate,
         FormBuilderLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -49,8 +51,8 @@ class MyApp extends ConsumerWidget {
 
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: bgColor,
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-            .apply(bodyColor: Colors.white),
+       // bottomAppBarColor: Colors.blueGrey,
+       // cardColor: Colors.black,       
         canvasColor: secondaryColor,
       ),
        onGenerateTitle: (BuildContext context) => context.loc.welcomeToLawyerApp,

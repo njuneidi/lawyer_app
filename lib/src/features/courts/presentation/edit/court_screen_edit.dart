@@ -51,7 +51,7 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
     final onSaveLink = tab.substring(4).toLowerCase();
 
     final backLink = ref.watch(previousLinkNotifierProvider);
-    debugPrint('backLink $backLink');
+    //debugPrint('backLink $backLink');
 
     final editCourtRow = widget.entity?.name != '' ? true : false;
 
@@ -60,6 +60,8 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:secondaryColor,
+      //  foregroundColor: Colors.black54,
         centerTitle: true,
         automaticallyImplyLeading: true,
         leading: BackButton(
@@ -90,7 +92,7 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
                 tabItem.linkedPage(onSaveLink);
               }
             },
-            icon: imgIcons(src: 'save.png', scale: 1.6, color: Colors.white),
+            icon: imgIcons(src: 'save.png', scale: 1.6,color: Colors.white54),
             tooltip: context.loc.save,
             //  child: Text(context.loc.submit),
           ),
@@ -125,16 +127,13 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     FormBuilderTextField(
+                                      style: formStyle(context),
                                       name: 'name',
                                       initialValue: editCourtRow
                                           ? widget.entity!.name
                                           : '',
 
-                                      decoration: InputDecoration(
-                                        labelText: widget
-                                            .context.loc.courtName,
-                                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                      ),
+                                      decoration: decoration(context.loc.courtName),
                                       onChanged: (value) => debugPrint(value),
                                       valueTransformer: (value) =>
                                           value.toString().trim(),
@@ -148,26 +147,20 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
                                       // keyboardType: TextInputType.number,
                                     ),
                                     FormBuilderTextField(
+                                      style: formStyle(context),
                                       name: 'address',
                                       initialValue: editCourtRow
                                           ? widget.entity!.address
                                           : '',
-                                      decoration: InputDecoration(
-                                        labelText: widget
-                                            .context.loc.courtAdress,
-                                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                      ),
+                                      decoration: decoration(context.loc.courtAdress)
                                     ),
                                     FormBuilderTextField(
+                                      style: formStyle(context),
                                       name: 'location',
                                       initialValue: editCourtRow
                                           ? widget.entity!.location
                                           : '',
-                                      decoration: InputDecoration(
-                                        labelText: widget
-                                            .context.loc.courtLocation,
-                                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                      ),
+                                      decoration: decoration(context.loc.courtLocation),
                                       onChanged: (value) => debugPrint(value),
                                       valueTransformer: (value) =>
                                           value.toString().trim(),
@@ -179,15 +172,12 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
                                       // keyboardType: TextInputType.number,
                                     ),
                                     FormBuilderTextField(
+                                      style: formStyle(context),
                                       name: 'city',
                                       initialValue: editCourtRow
                                           ? widget.entity!.city
                                           : '',
-                                      decoration: InputDecoration(
-                                        labelText:
-                                            widget.context.loc.cityFieldLabel,
-                                        // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                      ),
+                                      decoration: decoration(context.loc.cityFieldLabel,),
                                       onChanged: (value) => debugPrint(value),
                                       valueTransformer: (value) =>
                                           value.toString().trim(),
@@ -203,13 +193,9 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
                                       initialValue: editCourtRow
                                           ? widget.entity!.phone
                                           : '',
-                                      decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(Sizes.p16),
-                                        labelText:
-                                            widget.context.loc.phoneFieldLabel,
-                                        // hintText: '02XXXXXXX',
-                                      ),
+                                          //backgroundColor: primaryColor,
+                                           style: formStyle(context),
+                                      decoration: decoration(context.loc.phoneFieldLabel,),
                                       priorityListByIsoCode: const ['PS'],
                                       defaultSelectedCountryIsoCode: 'PS',
                                       validator: FormBuilderValidators.compose([
@@ -231,7 +217,7 @@ class MyCustomFormState extends ConsumerState<CourtScreenEdit> {
                         child: Container(
                           padding: const EdgeInsets.all(defaultPadding),
                           child: Center(
-                              child: imgIcons(src: 'courts.png', scale: 1.9)),
+                              child: imgIcons2(src: 'courts.png', scale: 1.9)),
                         ),
                       )
                     ],

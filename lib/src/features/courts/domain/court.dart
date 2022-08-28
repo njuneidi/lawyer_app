@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'court.g.dart';
@@ -9,8 +10,8 @@ class Court  with _$Court {
   const factory Court(
       {@Default(-1) int id,
       required String name,
-      
-      @Default('') String address,
+     // @Default('') String idCardNumber,
+      @Default('') String address ,
       @Default('') String location,
       @Default('') String phone,
      

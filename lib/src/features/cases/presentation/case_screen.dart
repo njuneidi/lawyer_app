@@ -32,12 +32,12 @@ class CaseScreen extends ConsumerStatefulWidget {
 
 class _CaseScreenState extends ConsumerState<CaseScreen> {
   final _scrollController = ScrollController();
-   @override
+  @override
   void initState() {
     super.initState();
-   // _scrollController.addListener(_dismissOnScreenKeyboard);
+    // _scrollController.addListener(_dismissOnScreenKeyboard);
   }
-    // When the search text field gets the focus, the keyboard appears on mobile.
+  // When the search text field gets the focus, the keyboard appears on mobile.
   // This method is used to dismiss the keyboard when the user scrolls.
   // void _dismissOnScreenKeyboard() {
   //   if (FocusScope.of(context).hasFocus) {
@@ -58,20 +58,49 @@ class _CaseScreenState extends ConsumerState<CaseScreen> {
     final page = AppRoute.cases.name;
     final onSaveLink = ref.watch(previousLinkNotifierProvider.notifier);
     final searchFilter = ref.watch(searchFilterNotifierProvider);
-
-    
-    // setEntityLength.entityLength(clients.value?.length);
+    //  final onSaveLink = ref.watch(previousLinkNotifierProvider.notifier);
     final enityTitle = getEntityScreenTitle(widget.tab, context);
+
+    VoidCallback headerButton(tab) {
+      return () {
+        // final onSaveLink = ref.watch(previousLinkNotifierProvider.notifier);
+        // ref
+        //     .watch(entityItemNotifierProvider.notifier)
+        //     .item(const Client(name: ''));
+
+        ref.watch(caseItemNotifierProvider.notifier).item(Case(title: ''));
+        onSaveLink.previousPage(tab);
+
+        widget.tabItem.linkedPage(editLink(tab));
+      };
+    }
+
+    // setEntityLength.entityLength(clients.value?.length);
+
     return Scaffold(
       appBar: HomeAppBar(
+        
         tab: widget.tab,
         enityTitle: enityTitle,
-        item: item,
+        // item: item,
         tabItem: widget.tabItem,
+        headerButton: () {
+          ref.watch(caseItemNotifierProvider.notifier).item(Case(title: ''));
+          onSaveLink.previousPage(widget.tab);
+
+          widget.tabItem.linkedPage(editLink(widget.tab));
+        },
+        imageIcon: const Icon(Icons.add)
       ),
+
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
+          ResponsiveSliverCenter(
+            maxContentWidth: double.infinity,
+            padding: const EdgeInsets.all(Sizes.p16),
+            child: MyFielsSmall(tab: widget.tab),
+          ),
           ResponsiveSliverCenter(
             padding: const EdgeInsets.all(Sizes.p16),
             child: EntitiesSearchTextField(
@@ -79,9 +108,9 @@ class _CaseScreenState extends ConsumerState<CaseScreen> {
               tab: widget.tab,
             ),
           ),
-          const ResponsiveSliverCenter(
-            padding: EdgeInsets.all(Sizes.p16),
-            child: CasesGrid(),
+          ResponsiveSliverCenter(
+            padding: const EdgeInsets.all(Sizes.p16),
+            child: CasesGrid(tabItem: widget.tabItem),
           ),
         ],
       ),

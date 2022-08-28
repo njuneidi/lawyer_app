@@ -3,12 +3,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lawyer_app/src/constants/app_route_constatnt.dart';
 import 'package:lawyer_app/src/entity_controller/controller/entity_controller.dart';
 import 'package:lawyer_app/src/features/authentication/domain/app_user.dart';
+import 'package:lawyer_app/src/features/case_type_model/presentation/case_type_screen.dart';
+import 'package:lawyer_app/src/features/case_type_model/presentation/edit/case_type_screen_edit.dart';
+import 'package:lawyer_app/src/features/case_type_model/presentation/edit/services_screen_edit.dart';
+import 'package:lawyer_app/src/features/case_type_model/presentation/edit/task_type_screen_edit.dart';
+import 'package:lawyer_app/src/features/case_type_model/presentation/service_screen.dart';
+import 'package:lawyer_app/src/features/case_type_model/presentation/task_type_screen.dart';
 import 'package:lawyer_app/src/features/cases/presentation/case_screen.dart';
 import 'package:lawyer_app/src/features/cases/presentation/edit/case_screen_edit.dart';
 import 'package:lawyer_app/src/features/courts/presentation/court_screen.dart';
 import 'package:lawyer_app/src/features/courts/presentation/edit/court_screen_edit.dart';
 import 'package:lawyer_app/src/features/entity/presentation/edit/entity_screen_edit.dart';
 import 'package:lawyer_app/src/features/entity/presentation/entity_screen.dart';
+import 'package:lawyer_app/src/features/tasks/presentation/edit/task_screen_edit.dart';
+import 'package:lawyer_app/src/features/tasks/presentation/task_screen.dart';
 import 'package:lawyer_app/src/responsive.dart';
 import 'package:lawyer_app/src/screens/dashbord/dashboard_screen.dart';
 import 'package:lawyer_app/src/screens/definition/definition_screen.dart';
@@ -38,11 +46,16 @@ class HomePage extends ConsumerWidget {
     final entityItem = ref.read(entityItemNotifierProvider);
     final courtItem = ref.read(courtItemNotifierProvider);
     final caseItem = ref.read(caseItemNotifierProvider);
+    final caseTypeItem = ref.read(caseEntityNotifierProvider);
+    final serviceItem = ref.read(serviceItemNotifierProvider);
+    final taskTypeItem = ref.read(serviceItemNotifierProvider);
+
+    final taskItem = ref.read(taskItemNotifierProvider);
 
     final tabNotifier = ref.watch(tabItemsNotifierProvider.notifier);
-    // debugPrint("dd");
+    // //debugPrint("dd");
     final controller = ref.watch(entityControllerProvider);
-    // debugPrint("ddd");
+    // //debugPrint("ddd");
     // final clients = ref.watch(clientsProvider);
 
     Widget link() {
@@ -91,9 +104,54 @@ class HomePage extends ConsumerWidget {
           context: context,
           entity: caseItem,
         );
-      }else {
+      } else if (tab == AppRoute.services.name) {
+        return ServiceScreen(
+          controller: controller,
+          tab: tab,
+          tabItem: tabNotifier,
+        );
+      } else if (tab == AppRoute.editServices.name) {
+        return ServicesScreenEdit(
+          context: context,
+          entity: serviceItem,
+        );
+      }else if (tab == AppRoute.casesType.name) {
+        return CaseTypeScreen(
+          controller: controller,
+          tab: tab,
+          tabItem: tabNotifier,
+        );
+      } else if (tab == AppRoute.editCasesType.name) {
+        return CaseTypeScreenEdit(
+          context: context,
+          entity: caseTypeItem,
+        );
+      } else if (tab == AppRoute.tasks.name) {
+        return TaskScreen(
+          controller: controller,
+          tab: tab,
+          tabItem: tabNotifier,
+        );
+      } else if (tab == AppRoute.editTasks.name) {
+        return TaskScreenEdit(
+          context: context,
+          entity: taskItem,
+        );
+      }else if (tab == AppRoute.tasksType.name) {
+        return TaskTypeScreen(
+          controller: controller,
+          tab: tab,
+          tabItem: tabNotifier,
+        );
+      } else if (tab == AppRoute.editTasksType.name) {
+        return TaskTypeScreenEdit(
+          context: context,
+          entity: taskTypeItem,
+        );
+      } else {
         return DefinitionScreen();
       }
+      
     }
 
     return Row(

@@ -101,7 +101,7 @@ class FileInfoCardGridView extends StatelessWidget {
   static int getFielsCount(String tab) {
     switch (tab) {
       case 'dashboard':
-        return dashboardDemoMyFiels.length;
+        return dashboardDemoMyFiels(context).length;
       case 'definition':
         return definitionDemoMyFiels(context).length;
       case 'transaction':
@@ -123,7 +123,7 @@ class FileInfoCardGridView extends StatelessWidget {
       //physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: tab == AppRoute.dashboard.name
-          ? dashboardDemoMyFiels.length
+          ? dashboardDemoMyFiels(context).length
           : tab == AppRoute.definition.name
               ? definitionDemoMyFiels(context).length
               : 1,
@@ -135,7 +135,7 @@ class FileInfoCardGridView extends StatelessWidget {
       ),
       itemBuilder: (context, index) => FieldInfoCard(
         info: tab == 'dashboard'
-            ? dashboardDemoMyFiels[index]
+            ? dashboardDemoMyFiels(context)[index]
             : definitionDemoMyFiels(context)[index],
       ),
     );

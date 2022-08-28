@@ -9,6 +9,7 @@ part of 'client.dart';
 _$_Client _$$_ClientFromJson(Map<String, dynamic> json) => _$_Client(
       id: json['id'] as int? ?? -1,
       name: json['name'] as String,
+      idCardNumber: json['idCardNumber'] as String? ?? '',
       address: json['address'] as String? ?? '',
       paidToDate: json['paidToDate'] == null
           ? null
@@ -57,6 +58,7 @@ _$_Client _$$_ClientFromJson(Map<String, dynamic> json) => _$_Client(
 Map<String, dynamic> _$$_ClientToJson(_$_Client instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'idCardNumber': instance.idCardNumber,
       'address': instance.address,
       'paidToDate': instance.paidToDate?.toIso8601String(),
       'lastLoginAt': instance.lastLoginAt?.toIso8601String(),

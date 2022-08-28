@@ -18,8 +18,8 @@ final EntityInfo info;
 
     final preLink = ref.watch(previousLinkNotifierProvider.notifier);
 
-    debugPrint(
-        ' ---- edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');
+    //debugPrint(
+      //  ' ---- edit${info.name?.substring(0, 1).toUpperCase()}${info.name?.substring(1)}');
     return GestureDetector(
       onTap: () => myFiels.linkedPage(info.name!),
       child: Container(
@@ -55,12 +55,12 @@ final EntityInfo info;
                     //   src:info.svgSrc!,
                     //   color: info.color,
                     // ),
-                    child: Transform.scale(scale: 1.1, child: imgIcons(src: info.imgSrc!)),
+                    child: Transform.scale(scale: 1.1, child: imgIcons2(src: info.imgSrc!)),
                   ),
          
                  //   imgIcon( src:info.imgSrc!),
                   IconButton(
-                    icon: imgIcons(src: 'add.png',color: Colors.white),
+                    icon: imgIcons(src: 'add.png'),
                     onPressed: () {
                       // clientRow.entityRow(const Client(name: ''));
                       final clientRow = ref.watch(entityItemNotifierProvider.notifier);

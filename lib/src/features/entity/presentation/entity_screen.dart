@@ -65,7 +65,7 @@ class EntityScreen extends ConsumerWidget {
           child: IconButton(
               onPressed: () {},
               icon:
-                  imgIcons(src: 'garbage.png', color: Colors.white, scale: .2)))
+                  imgIcons(src: 'garbage.png', scale: .2)))
     ];
     // tab.substring(4).toLowerCase()'';
     entities() {
@@ -125,7 +125,10 @@ class EntityScreen extends ConsumerWidget {
       if (tab == AppRoute.suppliers.name) {
         // setEntityLength.entityLength(suppliers.value?.length);
          return (() => controller.deleteEntity(entity,AppRoute.suppliers.name));
-      } else {
+      } else if (tab == AppRoute.casesType.name) {
+        // setEntityLength.entityLength(suppliers.value?.length);
+         return (() => controller.deleteCaseType(entity,AppRoute.casesType.name));
+      }  {
         return () => {};
       }
     }
@@ -160,6 +163,9 @@ class EntityScreen extends ConsumerWidget {
     final enityTitle = getEntityScreenTitle(tab, context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:secondaryColor,
+        //foregroundColor: Colors.black54,
+        
         centerTitle: true,
         //flexibleSpace:   const MyFielsSmall(tab:'definition'),
         title: entities()?.when(
@@ -178,7 +184,8 @@ class EntityScreen extends ConsumerWidget {
           ),
           IconButton(
             onPressed: headerButton(tab),
-            icon: imgIcons(src: 'add.png', color: Colors.white),
+           // icon: imgIcons(src: 'add.png', color: Colors.white),
+            icon: Icon(Icons.add_rounded),
           ),
           const SizedBox(
             width: 100,
@@ -186,7 +193,7 @@ class EntityScreen extends ConsumerWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0 * 2),
+        padding: const EdgeInsets.all(defaultPadding),
         child: Container(
           padding: const EdgeInsets.all(defaultPadding * .250),
           child: Column(
@@ -287,8 +294,8 @@ class EntityScreen extends ConsumerWidget {
                                             child: IconButton(
                                                 //icon: const Icon(Icons.delete),
                                                 icon: imgIcons(
-                                                    src: 'garbage.png',
-                                                    color: Colors.white),
+                                                    src: 'garbage.png'
+                                                    ),
                                                 onPressed: deleteEntityItem(
                                                     tab, entity)),
                                           ),
@@ -296,7 +303,7 @@ class EntityScreen extends ConsumerWidget {
                                       ),
                                     ),
                                   ),
-                                  const Divider(color: Colors.white70),
+                                  const Divider(color: Colors.white70,height: 1,),
                                 ],
                               );
                             },
@@ -316,10 +323,10 @@ class EntityScreen extends ConsumerWidget {
     return Expanded(
       flex: flex,
       child: Padding(
-        padding: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(5),
         child: Container(
           //color: Colors.blueGrey,
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

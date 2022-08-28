@@ -19,7 +19,7 @@ class WelcomPage extends StatelessWidget {
           children: [
             Text(
               context.loc.welcomeToLawyerApp,
-              style: const TextStyle(fontSize: 28),
+              style: const TextStyle(fontSize: 28, color: Colors.black),
               //style: Theme.of(context).textTheme.headline4,
             ),
             Center(
@@ -33,9 +33,15 @@ class WelcomPage extends StatelessWidget {
                 ],
               ),
             ),
-            ActionTextButton(
-              text: context.loc.signIn,
-              onPressed: () => context.pushNamed(AppRoute.signIn.name),
+            Container(
+              color: Colors.black54,
+              
+              child: ActionTextButton(
+
+                text: context.loc.signIn,
+                
+                onPressed: () => context.pushNamed(AppRoute.signIn.name),
+              ),
             ),
           ],
         ),

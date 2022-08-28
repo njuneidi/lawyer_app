@@ -11,8 +11,12 @@ _$_Case _$$_CaseFromJson(Map<String, dynamic> json) => _$_Case(
       title: json['title'] as String,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
       description: json['description'] as String? ?? '',
       clientID: json['clientID'] as String? ?? '',
+      clientName: json['clientName'] as String? ?? '',
       attachmentID: json['attachmentID'] as String? ?? '',
       type: json['type'] as String? ?? '',
       others: json['others'] as String? ?? '',
@@ -23,8 +27,10 @@ Map<String, dynamic> _$$_CaseToJson(_$_Case instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'date': instance.date?.toIso8601String(),
+      'updatedDate': instance.updatedDate?.toIso8601String(),
       'description': instance.description,
       'clientID': instance.clientID,
+      'clientName': instance.clientName,
       'attachmentID': instance.attachmentID,
       'type': instance.type,
       'others': instance.others,

@@ -1,10 +1,14 @@
 // Create a Form widget.
+//import 'package:country_picker/country_picker.dart';
+
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_phone_field/form_builder_phone_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:intl/intl.dart';
+
+import 'package:countries_utils/countries_utils.dart';
 
 import 'package:lawyer_app/src/common_widgets/responsive_center.dart';
 import 'package:lawyer_app/src/constants/constants_item.dart';
@@ -47,12 +51,12 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
     final tab = ref.watch(tabItemsNotifierProvider);
     final databaseController = ref.watch(entityControllerProvider);
     final scrollController = ScrollController();
-
+    final List<Country> countries = Countries.all();
     final onSaveLink = tab.substring(4).toLowerCase();
     //final prevLink = ref.watch(previousItemProvider.notifier);
     //prevLink.previousPage(tab);
     final backLink = ref.watch(previousLinkNotifierProvider);
-    debugPrint('backLink $backLink');
+    //debugPrint('backLink $backLink');
 
     final editEntityRow = widget.entity?.name != '' ? true : false;
 
@@ -60,13 +64,15 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
         getEditScreenEntityTitle(tab, context, editEntityRow);
 
     if (editEntityRow) {
-      debugPrint('true');
+      //debugPrint('true');
     } else {
-      debugPrint('false');
+      //debugPrint('false');
     }
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: secondaryColor,
+        // foregroundColor: Colors.black54,
         centerTitle: true,
         automaticallyImplyLeading: true,
         leading: BackButton(
@@ -85,8 +91,8 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                 _formKey.currentState!.save();
                 final textfieldData = _formKey.currentState!.value;
 
-                //ScaffoldMessenger.of(context)
-                //.showSnackBar(SnackBar(content: Text(textfieldData)));
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(textfieldData.values.toString())));
                 getSaveAction(tab, databaseController, editEntityRow,
                     textfieldData, widget.entity!);
 
@@ -100,7 +106,8 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                 // myFiels.myFielsPage('editClient');
               }
             },
-            icon: imgIcons(src: 'save.png', scale: 1.6,color: Colors.white),
+            //icon: imgIcons(src: 'save.png', color:Colors.white70),
+            icon: imgIcons(src: 'save.png'),
             tooltip: context.loc.save,
             //  child: Text(context.loc.submit),
           ),
@@ -123,7 +130,7 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                        flex: 2,
+                        flex: 4,
                         child: Column(
                           children: [
                             FormBuilder(
@@ -137,12 +144,30 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                     initialValue: editEntityRow
                                         ? widget.entity!.name
                                         : '',
+                                    style: formStyle(context),
+                                    decoration: decoration(
+                                        widget.context.loc.nameFieldLabelText),
+                                    onChanged: (value) => debugPrint(value),
+                                    valueTransformer: (value) =>
+                                        value.toString().trim(),
+                                    // controller: _nameController,
+                                    // valueTransformer: (text) => num.tryParse(text),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      //FormBuilderValidators.numeric(),
+                                      //FormBuilderValidators.max( 70),
+                                    ]),
+                                    // keyboardType: TextInputType.number,
+                                  ),
+                                  FormBuilderTextField(
+                                    style: formStyle(context),
+                                    decoration: decoration(
+                                        widget.context.loc.idNumberLabel),
+                                    name: 'cardIDNumber',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.name
+                                        : '',
 
-                                    decoration: InputDecoration(
-                                      labelText:
-                                          widget.context.loc.nameFieldLabelText,
-                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                    ),
                                     onChanged: (value) => debugPrint(value),
                                     valueTransformer: (value) =>
                                         value.toString().trim(),
@@ -160,11 +185,9 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                     initialValue: editEntityRow
                                         ? widget.entity!.address
                                         : '',
-                                    decoration: InputDecoration(
-                                      labelText:
-                                          widget.context.loc.addressFieldLabel,
-                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                    ),
+                                    style: formStyle(context),
+                                    decoration: decoration(
+                                        widget.context.loc.addressFieldLabel),
                                     onChanged: (value) => debugPrint(value),
                                     valueTransformer: (value) =>
                                         value.toString().trim(),
@@ -180,11 +203,9 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                     initialValue: editEntityRow
                                         ? widget.entity!.city
                                         : '',
-                                    decoration: InputDecoration(
-                                      labelText:
-                                          widget.context.loc.cityFieldLabel,
-                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                    ),
+                                    style: formStyle(context),
+                                    decoration: decoration(
+                                        widget.context.loc.cityFieldLabel),
                                     onChanged: (value) => debugPrint(value),
                                     valueTransformer: (value) =>
                                         value.toString().trim(),
@@ -196,41 +217,29 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                     // keyboardType: TextInputType.number,
                                   ),
                                   FormBuilderDropdown(
-                                    // initialValue:  (BuildContext context) {
-                                    //   return gender(widget.context).map<Widget>((e) {
-                                    //     return SafeArea(
-                                    //         child: Column(
-                                    //       children: [
-                                    //         Text( e['value']!),
+                                     dropdownColor: bgColor,
 
-                                    //       ],
-                                    //     ));
-                                    //   }).toList();
-                                    // },
-                                    icon: const Icon(Icons.people),
-                                    selectedItemBuilder:
-                                        (BuildContext context) {
-                                      return gender(widget.context)
-                                          .map<Widget>((e) {
-                                        return SafeArea(
-                                            child: Column(
-                                          children: [
-                                            Text(e['value']!),
-                                          ],
-                                        ));
-                                      }).toList();
-                                    },
+                                    //focusColor: primaryColor,
 
-                                    name: 'gender',
-                                    //  initialValue:
-                                    //   widget.client != null ? widget.client!.gender : ' ذكر',
-                                    decoration: const InputDecoration(
-                                      //labelText: widget.context.loc.gender,
-                                      border: OutlineInputBorder(),
-                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                                    initialValue: editEntityRow
+                                        ? widget.entity!.gender
+                                        : null,
+                                    icon: const Icon(
+                                      Icons.people,
+                                      color: secondaryColor,
                                     ),
-                                    hint: Text(widget.context.loc.selectGender),
-                                  
+                                    name: 'gender',
+                                    
+                                    
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.merge(const TextStyle(
+                                            color: Colors.black87)),
+                                    decoration: decoration(
+                                      
+                                        widget.context.loc.selectGender),
+                                    //  hint: Text(widget.context.loc.selectGender),
                                     items: gender(widget.context)
                                         .map((gender) => DropdownMenuItem(
                                               value: gender['value'],
@@ -243,34 +252,48 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                     onChanged: (value) => widget.entity!.gender,
                                   ),
                                   FormBuilderDateTimePicker(
-                                    //format: DateFormat(DateFormat.YEAR_NUM_MONTH_DAY) ,
-                                    initialDatePickerMode : DatePickerMode.day,
-                                    initialEntryMode:DatePickerEntryMode.input,
+
+                                            style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.merge(const TextStyle(
+                                            color: Colors.black87)),
+                                    resetIcon: const Icon(
+                                      Icons.cancel,
+                                      color: secondaryColor,
+                                    ),
+                                
+
+                                    initialDatePickerMode: DatePickerMode.day,
+                                    initialEntryMode:
+                                        DatePickerEntryMode.calendar,
                                     initialValue: editEntityRow
                                         ? widget.entity!.dob
                                         : null,
-                                    name: 'bod',
+                                    name: 'dob',
 
-                                    // onChanged: _onChanged,
                                     inputType: InputType.date,
-                                    decoration: InputDecoration(
-                                      labelText: widget
-                                          .context.loc.birthOfDateFieldLabel,
-                                    ),
+
+                                    decoration: decoration(widget
+                                        .context.loc.birthOfDateFieldLabel),
+                                    //locale: Locale('ar','EG'),
+                                    // format: DateFormat.yMd('en'),
                                     initialDate: DateTime(1980),
+                                    // locale: const Locale('en'),
+
+                                    //validator: (value) => null,
                                     // initialValue: DateTime.now(),
                                     // enabled: true,
                                   ),
                                   FormBuilderTextField(
                                     name: 'email',
+                                    // keyboardType: input.email,
                                     initialValue: editEntityRow
                                         ? widget.entity!.email
                                         : '',
-                                    decoration: InputDecoration(
-                                      labelText:
-                                          widget.context.loc.emailFieldLabel,
-                                      // 'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                                    ),
+                                    style: formStyle(context),
+                                    decoration:
+                                        decoration(widget.context.loc.email),
                                     onChanged: (value) => debugPrint(value),
                                     valueTransformer: (value) =>
                                         value.toString().trim(),
@@ -281,20 +304,16 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                       FormBuilderValidators.email(),
                                       //FormBuilderValidators.max( 70),
                                     ]),
-                                    // keyboardType: TextInputType.number,
+                                     keyboardType: TextInputType.emailAddress,
                                   ),
                                   FormBuilderPhoneField(
                                     name: 'phone',
                                     initialValue: editEntityRow
                                         ? widget.entity!.phone
                                         : '',
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.all(Sizes.p16),
-                                      labelText:
-                                          widget.context.loc.phoneFieldLabel,
-                                      hintText: '02XXXXXXX',
-                                    ),
+                                    style: formStyle(context),
+                                    decoration: decoration(
+                                        widget.context.loc.phoneFieldLabel),
                                     priorityListByIsoCode: const ['PS'],
                                     defaultSelectedCountryIsoCode: 'PS',
                                     validator: FormBuilderValidators.compose([
@@ -306,11 +325,9 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                                     initialValue: editEntityRow
                                         ? widget.entity!.mobile
                                         : '',
-                                    decoration: InputDecoration(
-                                      labelText:
-                                          widget.context.loc.mobileFieldLabel,
-                                      hintText: '05XXXXXXXX',
-                                    ),
+                                    style: formStyle(context),
+                                    decoration: decoration(
+                                        widget.context.loc.mobileFieldLabel),
                                     priorityListByIsoCode: const ['PS'],
                                     defaultSelectedCountryIsoCode: 'PS',
                                     validator: FormBuilderValidators.compose([
@@ -331,12 +348,14 @@ class MyCustomFormState extends ConsumerState<EnitityScreenEdit> {
                         child: Container(
                           padding: const EdgeInsets.all(defaultPadding),
                           child: Center(
-                              child: imgIcons(src: 'addUser.png', scale: 1.9)),
+                              child: imgIcons2(src: 'addUser.png', scale: .2)),
                         ),
                       )
                     ],
                   ),
-const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
